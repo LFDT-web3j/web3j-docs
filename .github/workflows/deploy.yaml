@@ -2,7 +2,7 @@ name: Deploy Docs
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   deploy:
@@ -31,6 +31,6 @@ jobs:
           git config --global user.email web3labs@web3labs.com
           git fetch origin gh-pages --depth=1
       - name: Deploy with Mike
-        run: mike deploy ${{ env.version }} -p
+        run: mike deploy ${{ env.version }} ${{ env.aliases }} -p
       - name: Set default version with Mike
-        run: mike set-default ${{ env.version }} -p
+        run: mike set-default ${{ env.version }} ${{ env.aliases }} -p

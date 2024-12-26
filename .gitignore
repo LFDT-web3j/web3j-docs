@@ -72,3 +72,4 @@ site/
 Pipfile
 Pipfile.lock
 get-pip.py
+.DS_Store
