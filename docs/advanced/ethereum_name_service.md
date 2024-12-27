@@ -20,7 +20,7 @@ YourSmartContract contract = YourSmartContract.load(
 Also, when performing Ether transfers, such as using the command line
 tools:
 
-``` bash
+```bash
 $ web3j wallet send <walletfile> 0x<address>|<ensName>
 ```
 
@@ -37,75 +37,75 @@ ENS Features Supported with Code Examples
 
 #### Code Examples -
 
-1. Forward resolution from ENS to address:
+- Forward resolution from ENS to address:
 
-    ```java
-    Web3j web3j = Web3j.build(new HttpService("<rpc_endpoint_url>"));
-    EnsResolver ensResolver = new EnsResolver(web3j);
+```java 
+Web3j web3j = Web3j.build(new HttpService("<rpc_endpoint_url>"));
+EnsResolver ensResolver = new EnsResolver(web3j);
 
-    String ensName = ENSNormalize.ENSIP15.normalize("nick.eth");
-    System.out.println("ENS address = " + ensResolver.resolve(ensName));
-    ```
+String ensName = ENSNormalize.ENSIP15.normalize("nick.eth");
+System.out.println("ENS address = " + ensResolver.resolve(ensName));
+```
 
-2. Reverse Resolution from address to Primary ENS:
+- Reverse Resolution from address to Primary ENS:
 
-    ```java
-    // 0x225f137127d9067788314bc7fcc1f36746a3c3B5 -> luc.eth
-    String ensPrimaryName = ensResolver.reverseResolve("0x225f137127d9067788314bc7fcc1f36746a3c3B5");
-    ```
+```java 
+// 0x225f137127d9067788314bc7fcc1f36746a3c3B5 -> luc.eth
+String ensPrimaryName = ensResolver.reverseResolve("0x225f137127d9067788314bc7fcc1f36746a3c3B5");
+```
 
-3. Set primary ENS name for any address:
+- Set primary ENS name for any address:
 
-    ```java
-    Credentials credentials = Credentials.create("<private_key>");
+```java 
+Credentials credentials = Credentials.create("<private_key>");
 
-    // Set Primary Name
-    TransactionReceipt receiptResult1 = ensResolver.setReverseName("nick.eth", credentials);
+// Set Primary Name
+TransactionReceipt receiptResult1 = ensResolver.setReverseName("nick.eth", credentials);
 
-    // Set Primary Name for Contract (or Address)
-    // for address = 0x225f137127d9067788314bc7fcc1f36746a3c3B5
-    // owner address (function caller) = credentials.getAddress()
-    // resolver address = 0x9010A27463717360cAD99CEA8bD39b8705CCA238
-    TransactionReceipt receiptResult2 = ensResolver.setReverseName(
+// Set Primary Name for Contract (or Address)
+// for address = 0x225f137127d9067788314bc7fcc1f36746a3c3B5
+// owner address (function caller) = credentials.getAddress()
+// resolver address = 0x9010A27463717360cAD99CEA8bD39b8705CCA238
+TransactionReceipt receiptResult2 = ensResolver.setReverseName(
         "0x225f137127d9067788314bc7fcc1f36746a3c3B5",
         credentials.getAddress(),
         "0x9010A27463717360cAD99CEA8bD39b8705CCA238",
         "nick.eth",
         credentials
     );
-    ```
+```
 
-4. Get nameHash and labelHash for ENS:
+- Get nameHash and labelHash for ENS:
 
-    ```java
-    // ENS name: luc.eth
-    String nameHashString = NameHash.nameHash("luc.eth");
-    byte[] nameHash = NameHash.nameHashAsBytes("luc.eth");
+```java 
+// ENS name: luc.eth
+String nameHashString = NameHash.nameHash("luc.eth");
+byte[] nameHash = NameHash.nameHashAsBytes("luc.eth");
 
-    // ENS label: luc
-    String labelHashString = NameHash.nameHash("luc");
-    byte[] labelHash = NameHash.nameHashAsBytes("luc");
+// ENS label: luc
+String labelHashString = NameHash.nameHash("luc");
+byte[] labelHash = NameHash.nameHashAsBytes("luc");
 
-    // DNS Encoded Name
-    String dnsEncodedName = NameHash.dnsEncode("name.eth");
-    ```
+// DNS Encoded Name
+String dnsEncodedName = NameHash.dnsEncode("name.eth");
+```
 
-5. Getting and setting ENS records:
+- Getting and setting ENS records:
 
-    ```java
-    // Get ENS text
-    String url = ensResolver.getEnsText("nick.eth", "url");
+```java 
+// Get ENS text
+String url = ensResolver.getEnsText("nick.eth", "url");
 
-    // Set ENS text
-    TransactionReceipt receiptResult3 = ensResolver.setEnsText("nick.eth", "url", "http://example.com", credentials);
-    ```
+// Set ENS text
+TransactionReceipt receiptResult3 = ensResolver.setEnsText("nick.eth", "url", "http://example.com", credentials);
+```
 
-6. Get Owner and Resolver address for any ENS name:
+- Get Owner and Resolver address for any ENS name:
 
-    ```java
-    String resolver = ensResolver.getResolverAddress("luc.eth");
-    String owner = ensResolver.getOwnerAddress("luc.eth");
-    ```
+```java 
+String resolver = ensResolver.getResolverAddress("luc.eth");
+String owner = ensResolver.getOwnerAddress("luc.eth");
+```
 
 
 Web3j implementation 
