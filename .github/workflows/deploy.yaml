@@ -31,6 +31,6 @@ jobs:
           git config --global user.email web3labs@web3labs.com
           git fetch origin gh-pages --depth=1
       - name: Deploy with Mike
-        run: mike deploy ${{ env.version }} ${{ env.aliases }} -p
+        run: mike deploy --update-alias ${{ env.version }} latest -p
       - name: Set default version with Mike
-        run: mike set-default ${{ env.version }} ${{ env.aliases }} -p
+        run: mike set-default ${{ env.version }} latest -p
