@@ -14,7 +14,6 @@ nav:
   - Quickstart: quickstart.md
   - Getting Started:
       - Run a Node locally: getting_started/run_node_locally.md
-      - Setting up project for Android: getting_started/setup_android.md
       - Interacting with a Node: getting_started/interacting_with_node.md
       - Deploy and Interact with Smart Contracts: getting_started/deploy_interact_smart_contracts.md
       - Filters and Flowables: getting_started/pub_sub.md
@@ -78,6 +77,11 @@ nav:
       - Links and Useful Resources: references/links_and_useful_resources.md
       - Thanks and Credits: references/thanks_and_credits.md
   - Javadoc: https://docs.web3j.io/latest/javadoc-api/
+  - Web3j Android:
+    - Introduction: android/introduction.md
+    - Installation: android/setup_android.md
+    - Basic Usage: android/basic_usage.md
+    - Testing: android/testing.md
 
 # Configuration
 theme:
