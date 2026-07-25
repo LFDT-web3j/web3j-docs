@@ -1,4 +1,4 @@
-Solidity Gradle Plugin
+Web3j Solidity Gradle Plugin
 ======================
 
 Simple Gradle plugin used by the [Web3j plugin](https://github.com/web3j/web3j-gradle-plugin) 
@@ -6,9 +6,9 @@ to compile Solidity contracts, but it can be used in any standalone project for 
 
 ## Plugin configuration
 
-To configure the Solidity Gradle Plugin using the plugins DSL or the legacy plugin application, 
+To configure the Web3j Solidity Gradle Plugin using the plugins DSL or the legacy plugin application, 
 check the [plugin page](https://plugins.gradle.org/plugin/org.web3j.solidity). 
-The minimum Gradle version to run the plugin is `5.+`.
+The minimum Gradle version to run the plugin is `7.+`.
 
 Then run this command from your project containing Solidity contracts:
 
@@ -45,7 +45,8 @@ The properties accepted by the DSL are listed in the following table:
 | `prettyJson`               | `Boolean`                   | `false`                                           | Output JSON in pretty format. Enables the combined JSON output. |
 | `ignoreMissing`            | `Boolean`                   | `false`                                           | Ignore missing files.                                           |
 | `allowPaths`               | `List<String>`              | `['src/main/solidity', 'src/test/solidity', ...]` | Allow a given path for imports.                                 |
-| `pathRemappings`           | `Map<String,String>`        | `[ : ]`                                           | Remaps contract imports to target path.                         |
+| `pathRemappings`           | `Map<String, String>`        | `[ : ]`                                           | Remaps contract imports to target path.                         |
+| `packages`                 | `Map<String, String>`        | `[ : ]`                                           | Additional npm packages (name to version) to resolve.           |
 | `evmVersion`               | `EVMVersion`                | `BYZANTIUM`                                       | Select desired EVM version.                                     |
 | `outputComponents`         | `OutputComponent[]`         | `[BIN, ABI]`                                      | List of output components to produce.                           |
 | `combinedOutputComponents` | `CombinedOutputComponent[]` | `[BIN, BIN_RUNTIME, SRCMAP, SRCMAP_RUNTIME]`      | List of output components in combined JSON output.              |
@@ -68,22 +69,42 @@ solidity {
 
 ## Source sets
 
-By default, all `.sol` files in `$projectDir/src/main/solidity` will be processed by the plugin.
-To specify and add different source sets, use the `sourceSets` DSL. You can also set your preferred
-output directory for compiled code.
+By default, all `.sol` files in `$projectDir/src/main/solidity` and `$projectDir/src/test/solidity` will be processed by
+the plugin. To specify and add different source sets, use the `sourceSets` DSL. You can also set your preferred output
+directory for compiled code.
 
 ```groovy
 sourceSets {
     main {
         solidity {
-            srcDir {
-                "my/custom/path/to/solidity"
-             }
-             output.resourcesDir = file('out/bin/compiledSol') 
+            srcDir 'my/custom/path/to/solidity'
+            output.resourcesDir = file('out/bin/compiledSol')
         }
     }
 }
 ```
+
+Now with solidity gradle plugin version 0.4.2, you can set different solidity versions, evmVersions, optimize flag, optimizeRuns and ignoreMissing
+flag values for different sourceSets.
+
+```groovy
+sourceSets {
+    main {
+        solidity {
+            srcDir 'my/custom/path/to/solidity'
+            output.resourcesDir = file('out/bin/compiledSol')
+            evmVersion = 'ISTANBUL'
+            optimize = true
+            optimizeRuns = 200
+            version = '0.8.12'
+        }
+    }
+}
+```
+
+For Kotlin DSL, configure the source path with `srcDir("my/custom/path/to/solidity")`.
+The `allowPaths` property controls Solidity import resolution only; it does not replace source directories.
+
 
 ## Gradle Node Plugin
 
@@ -93,16 +114,40 @@ It currently supports:
   * [Open Zeppelin](https://www.npmjs.com/package/@openzeppelin/contracts) 
   * [Uniswap](https://www.npmjs.com/package/@uniswap/lib) 
 
-When importing libraries from `@openzeppeling/contracts` in your Solidity contract the plugin will use the task `resolveSolidity` to generate 
-a `package.json` file in order to be used by the [Node plugin](https://github.com/node-gradle/gradle-node-plugin). By default, `package.json` will be generated under the `build/` directory.
-If you with do define your own `package.json` you need to add the following snippet in your `build.gradle` file. 
+When importing libraries from `@openzeppelin/contracts` in your Solidity contract, the plugin will use the
+task `resolveSolidity` to generate a `package.json` file required by
+the [Node plugin](https://github.com/node-gradle/gradle-node-plugin).
 
+By default, `package.json` will be generated under the `build/` directory. If you wish to change the directory for the
+Node plugin, add the following snippet to your `build.gradle` file:
 ```
 node {
     nodeProjectDir = file("my/custom/node/directory")
 }
 ```
 The plugin will look for the `package.json` file in the directory set and will also download the node modules under the same directory.
+
+**Note:** In case of problems with the `package.json` file, you can delete it, and it will be regenerated with the
+latest versions.
+
+### Resolving additional packages
+
+Only scoped imports (e.g. `@openzeppelin/contracts`) written directly in your `.sol` files are detected
+automatically, and they are always resolved at their `latest` version. Use the `packages` property to declare
+extra npm packages that are not detected automatically, or to pin a specific version:
+
+```groovy
+solidity {
+    packages = [
+        '@consensys-software/permissioning-smart-contracts': 'latest',
+        '@uniswap/v3-core'                                 : '1.0.1'
+    ]
+}
+```
+
+Declared packages are added to the generated `package.json`, installed by npm and remapped automatically, so there
+is no need to disable `resolvePackages` or configure `pathRemappings` manually. A version declared here takes
+precedence over a version detected from imports.
 
 ## Plugin tasks
 
