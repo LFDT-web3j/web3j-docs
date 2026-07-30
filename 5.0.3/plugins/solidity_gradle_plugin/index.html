@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#solidity-gradle-plugin" class="md-skip">
+        <a href="#web3j-solidity-gradle-plugin" class="md-skip">
           Skip to content
         </a>
       
@@ -1639,6 +1639,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Gradle Node Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resolving-additional-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolving additional packages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2622,6 +2639,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Gradle Node Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resolving-additional-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolving additional packages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2655,13 +2689,13 @@
   
 
 
-<h1 id="solidity-gradle-plugin">Solidity Gradle Plugin<a class="headerlink" href="#solidity-gradle-plugin" title="Permanent link">&para;</a></h1>
+<h1 id="web3j-solidity-gradle-plugin">Web3j Solidity Gradle Plugin<a class="headerlink" href="#web3j-solidity-gradle-plugin" title="Permanent link">&para;</a></h1>
 <p>Simple Gradle plugin used by the <a href="https://github.com/web3j/web3j-gradle-plugin">Web3j plugin</a> 
 to compile Solidity contracts, but it can be used in any standalone project for this purpose.</p>
 <h2 id="plugin-configuration">Plugin configuration<a class="headerlink" href="#plugin-configuration" title="Permanent link">&para;</a></h2>
-<p>To configure the Solidity Gradle Plugin using the plugins DSL or the legacy plugin application, 
+<p>To configure the Web3j Solidity Gradle Plugin using the plugins DSL or the legacy plugin application, 
 check the <a href="https://plugins.gradle.org/plugin/org.web3j.solidity">plugin page</a>. 
-The minimum Gradle version to run the plugin is <code>5.+</code>.</p>
+The minimum Gradle version to run the plugin is <code>7.+</code>.</p>
 <p>Then run this command from your project containing Solidity contracts:</p>
 <div class="codehilite"><pre><span></span><code>./gradlew build
 </code></pre></div>
@@ -2744,9 +2778,15 @@ The minimum Gradle version to run the plugin is <code>5.+</code>.</p>
 </tr>
 <tr>
 <td><code>pathRemappings</code></td>
-<td style="text-align: center;"><code>Map&lt;String,String&gt;</code></td>
+<td style="text-align: center;"><code>Map&lt;String, String&gt;</code></td>
 <td style="text-align: center;"><code>[ : ]</code></td>
 <td>Remaps contract imports to target path.</td>
+</tr>
+<tr>
+<td><code>packages</code></td>
+<td style="text-align: center;"><code>Map&lt;String, String&gt;</code></td>
+<td style="text-align: center;"><code>[ : ]</code></td>
+<td>Additional npm packages (name to version) to resolve.</td>
 </tr>
 <tr>
 <td><code>evmVersion</code></td>
@@ -2785,21 +2825,37 @@ The minimum Gradle version to run the plugin is <code>5.+</code>.</p>
 <li><code>allowPaths</code> contains all project's Solidity source sets by default.</li>
 </ul>
 <h2 id="source-sets">Source sets<a class="headerlink" href="#source-sets" title="Permanent link">&para;</a></h2>
-<p>By default, all <code>.sol</code> files in <code>$projectDir/src/main/solidity</code> will be processed by the plugin.
-To specify and add different source sets, use the <code>sourceSets</code> DSL. You can also set your preferred
-output directory for compiled code.</p>
+<p>By default, all <code>.sol</code> files in <code>$projectDir/src/main/solidity</code> and <code>$projectDir/src/test/solidity</code> will be processed by
+the plugin. To specify and add different source sets, use the <code>sourceSets</code> DSL. You can also set your preferred output
+directory for compiled code.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">sourceSets</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">{</span>
 <span class="w">        </span><span class="n">solidity</span><span class="w"> </span><span class="o">{</span>
-<span class="w">            </span><span class="n">srcDir</span><span class="w"> </span><span class="o">{</span>
-<span class="w">                </span><span class="s2">&quot;my/custom/path/to/solidity&quot;</span>
-<span class="w">             </span><span class="o">}</span>
-<span class="w">             </span><span class="n">output</span><span class="o">.</span><span class="na">resourcesDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="s1">&#39;out/bin/compiledSol&#39;</span><span class="o">)</span><span class="w"> </span>
+<span class="w">            </span><span class="n">srcDir</span><span class="w"> </span><span class="s1">&#39;my/custom/path/to/solidity&#39;</span>
+<span class="w">            </span><span class="n">output</span><span class="o">.</span><span class="na">resourcesDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="s1">&#39;out/bin/compiledSol&#39;</span><span class="o">)</span>
 <span class="w">        </span><span class="o">}</span>
 <span class="w">    </span><span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div>
 
+<p>Now with solidity gradle plugin version 0.4.2, you can set different solidity versions, evmVersions, optimize flag, optimizeRuns and ignoreMissing
+flag values for different sourceSets.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">sourceSets</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">solidity</span><span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="n">srcDir</span><span class="w"> </span><span class="s1">&#39;my/custom/path/to/solidity&#39;</span>
+<span class="w">            </span><span class="n">output</span><span class="o">.</span><span class="na">resourcesDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="s1">&#39;out/bin/compiledSol&#39;</span><span class="o">)</span>
+<span class="w">            </span><span class="n">evmVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ISTANBUL&#39;</span>
+<span class="w">            </span><span class="n">optimize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">            </span><span class="n">optimizeRuns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span>
+<span class="w">            </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0.8.12&#39;</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+
+<p>For Kotlin DSL, configure the source path with <code>srcDir("my/custom/path/to/solidity")</code>.
+The <code>allowPaths</code> property controls Solidity import resolution only; it does not replace source directories.</p>
 <h2 id="gradle-node-plugin">Gradle Node Plugin<a class="headerlink" href="#gradle-node-plugin" title="Permanent link">&para;</a></h2>
 <p>The plugin makes use of the <a href="https://github.com/node-gradle/gradle-node-plugin">Node plugin</a> to resolve third-party contract dependencies. 
 It currently supports:</p>
@@ -2807,15 +2863,34 @@ It currently supports:</p>
 <li><a href="https://www.npmjs.com/package/@openzeppelin/contracts">Open Zeppelin</a> </li>
 <li><a href="https://www.npmjs.com/package/@uniswap/lib">Uniswap</a> </li>
 </ul>
-<p>When importing libraries from <code>@openzeppeling/contracts</code> in your Solidity contract the plugin will use the task <code>resolveSolidity</code> to generate 
-a <code>package.json</code> file in order to be used by the <a href="https://github.com/node-gradle/gradle-node-plugin">Node plugin</a>. By default, <code>package.json</code> will be generated under the <code>build/</code> directory.
-If you with do define your own <code>package.json</code> you need to add the following snippet in your <code>build.gradle</code> file. </p>
+<p>When importing libraries from <code>@openzeppelin/contracts</code> in your Solidity contract, the plugin will use the
+task <code>resolveSolidity</code> to generate a <code>package.json</code> file required by
+the <a href="https://github.com/node-gradle/gradle-node-plugin">Node plugin</a>.</p>
+<p>By default, <code>package.json</code> will be generated under the <code>build/</code> directory. If you wish to change the directory for the
+Node plugin, add the following snippet to your <code>build.gradle</code> file:</p>
 <div class="codehilite"><pre><span></span><code>node {
     nodeProjectDir = file(&quot;my/custom/node/directory&quot;)
 }
 </code></pre></div>
 
 <p>The plugin will look for the <code>package.json</code> file in the directory set and will also download the node modules under the same directory.</p>
+<p><strong>Note:</strong> In case of problems with the <code>package.json</code> file, you can delete it, and it will be regenerated with the
+latest versions.</p>
+<h3 id="resolving-additional-packages">Resolving additional packages<a class="headerlink" href="#resolving-additional-packages" title="Permanent link">&para;</a></h3>
+<p>Only scoped imports (e.g. <code>@openzeppelin/contracts</code>) written directly in your <code>.sol</code> files are detected
+automatically, and they are always resolved at their <code>latest</code> version. Use the <code>packages</code> property to declare
+extra npm packages that are not detected automatically, or to pin a specific version:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">solidity</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+<span class="w">        </span><span class="s1">&#39;@consensys-software/permissioning-smart-contracts&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;latest&#39;</span><span class="o">,</span>
+<span class="w">        </span><span class="s1">&#39;@uniswap/v3-core&#39;</span><span class="w">                                 </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1.0.1&#39;</span>
+<span class="w">    </span><span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div>
+
+<p>Declared packages are added to the generated <code>package.json</code>, installed by npm and remapped automatically, so there
+is no need to disable <code>resolvePackages</code> or configure <code>pathRemappings</code> manually. A version declared here takes
+precedence over a version detected from imports.</p>
 <h2 id="plugin-tasks">Plugin tasks<a class="headerlink" href="#plugin-tasks" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://docs.gradle.org/current/userguide/java_plugin.html">Java Plugin</a>
 adds tasks to your project build using a naming convention on a per source set basis
@@ -2923,7 +2998,7 @@ adds tasks to your project build using a naming convention on a per source set b
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"method": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../js/version-select.js"></script>
       
