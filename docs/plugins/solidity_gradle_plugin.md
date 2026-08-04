@@ -40,8 +40,10 @@ The properties accepted by the DSL are listed in the following table:
 | `version`                  | `String`                    | `null` (defined by contract's pragma)             | Solidity compiler version.                                      |
 | `overwrite`                | `Boolean`                   | `true`                                            | Overwrite existing files.                                       |
 | `resolvePackages`          | `Boolean`                   | `true`                                            | Resolve third-party contract packages.                          |           
+| `compilerEnabled`          | `Boolean`                   | `true`                                            | Compile Solidity sources; disables compiler & Node when false.  |
 | `optimize`                 | `Boolean`                   | `true`                                            | Enable byte code optimizer.                                     |
 | `optimizeRuns`             | `Integer`                   | `200`                                             | Set for how many contract runs to optimize.                     |
+| `viaIr`                    | `Boolean`                   | `false`                                           | Enable the IR-based (`--via-ir`) compilation pipeline.          |
 | `prettyJson`               | `Boolean`                   | `false`                                           | Output JSON in pretty format. Enables the combined JSON output. |
 | `ignoreMissing`            | `Boolean`                   | `false`                                           | Ignore missing files.                                           |
 | `allowPaths`               | `List<String>`              | `['src/main/solidity', 'src/test/solidity', ...]` | Allow a given path for imports.                                 |
@@ -67,6 +69,20 @@ solidity {
     for all available versions.
   * `allowPaths` contains all project's Solidity source sets by default.
 
+### IR-based compilation (`--via-ir`)
+
+By default `solc` compiles through the legacy code generator. Set `viaIr = true` to compile through the
+Yul intermediate representation (the `--via-ir` pipeline) instead. This enables the full optimizer and can
+resolve `Stack too deep` errors that the legacy pipeline cannot handle:
+
+```groovy
+solidity {
+    viaIr = true
+}
+```
+
+The flag defaults to `false` and, like the other compiler options, can also be overridden per source set.
+
 ## Source sets
 
 By default, all `.sol` files in `$projectDir/src/main/solidity` and `$projectDir/src/test/solidity` will be processed by
@@ -84,8 +100,8 @@ sourceSets {
 }
 ```
 
-Now with solidity gradle plugin version 0.4.2, you can set different solidity versions, evmVersions, optimize flag, optimizeRuns and ignoreMissing
-flag values for different sourceSets.
+Now with solidity gradle plugin version 0.4.2, you can set different solidity versions, evmVersions, optimize flag, optimizeRuns, ignoreMissing
+and viaIr flag values for different sourceSets.
 
 ```groovy
 sourceSets {
@@ -96,6 +112,7 @@ sourceSets {
             evmVersion = 'ISTANBUL'
             optimize = true
             optimizeRuns = 200
+            viaIr = true
             version = '0.8.12'
         }
     }
@@ -105,6 +122,25 @@ sourceSets {
 For Kotlin DSL, configure the source path with `srcDir("my/custom/path/to/solidity")`.
 The `allowPaths` property controls Solidity import resolution only; it does not replace source directories.
 
+## Applying the plugin without the compiler
+
+By default, applying the plugin registers the Solidity `compile` tasks and wires in the
+[Node plugin](https://github.com/node-gradle/gradle-node-plugin) to resolve contract dependencies, which runs
+`npmInstall` automatically. If you only need the plugin's source sets — for example to generate contract wrappers
+from existing `.abi` files — set `compilerEnabled = false`:
+
+```groovy
+solidity {
+    compilerEnabled = false
+}
+```
+
+With this flag disabled:
+
+* the `compileSolidity` tasks are skipped, so no `solc` compiler is resolved, downloaded or executed;
+* the `resolveSolidity` / `npmInstall` chain is never added to the task graph, so **NodeJS and npm are not required**.
+
+To keep compilation but skip only the Node/npm integration, use `resolvePackages = false` instead.
 
 ## Gradle Node Plugin
 
