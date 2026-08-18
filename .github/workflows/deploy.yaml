@@ -33,4 +33,4 @@ jobs:
       - name: Deploy with Mike
         run: mike deploy --update-alias ${{ env.version }} latest -p
       - name: Set default version with Mike
-        run: mike set-default ${{ env.version }} latest -p
+        run: mike set-default latest -p
