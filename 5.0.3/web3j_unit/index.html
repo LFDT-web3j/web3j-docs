@@ -2652,8 +2652,8 @@ It allows you to test with both an embedded and dockerized Ethereum nodes, with 
 <span class="w">  </span><span class="n">mavenCentral</span><span class="o">()</span>
 <span class="w">  </span><span class="n">jcenter</span><span class="o">()</span>
 <span class="o">}</span>
-<span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;org.web3j:core:4.5.11&quot;</span>
-<span class="n">testCompile</span><span class="w"> </span><span class="s2">&quot;org.web3j:web3j-unit:4.5.11&quot;</span>
+<span class="n">implementation</span><span class="w"> </span><span class="s2">"org.web3j:core:4.5.11"</span>
+<span class="n">testCompile</span><span class="w"> </span><span class="s2">"org.web3j:web3j-unit:4.5.11"</span>
 </code></pre></div>
 
 <h3 id="using-evmtest-annotation">Using EVMTest annotation<a class="headerlink" href="#using-evmtest-annotation" title="Permanent link">&para;</a></h3>
@@ -2681,9 +2681,9 @@ It allows you to test with both an embedded and dockerized Ethereum nodes, with 
 
 <span class="w">    </span><span class="nd">@Test</span>
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">greeterDeploys</span><span class="p">(</span><span class="n">Web3j</span><span class="w"> </span><span class="n">web3j</span><span class="p">,</span><span class="w"> </span><span class="n">TransactionManager</span><span class="w"> </span><span class="n">transactionManager</span><span class="p">,</span><span class="w"> </span><span class="n">ContractGasProvider</span><span class="w"> </span><span class="n">gasProvider</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Greeter</span><span class="w"> </span><span class="n">greeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Greeter</span><span class="p">.</span><span class="na">deploy</span><span class="p">(</span><span class="n">web3j</span><span class="p">,</span><span class="w"> </span><span class="n">transactionManager</span><span class="p">,</span><span class="w"> </span><span class="n">gasProvider</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello EVM&quot;</span><span class="p">).</span><span class="na">send</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Greeter</span><span class="w"> </span><span class="n">greeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Greeter</span><span class="p">.</span><span class="na">deploy</span><span class="p">(</span><span class="n">web3j</span><span class="p">,</span><span class="w"> </span><span class="n">transactionManager</span><span class="p">,</span><span class="w"> </span><span class="n">gasProvider</span><span class="p">,</span><span class="w"> </span><span class="s">"Hello EVM"</span><span class="p">).</span><span class="na">send</span><span class="p">();</span>
 <span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">greeting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">greeter</span><span class="p">.</span><span class="na">greet</span><span class="p">().</span><span class="na">send</span><span class="p">();</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Hello EVM&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">greeting</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">"Hello EVM"</span><span class="p">,</span><span class="w"> </span><span class="n">greeting</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="p">}</span>
@@ -2694,14 +2694,14 @@ It allows you to test with both an embedded and dockerized Ethereum nodes, with 
 <p>Create a new test with the <code>@EVMComposeTest</code> annotation. </p>
 <p>By default, it uses <code>test.yml</code> file in the project home, and runs web3j on service named <code>node1</code> exposing the port <code>8545</code>. </p>
 <p>Can be customised to use specific docker-compose file, service name and port by <code>@EVMComposeTest("src/test/resources/geth.yml", "ethnode1", 8080)</code> Here, we connect to the service named <code>ethnode1</code> in the <code>src/test/resources/geth.yml</code> docker-compose file which exposes the port <code>8080</code> for web3j to connect to.</p>
-<div class="codehilite"><pre><span></span><code><span class="nd">@EVMComposeTest</span><span class="p">(</span><span class="s">&quot;src/test/resources/geth.yml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ethnode1&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">8080</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nd">@EVMComposeTest</span><span class="p">(</span><span class="s">"src/test/resources/geth.yml"</span><span class="p">,</span><span class="w"> </span><span class="s">"ethnode1"</span><span class="p">,</span><span class="w"> </span><span class="mi">8080</span><span class="p">)</span>
 <span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GreeterTest</span><span class="w"> </span><span class="p">{</span>
 
 <span class="p">}</span>
 </code></pre></div>
 
 <p>Inject instance of <code>Web3j</code>, <code>TransactionManager</code> and <code>ContractGasProvider</code> in your test method.</p>
-<div class="codehilite"><pre><span></span><code><span class="nd">@EVMComposeTest</span><span class="p">(</span><span class="s">&quot;src/test/resources/geth.yml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ethnode1&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">8080</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nd">@EVMComposeTest</span><span class="p">(</span><span class="s">"src/test/resources/geth.yml"</span><span class="p">,</span><span class="w"> </span><span class="s">"ethnode1"</span><span class="p">,</span><span class="w"> </span><span class="mi">8080</span><span class="p">)</span>
 <span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GreeterTest</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="nd">@Test</span>
@@ -2712,14 +2712,14 @@ It allows you to test with both an embedded and dockerized Ethereum nodes, with 
 </code></pre></div>
 
 <p>Deploy your contract in the test.</p>
-<div class="codehilite"><pre><span></span><code><span class="nd">@EVMComposeTest</span><span class="p">(</span><span class="s">&quot;src/test/resources/geth.yml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ethnode1&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">8080</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nd">@EVMComposeTest</span><span class="p">(</span><span class="s">"src/test/resources/geth.yml"</span><span class="p">,</span><span class="w"> </span><span class="s">"ethnode1"</span><span class="p">,</span><span class="w"> </span><span class="mi">8080</span><span class="p">)</span>
 <span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GreeterTest</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="nd">@Test</span>
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">greeterDeploys</span><span class="p">(</span><span class="n">Web3j</span><span class="w"> </span><span class="n">web3j</span><span class="p">,</span><span class="w"> </span><span class="n">TransactionManager</span><span class="w"> </span><span class="n">transactionManager</span><span class="p">,</span><span class="w"> </span><span class="n">ContractGasProvider</span><span class="w"> </span><span class="n">gasProvider</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Greeter</span><span class="w"> </span><span class="n">greeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Greeter</span><span class="p">.</span><span class="na">deploy</span><span class="p">(</span><span class="n">web3j</span><span class="p">,</span><span class="w"> </span><span class="n">transactionManager</span><span class="p">,</span><span class="w"> </span><span class="n">gasProvider</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello EVM&quot;</span><span class="p">).</span><span class="na">send</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Greeter</span><span class="w"> </span><span class="n">greeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Greeter</span><span class="p">.</span><span class="na">deploy</span><span class="p">(</span><span class="n">web3j</span><span class="p">,</span><span class="w"> </span><span class="n">transactionManager</span><span class="p">,</span><span class="w"> </span><span class="n">gasProvider</span><span class="p">,</span><span class="w"> </span><span class="s">"Hello EVM"</span><span class="p">).</span><span class="na">send</span><span class="p">();</span>
 <span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">greeting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">greeter</span><span class="p">.</span><span class="na">greet</span><span class="p">().</span><span class="na">send</span><span class="p">();</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Hello EVM&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">greeting</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">"Hello EVM"</span><span class="p">,</span><span class="w"> </span><span class="n">greeting</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="p">}</span>

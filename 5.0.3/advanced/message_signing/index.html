@@ -2606,13 +2606,13 @@
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p>Here is a complete usage example:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// Create a signer from a private key</span>
-<span class="n">Credentials</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;&lt;private key&gt;&quot;</span><span class="p">);</span>
+<span class="n">Credentials</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">"&lt;private key&gt;"</span><span class="p">);</span>
 
 <span class="c1">// Sign the message</span>
-<span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;The Times 03/Jan/2009 Chancellor on brink of second bailout for banks&quot;</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"</span><span class="p">;</span>
 <span class="n">SignatureData</span><span class="w"> </span><span class="n">signatureData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sign</span><span class="p">.</span><span class="na">signPrefixedMessage</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(</span><span class="n">StandardCharsets</span><span class="p">.</span><span class="na">UTF_8</span><span class="p">),</span><span class="w"> </span><span class="n">credentials</span><span class="p">.</span><span class="na">getEcKeyPair</span><span class="p">());</span>
 
-<span class="c1">// Recover the signer&#39;s public key and convert it to address</span>
+<span class="c1">// Recover the signer's public key and convert it to address</span>
 <span class="n">BigInteger</span><span class="w"> </span><span class="n">ecPubKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sign</span><span class="p">.</span><span class="na">signedPrefixedMessageToKey</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="na">getBytes</span><span class="p">(),</span><span class="w"> </span><span class="n">signatureData</span><span class="p">);</span>
 <span class="n">String</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Numeric</span><span class="p">.</span><span class="na">prependHexPrefix</span><span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(</span><span class="n">ecPubKey</span><span class="p">));</span>
 
@@ -2627,7 +2627,7 @@
 <span class="n">System</span><span class="p">.</span><span class="na">arraycopy</span><span class="p">(</span><span class="n">signatureData</span><span class="p">.</span><span class="na">getS</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">signature</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">);</span>
 <span class="n">System</span><span class="p">.</span><span class="na">arraycopy</span><span class="p">(</span><span class="n">signatureData</span><span class="p">.</span><span class="na">getV</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">signature</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 
-<span class="n">Numeric</span><span class="p">.</span><span class="na">toHexString</span><span class="p">(</span><span class="n">signature</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;0x...&quot;</span>
+<span class="n">Numeric</span><span class="p">.</span><span class="na">toHexString</span><span class="p">(</span><span class="n">signature</span><span class="p">);</span><span class="w"> </span><span class="c1">// "0x..."</span>
 </code></pre></div>
 
 

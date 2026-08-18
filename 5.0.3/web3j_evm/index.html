@@ -2675,8 +2675,8 @@ to do this.</p>
 <span class="o">}</span>
 
 <span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;org.web3j:core:5.0.3&quot;</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;org.web3j:web3j-evm:5.0.3&quot;</span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">"org.web3j:core:5.0.3"</span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">"org.web3j:web3j-evm:5.0.3"</span>
 <span class="o">}</span>
 </code></pre></div>
 
@@ -2698,7 +2698,7 @@ which is what you'd use when building your web3j instance.</p>
 </code></pre></div>
 
 <p>When your project leverages our <a href="https://github.com/web3j/web3j-gradle-plugin">gradle plugin</a> the <code>ConsoleDebugTracer</code> will automatically pick up Solidity contract metadata and use that to display source code context. Usually, these metadata json files are stored within <code>build/resources/main/solidity</code>. If you have chosen to place these elsewhere you will need to specify their location when creating the debugger instance:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">OperationTracer</span><span class="w"> </span><span class="n">operationTracer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ConsoleDebugTracer</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">&quot;alternative/metadata/file/location&quot;</span><span class="p">));</span>
+<div class="codehilite"><pre><span></span><code><span class="n">OperationTracer</span><span class="w"> </span><span class="n">operationTracer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ConsoleDebugTracer</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"alternative/metadata/file/location"</span><span class="p">));</span>
 </code></pre></div>
 
 <h2 id="options-while-debugging">Options while debugging<a class="headerlink" href="#options-while-debugging" title="Permanent link">&para;</a></h2>
@@ -2778,8 +2778,8 @@ which is what you'd use when building your web3j instance.</p>
 <span class="o">}</span>
 
 <span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;org.web3j:core:$web3jVersion&quot;</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;org.web3j:web3j-evm:$web3jVersion&quot;</span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">"org.web3j:core:$web3jVersion"</span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">"org.web3j:web3j-evm:$web3jVersion"</span>
 <span class="o">}</span>
 </code></pre></div>
 
@@ -2788,7 +2788,7 @@ which is what you'd use when building your web3j instance.</p>
 
 <p>The configuration given to the embedded Web3j service includes the address you want to make your own and also how much test Ether you want to pre-fund on this account.</p>
 <p>Assuming you have a Web3j wallet already, you can create this configuration object as shown next:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Credentials</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WalletUtils</span><span class="p">.</span><span class="na">loadCredentials</span><span class="p">(</span><span class="s">&quot;Wallet password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wallet.json&quot;</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Credentials</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WalletUtils</span><span class="p">.</span><span class="na">loadCredentials</span><span class="p">(</span><span class="s">"Wallet password"</span><span class="p">,</span><span class="w"> </span><span class="s">"wallet.json"</span><span class="p">);</span>
 
 <span class="n">Configuration</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Configuration</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Address</span><span class="p">(</span><span class="n">credentials</span><span class="p">.</span><span class="na">getAddress</span><span class="p">()),</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
 </code></pre></div>

@@ -2662,7 +2662,7 @@
 <h2 id="usage-in-web3j">Usage in web3j<a class="headerlink" href="#usage-in-web3j" title="Permanent link">&para;</a></h2>
 <p>You can use ENS names anywhere you wish to transact in web3j. In practice this means, in smart contract wrappers, when you load them, such as:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">YourSmartContract</span><span class="w"> </span><span class="n">contract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YourSmartContract</span><span class="p">.</span><span class="na">load</span><span class="p">(</span>
-<span class="w">        </span><span class="s">&quot;0x&lt;address&gt;|&lt;ensName&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">web3j</span><span class="p">,</span><span class="w"> </span><span class="n">credentials</span><span class="p">,</span><span class="w"> </span><span class="n">contractGasProvider</span><span class="p">);</span>
+<span class="w">        </span><span class="s">"0x&lt;address&gt;|&lt;ensName&gt;"</span><span class="p">,</span><span class="w"> </span><span class="n">web3j</span><span class="p">,</span><span class="w"> </span><span class="n">credentials</span><span class="p">,</span><span class="w"> </span><span class="n">contractGasProvider</span><span class="p">);</span>
 </code></pre></div>
 
 <p>Also, when performing Ether transfers, such as using the command line
@@ -2683,11 +2683,11 @@ tools:</p>
 <ul>
 <li>Forward resolution from ENS to address:</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">Web3j</span><span class="w"> </span><span class="n">web3j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Web3j</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HttpService</span><span class="p">(</span><span class="s">&quot;&lt;rpc_endpoint_url&gt;&quot;</span><span class="p">));</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Web3j</span><span class="w"> </span><span class="n">web3j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Web3j</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HttpService</span><span class="p">(</span><span class="s">"&lt;rpc_endpoint_url&gt;"</span><span class="p">));</span>
 <span class="n">EnsResolver</span><span class="w"> </span><span class="n">ensResolver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">EnsResolver</span><span class="p">(</span><span class="n">web3j</span><span class="p">);</span>
 
-<span class="n">String</span><span class="w"> </span><span class="n">ensName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ENSNormalize</span><span class="p">.</span><span class="na">ENSIP15</span><span class="p">.</span><span class="na">normalize</span><span class="p">(</span><span class="s">&quot;nick.eth&quot;</span><span class="p">);</span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;ENS address = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">resolve</span><span class="p">(</span><span class="n">ensName</span><span class="p">));</span>
+<span class="n">String</span><span class="w"> </span><span class="n">ensName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ENSNormalize</span><span class="p">.</span><span class="na">ENSIP15</span><span class="p">.</span><span class="na">normalize</span><span class="p">(</span><span class="s">"nick.eth"</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"ENS address = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">resolve</span><span class="p">(</span><span class="n">ensName</span><span class="p">));</span>
 </code></pre></div>
 
 <p>Web3j is now compatible for upcoming ENSv2 upgrade.</p>
@@ -2695,26 +2695,26 @@ tools:</p>
 <li>Reverse Resolution from address to Primary ENS:</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="c1">// 0x225f137127d9067788314bc7fcc1f36746a3c3B5 -&gt; luc.eth</span>
-<span class="n">String</span><span class="w"> </span><span class="n">ensPrimaryName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">reverseResolve</span><span class="p">(</span><span class="s">&quot;0x225f137127d9067788314bc7fcc1f36746a3c3B5&quot;</span><span class="p">);</span>
+<span class="n">String</span><span class="w"> </span><span class="n">ensPrimaryName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">reverseResolve</span><span class="p">(</span><span class="s">"0x225f137127d9067788314bc7fcc1f36746a3c3B5"</span><span class="p">);</span>
 </code></pre></div>
 
 <ul>
 <li>Set primary ENS name for any address:</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">Credentials</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;&lt;private_key&gt;&quot;</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Credentials</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">"&lt;private_key&gt;"</span><span class="p">);</span>
 
 <span class="c1">// Set Primary Name</span>
-<span class="n">TransactionReceipt</span><span class="w"> </span><span class="n">receiptResult1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">setReverseName</span><span class="p">(</span><span class="s">&quot;nick.eth&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">credentials</span><span class="p">);</span>
+<span class="n">TransactionReceipt</span><span class="w"> </span><span class="n">receiptResult1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">setReverseName</span><span class="p">(</span><span class="s">"nick.eth"</span><span class="p">,</span><span class="w"> </span><span class="n">credentials</span><span class="p">);</span>
 
 <span class="c1">// Set Primary Name for Contract (or Address)</span>
 <span class="c1">// for address = 0x225f137127d9067788314bc7fcc1f36746a3c3B5</span>
 <span class="c1">// owner address (function caller) = credentials.getAddress()</span>
 <span class="c1">// resolver address = 0x9010A27463717360cAD99CEA8bD39b8705CCA238</span>
 <span class="n">TransactionReceipt</span><span class="w"> </span><span class="n">receiptResult2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">setReverseName</span><span class="p">(</span>
-<span class="w">        </span><span class="s">&quot;0x225f137127d9067788314bc7fcc1f36746a3c3B5&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">"0x225f137127d9067788314bc7fcc1f36746a3c3B5"</span><span class="p">,</span>
 <span class="w">        </span><span class="n">credentials</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(),</span>
-<span class="w">        </span><span class="s">&quot;0x9010A27463717360cAD99CEA8bD39b8705CCA238&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s">&quot;nick.eth&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">"0x9010A27463717360cAD99CEA8bD39b8705CCA238"</span><span class="p">,</span>
+<span class="w">        </span><span class="s">"nick.eth"</span><span class="p">,</span>
 <span class="w">        </span><span class="n">credentials</span>
 <span class="w">    </span><span class="p">);</span>
 </code></pre></div>
@@ -2723,32 +2723,32 @@ tools:</p>
 <li>Get nameHash and labelHash for ENS:</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="c1">// ENS name: luc.eth</span>
-<span class="n">String</span><span class="w"> </span><span class="n">nameHashString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NameHash</span><span class="p">.</span><span class="na">nameHash</span><span class="p">(</span><span class="s">&quot;luc.eth&quot;</span><span class="p">);</span>
-<span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">nameHash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NameHash</span><span class="p">.</span><span class="na">nameHashAsBytes</span><span class="p">(</span><span class="s">&quot;luc.eth&quot;</span><span class="p">);</span>
+<span class="n">String</span><span class="w"> </span><span class="n">nameHashString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NameHash</span><span class="p">.</span><span class="na">nameHash</span><span class="p">(</span><span class="s">"luc.eth"</span><span class="p">);</span>
+<span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">nameHash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NameHash</span><span class="p">.</span><span class="na">nameHashAsBytes</span><span class="p">(</span><span class="s">"luc.eth"</span><span class="p">);</span>
 
 <span class="c1">// ENS label: luc</span>
-<span class="n">String</span><span class="w"> </span><span class="n">labelHashString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NameHash</span><span class="p">.</span><span class="na">nameHash</span><span class="p">(</span><span class="s">&quot;luc&quot;</span><span class="p">);</span>
-<span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">labelHash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NameHash</span><span class="p">.</span><span class="na">nameHashAsBytes</span><span class="p">(</span><span class="s">&quot;luc&quot;</span><span class="p">);</span>
+<span class="n">String</span><span class="w"> </span><span class="n">labelHashString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NameHash</span><span class="p">.</span><span class="na">nameHash</span><span class="p">(</span><span class="s">"luc"</span><span class="p">);</span>
+<span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">labelHash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NameHash</span><span class="p">.</span><span class="na">nameHashAsBytes</span><span class="p">(</span><span class="s">"luc"</span><span class="p">);</span>
 
 <span class="c1">// DNS Encoded Name</span>
-<span class="n">String</span><span class="w"> </span><span class="n">dnsEncodedName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NameHash</span><span class="p">.</span><span class="na">dnsEncode</span><span class="p">(</span><span class="s">&quot;name.eth&quot;</span><span class="p">);</span>
+<span class="n">String</span><span class="w"> </span><span class="n">dnsEncodedName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NameHash</span><span class="p">.</span><span class="na">dnsEncode</span><span class="p">(</span><span class="s">"name.eth"</span><span class="p">);</span>
 </code></pre></div>
 
 <ul>
 <li>Getting and setting ENS records:</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="c1">// Get ENS text</span>
-<span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">getEnsText</span><span class="p">(</span><span class="s">&quot;nick.eth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;url&quot;</span><span class="p">);</span>
+<span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">getEnsText</span><span class="p">(</span><span class="s">"nick.eth"</span><span class="p">,</span><span class="w"> </span><span class="s">"url"</span><span class="p">);</span>
 
 <span class="c1">// Set ENS text</span>
-<span class="n">TransactionReceipt</span><span class="w"> </span><span class="n">receiptResult3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">setEnsText</span><span class="p">(</span><span class="s">&quot;nick.eth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;url&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;http://example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">credentials</span><span class="p">);</span>
+<span class="n">TransactionReceipt</span><span class="w"> </span><span class="n">receiptResult3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">setEnsText</span><span class="p">(</span><span class="s">"nick.eth"</span><span class="p">,</span><span class="w"> </span><span class="s">"url"</span><span class="p">,</span><span class="w"> </span><span class="s">"http://example.com"</span><span class="p">,</span><span class="w"> </span><span class="n">credentials</span><span class="p">);</span>
 </code></pre></div>
 
 <ul>
 <li>Get Owner and Resolver address for any ENS name:</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">String</span><span class="w"> </span><span class="n">resolver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">getResolverAddress</span><span class="p">(</span><span class="s">&quot;luc.eth&quot;</span><span class="p">);</span>
-<span class="n">String</span><span class="w"> </span><span class="n">owner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">getOwnerAddress</span><span class="p">(</span><span class="s">&quot;luc.eth&quot;</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="n">String</span><span class="w"> </span><span class="n">resolver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">getResolverAddress</span><span class="p">(</span><span class="s">"luc.eth"</span><span class="p">);</span>
+<span class="n">String</span><span class="w"> </span><span class="n">owner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensResolver</span><span class="p">.</span><span class="na">getOwnerAddress</span><span class="p">(</span><span class="s">"luc.eth"</span><span class="p">);</span>
 </code></pre></div>
 
 <h2 id="web3j-implementation">Web3j implementation<a class="headerlink" href="#web3j-implementation" title="Permanent link">&para;</a></h2>

@@ -2645,7 +2645,7 @@
 <span class="w">        </span><span class="o">&lt;</span><span class="n">gasPrice</span><span class="o">&gt;</span><span class="p">,</span>
 <span class="w">        </span><span class="o">&lt;</span><span class="n">gasLimit</span><span class="o">&gt;</span><span class="p">,</span>
 <span class="w">        </span><span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="p">,</span>
-<span class="w">        </span><span class="s">&quot;0x &lt;compiled smart contract code&gt;&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="s">"0x &lt;compiled smart contract code&gt;"</span><span class="p">);</span>
 <span class="c1">// send...</span>
 
 <span class="c1">// get contract address</span>
@@ -2671,7 +2671,7 @@ contract code</em>:</p>
 <span class="w">        </span><span class="o">&lt;</span><span class="n">gasPrice</span><span class="o">&gt;</span><span class="p">,</span>
 <span class="w">        </span><span class="o">&lt;</span><span class="n">gasLimit</span><span class="o">&gt;</span><span class="p">,</span>
 <span class="w">        </span><span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="p">,</span>
-<span class="w">        </span><span class="s">&quot;0x &lt;compiled smart contract code&gt;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">encodedConstructor</span><span class="p">);</span>
+<span class="w">        </span><span class="s">"0x &lt;compiled smart contract code&gt;"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">encodedConstructor</span><span class="p">);</span>
 
 <span class="c1">// send...</span>
 </code></pre></div>
@@ -2687,7 +2687,7 @@ contract code</em>:</p>
 <p>the encoded function selector and parameter arguments</p>
 <p>Web3j takes care of the function encoding for you, for further details on the implementation refer to the <a href="../../smart_contracts/application_binary_interface/">Application Binary Interface</a> section.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Function</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Function</span><span class="o">&lt;&gt;</span><span class="p">(</span>
-<span class="w">             </span><span class="s">&quot;functionName&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// function we&#39;re calling</span>
+<span class="w">             </span><span class="s">"functionName"</span><span class="p">,</span><span class="w">  </span><span class="c1">// function we're calling</span>
 <span class="w">             </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Type</span><span class="p">(</span><span class="n">value</span><span class="p">),</span><span class="w"> </span><span class="p">...),</span><span class="w">  </span><span class="c1">// Parameters to pass as Solidity Types</span>
 <span class="w">             </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TypeReference</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="p">...));</span>
 
@@ -2710,7 +2710,7 @@ refer to the <a href="../../advanced/filters_and_events/">Filters and Events</a>
 <p>eth_call allows you to call a method on a smart contract to query a value. There is no transaction cost associated with this function, this is because it does not change the state of any smart contract method's
 called, it simply returns the value from them:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Function</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Function</span><span class="o">&lt;&gt;</span><span class="p">(</span>
-<span class="w">             </span><span class="s">&quot;functionName&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="s">"functionName"</span><span class="p">,</span>
 <span class="w">             </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Type</span><span class="p">(</span><span class="n">value</span><span class="p">)),</span><span class="w">  </span><span class="c1">// Solidity Types in smart contract functions</span>
 <span class="w">             </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TypeReference</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="p">...));</span>
 

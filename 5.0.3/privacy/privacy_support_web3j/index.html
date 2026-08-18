@@ -2644,25 +2644,25 @@
 <h2 id="privacy-support-in-web3j">Privacy Support in Web3j<a class="headerlink" href="#privacy-support-in-web3j" title="Permanent link">&para;</a></h2>
 <p>As mentioned earlier, the Besu module in Web3j can be used to create privacy groups and send private transactions in Besu. The Besu privacy quickstart starts up three nodes with their associated Orion instances, which will henceforth be called Alice, Bob and Charlie for ease of use. The keys associated with each are predetermined, and can be represented in Java as follows:</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Credentials</span><span class="w"> </span><span class="n">ALICE</span><span class="w"> </span><span class="o">=</span>
-<span class="w">        </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">"8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63"</span><span class="p">);</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Credentials</span><span class="w"> </span><span class="n">BOB</span><span class="w"> </span><span class="o">=</span>
-<span class="w">        </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">"c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3"</span><span class="p">);</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Credentials</span><span class="w"> </span><span class="n">CHARLIE</span><span class="w"> </span><span class="o">=</span>
-<span class="w">        </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;ae6ae8e5ccbfb04590405997ee2d52d2b330726137b875053c36d94e974d162f&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">"ae6ae8e5ccbfb04590405997ee2d52d2b330726137b875053c36d94e974d162f"</span><span class="p">);</span>
 
 <span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Base64String</span><span class="w"> </span><span class="n">ENCLAVE_KEY_ALICE</span><span class="w"> </span><span class="o">=</span>
-<span class="w">        </span><span class="n">Base64String</span><span class="p">.</span><span class="na">wrap</span><span class="p">(</span><span class="s">&quot;A1aVtMxLCUHmBVHXoZzzBgPbW/wj5axDpW9X8l91SGo=&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Base64String</span><span class="p">.</span><span class="na">wrap</span><span class="p">(</span><span class="s">"A1aVtMxLCUHmBVHXoZzzBgPbW/wj5axDpW9X8l91SGo="</span><span class="p">);</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Base64String</span><span class="w"> </span><span class="n">ENCLAVE_KEY_BOB</span><span class="w"> </span><span class="o">=</span>
-<span class="w">        </span><span class="n">Base64String</span><span class="p">.</span><span class="na">wrap</span><span class="p">(</span><span class="s">&quot;Ko2bVqD+nNlNYL5EE7y3IdOnviftjiizpjRt+HTuFBs=&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Base64String</span><span class="p">.</span><span class="na">wrap</span><span class="p">(</span><span class="s">"Ko2bVqD+nNlNYL5EE7y3IdOnviftjiizpjRt+HTuFBs="</span><span class="p">);</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Base64String</span><span class="w"> </span><span class="n">ENCLAVE_KEY_CHARLIE</span><span class="w"> </span><span class="o">=</span>
-<span class="w">        </span><span class="n">Base64String</span><span class="p">.</span><span class="na">wrap</span><span class="p">(</span><span class="s">&quot;k2zXEin4Ip/qBGlRkJejnGWdP9cjkK+DAvKNW31L2C8=&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Base64String</span><span class="p">.</span><span class="na">wrap</span><span class="p">(</span><span class="s">"k2zXEin4Ip/qBGlRkJejnGWdP9cjkK+DAvKNW31L2C8="</span><span class="p">);</span>
 </code></pre></div>
 
 <p>The instances of the class <code>Credentials</code> above are the private keys associated with the default account of each Besu node in the network. These are configured in the config files for Besu in the privacy quickstart. The <code>Base64Strings</code> are the Orion keys associated with each member, and are configured in the config files for Orion in the privacy quickstart. If you choose to create your own network, these values will differ from the defaults as specified in the privacy quickstart.</p>
 <p>Web3j provides the class <code>org.web3j.protocol.besu.Besu</code> which encapsulates all Besu specific methods with all of the usual Web3j commands. We can use several instances of these to talk to the running quickstart instance:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Besu</span><span class="w"> </span><span class="n">nodeAlice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Besu</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HttpService</span><span class="p">(</span><span class="s">&quot;http://localhost:20000&quot;</span><span class="p">));</span>
-<span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Besu</span><span class="w"> </span><span class="n">nodeBob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Besu</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HttpService</span><span class="p">(</span><span class="s">&quot;http://localhost:20002&quot;</span><span class="p">));</span>
-<span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Besu</span><span class="w"> </span><span class="n">nodeCharlie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Besu</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HttpService</span><span class="p">(</span><span class="s">&quot;http://localhost:20004&quot;</span><span class="p">));</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Besu</span><span class="w"> </span><span class="n">nodeAlice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Besu</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HttpService</span><span class="p">(</span><span class="s">"http://localhost:20000"</span><span class="p">));</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Besu</span><span class="w"> </span><span class="n">nodeBob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Besu</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HttpService</span><span class="p">(</span><span class="s">"http://localhost:20002"</span><span class="p">));</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Besu</span><span class="w"> </span><span class="n">nodeCharlie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Besu</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HttpService</span><span class="p">(</span><span class="s">"http://localhost:20004"</span><span class="p">));</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">PollingPrivateTransactionReceiptProcessor</span><span class="w"> </span><span class="n">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PollingPrivateTransactionReceiptProcessor</span><span class="p">(</span><span class="n">nodeAlice</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">);</span>
 </code></pre></div>
 
@@ -2709,7 +2709,7 @@
 
 <span class="n">TransactionReceipt</span><span class="w"> </span><span class="n">createReceipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">waitForTransactionReceipt</span><span class="p">(</span><span class="n">createTxHash</span><span class="p">);</span>
 
-<span class="c1">// Once the group has been created, add Charlie from Alice&#39;s node</span>
+<span class="c1">// Once the group has been created, add Charlie from Alice's node</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">addTxHash</span><span class="w"> </span><span class="o">=</span>
 <span class="w">        </span><span class="n">nodeAlice</span>
 <span class="w">                </span><span class="p">.</span><span class="na">privOnChainAddToPrivacyGroup</span><span class="p">(</span>
@@ -2766,7 +2766,7 @@
 
 <span class="n">TransactionReceipt</span><span class="w"> </span><span class="n">createReceipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">waitForTransactionReceipt</span><span class="p">(</span><span class="n">createTxHash</span><span class="p">);</span>
 
-<span class="c1">// Find the privacy group that was built by Alice from Bob&#39;s node</span>
+<span class="c1">// Find the privacy group that was built by Alice from Bob's node</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">Base64String</span><span class="w"> </span><span class="n">aliceBobGroupFromBobNode</span><span class="w"> </span><span class="o">=</span>
 <span class="w">        </span><span class="n">nodeBob</span>
 <span class="w">                </span><span class="p">.</span><span class="na">privOnChainFindPrivacyGroup</span><span class="p">(</span>
@@ -2795,19 +2795,19 @@
 <span class="w">                </span><span class="n">ENCLAVE_KEY_BOB</span><span class="p">,</span>
 <span class="w">                </span><span class="n">aliceBobGroupFromBobNode</span><span class="p">);</span>
 
-<span class="c1">// Deploy the token from Alice&#39;s node</span>
+<span class="c1">// Deploy the token from Alice's node</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">HumanStandardToken</span><span class="w"> </span><span class="n">tokenAlice</span><span class="w"> </span><span class="o">=</span>
 <span class="w">        </span><span class="n">HumanStandardToken</span><span class="p">.</span><span class="na">deploy</span><span class="p">(</span>
 <span class="w">                        </span><span class="n">nodeAlice</span><span class="p">,</span>
 <span class="w">                        </span><span class="n">tmAlice</span><span class="p">,</span>
 <span class="w">                        </span><span class="n">ZERO_GAS_PROVIDER</span><span class="p">,</span>
 <span class="w">                        </span><span class="n">BigInteger</span><span class="p">.</span><span class="na">TEN</span><span class="p">,</span>
-<span class="w">                        </span><span class="s">&quot;eea_token&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s">"eea_token"</span><span class="p">,</span>
 <span class="w">                        </span><span class="n">BigInteger</span><span class="p">.</span><span class="na">TEN</span><span class="p">,</span>
-<span class="w">                        </span><span class="s">&quot;EEATKN&quot;</span><span class="p">)</span>
+<span class="w">                        </span><span class="s">"EEATKN"</span><span class="p">)</span>
 <span class="w">                </span><span class="p">.</span><span class="na">send</span><span class="p">();</span>
 
-<span class="c1">// Get an instance of the token from Bob&#39;s node</span>
+<span class="c1">// Get an instance of the token from Bob's node</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">HumanStandardToken</span><span class="w"> </span><span class="n">tokenBob</span><span class="w"> </span><span class="o">=</span>
 <span class="w">        </span><span class="n">HumanStandardToken</span><span class="p">.</span><span class="na">load</span><span class="p">(</span>
 <span class="w">                </span><span class="n">tokenAlice</span><span class="p">.</span><span class="na">getContractAddress</span><span class="p">(),</span><span class="w"> </span><span class="n">nodeBob</span><span class="p">,</span><span class="w"> </span><span class="n">tmBob</span><span class="p">,</span><span class="w"> </span><span class="n">ZERO_GAS_PROVIDER</span><span class="p">);</span>

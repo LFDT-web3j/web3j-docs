@@ -2813,8 +2813,8 @@ The minimum Gradle version to run the plugin is <code>7.+</code>.</p>
 <li>Setting the <code>executable</code> property will disable the bundled <code>solc</code> and use your local or containerized executable:</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="n">solidity</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="n">executable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;docker run --rm -v $projectDir/src:/src -v $projectDir/build:/build ethereum/solc:0.6.4-alpine&quot;</span>
-<span class="w">    </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0.4.15&#39;</span>
+<span class="w">    </span><span class="n">executable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"docker run --rm -v $projectDir/src:/src -v $projectDir/build:/build ethereum/solc:0.6.4-alpine"</span>
+<span class="w">    </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'0.4.15'</span>
 <span class="o">}</span>
 </code></pre></div>
 
@@ -2831,8 +2831,8 @@ directory for compiled code.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">sourceSets</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">{</span>
 <span class="w">        </span><span class="n">solidity</span><span class="w"> </span><span class="o">{</span>
-<span class="w">            </span><span class="n">srcDir</span><span class="w"> </span><span class="s1">&#39;my/custom/path/to/solidity&#39;</span>
-<span class="w">            </span><span class="n">output</span><span class="o">.</span><span class="na">resourcesDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="s1">&#39;out/bin/compiledSol&#39;</span><span class="o">)</span>
+<span class="w">            </span><span class="n">srcDir</span><span class="w"> </span><span class="s1">'my/custom/path/to/solidity'</span>
+<span class="w">            </span><span class="n">output</span><span class="o">.</span><span class="na">resourcesDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="s1">'out/bin/compiledSol'</span><span class="o">)</span>
 <span class="w">        </span><span class="o">}</span>
 <span class="w">    </span><span class="o">}</span>
 <span class="o">}</span>
@@ -2843,12 +2843,12 @@ flag values for different sourceSets.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">sourceSets</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">{</span>
 <span class="w">        </span><span class="n">solidity</span><span class="w"> </span><span class="o">{</span>
-<span class="w">            </span><span class="n">srcDir</span><span class="w"> </span><span class="s1">&#39;my/custom/path/to/solidity&#39;</span>
-<span class="w">            </span><span class="n">output</span><span class="o">.</span><span class="na">resourcesDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="s1">&#39;out/bin/compiledSol&#39;</span><span class="o">)</span>
-<span class="w">            </span><span class="n">evmVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ISTANBUL&#39;</span>
+<span class="w">            </span><span class="n">srcDir</span><span class="w"> </span><span class="s1">'my/custom/path/to/solidity'</span>
+<span class="w">            </span><span class="n">output</span><span class="o">.</span><span class="na">resourcesDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="s1">'out/bin/compiledSol'</span><span class="o">)</span>
+<span class="w">            </span><span class="n">evmVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'ISTANBUL'</span>
 <span class="w">            </span><span class="n">optimize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">            </span><span class="n">optimizeRuns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span>
-<span class="w">            </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0.8.12&#39;</span>
+<span class="w">            </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'0.8.12'</span>
 <span class="w">        </span><span class="o">}</span>
 <span class="w">    </span><span class="o">}</span>
 <span class="o">}</span>
@@ -2869,7 +2869,7 @@ the <a href="https://github.com/node-gradle/gradle-node-plugin">Node plugin</a>.
 <p>By default, <code>package.json</code> will be generated under the <code>build/</code> directory. If you wish to change the directory for the
 Node plugin, add the following snippet to your <code>build.gradle</code> file:</p>
 <div class="codehilite"><pre><span></span><code>node {
-    nodeProjectDir = file(&quot;my/custom/node/directory&quot;)
+    nodeProjectDir = file("my/custom/node/directory")
 }
 </code></pre></div>
 
@@ -2882,8 +2882,8 @@ automatically, and they are always resolved at their <code>latest</code> version
 extra npm packages that are not detected automatically, or to pin a specific version:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">solidity</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
-<span class="w">        </span><span class="s1">&#39;@consensys-software/permissioning-smart-contracts&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;latest&#39;</span><span class="o">,</span>
-<span class="w">        </span><span class="s1">&#39;@uniswap/v3-core&#39;</span><span class="w">                                 </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1.0.1&#39;</span>
+<span class="w">        </span><span class="s1">'@consensys-software/permissioning-smart-contracts'</span><span class="o">:</span><span class="w"> </span><span class="s1">'latest'</span><span class="o">,</span>
+<span class="w">        </span><span class="s1">'@uniswap/v3-core'</span><span class="w">                                 </span><span class="o">:</span><span class="w"> </span><span class="s1">'1.0.1'</span>
 <span class="w">    </span><span class="o">]</span>
 <span class="o">}</span>
 </code></pre></div>

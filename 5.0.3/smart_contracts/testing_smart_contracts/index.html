@@ -2571,8 +2571,8 @@
 <span class="w">  </span><span class="n">mavenCentral</span><span class="o">()</span>
 <span class="w">  </span><span class="n">jcenter</span><span class="o">()</span>
 <span class="o">}</span>
-<span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;org.web3j:core:4.5.11&quot;</span>
-<span class="n">testCompile</span><span class="w"> </span><span class="s2">&quot;org.web3j:web3j-unit:4.5.11&quot;</span>
+<span class="n">implementation</span><span class="w"> </span><span class="s2">"org.web3j:core:4.5.11"</span>
+<span class="n">testCompile</span><span class="w"> </span><span class="s2">"org.web3j:web3j-unit:4.5.11"</span>
 </code></pre></div>
 
 <p>Deploy your contract in the test.</p>
@@ -2581,9 +2581,9 @@
 
 <span class="w">    </span><span class="nd">@Test</span>
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">greeterDeploys</span><span class="p">(</span><span class="n">Web3j</span><span class="w"> </span><span class="n">web3j</span><span class="p">,</span><span class="w"> </span><span class="n">TransactionManager</span><span class="w"> </span><span class="n">transactionManager</span><span class="p">,</span><span class="w"> </span><span class="n">ContractGasProvider</span><span class="w"> </span><span class="n">gasProvider</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Greeter</span><span class="w"> </span><span class="n">greeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Greeter</span><span class="p">.</span><span class="na">deploy</span><span class="p">(</span><span class="n">web3j</span><span class="p">,</span><span class="w"> </span><span class="n">transactionManager</span><span class="p">,</span><span class="w"> </span><span class="n">gasProvider</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello EVM&quot;</span><span class="p">).</span><span class="na">send</span><span class="p">()</span>
+<span class="w">        </span><span class="n">Greeter</span><span class="w"> </span><span class="n">greeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Greeter</span><span class="p">.</span><span class="na">deploy</span><span class="p">(</span><span class="n">web3j</span><span class="p">,</span><span class="w"> </span><span class="n">transactionManager</span><span class="p">,</span><span class="w"> </span><span class="n">gasProvider</span><span class="p">,</span><span class="w"> </span><span class="s">"Hello EVM"</span><span class="p">).</span><span class="na">send</span><span class="p">()</span>
 <span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">greeting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">greeter</span><span class="p">.</span><span class="na">greet</span><span class="p">().</span><span class="na">send</span><span class="p">()</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Hello EVM&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">greeting</span><span class="p">)</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">"Hello EVM"</span><span class="p">,</span><span class="w"> </span><span class="n">greeting</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="p">}</span>

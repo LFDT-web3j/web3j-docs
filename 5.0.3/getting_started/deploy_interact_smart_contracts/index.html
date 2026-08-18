@@ -2619,7 +2619,7 @@
 
 <p>Now you can create and deploy your smart contract:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Web3j</span><span class="w"> </span><span class="n">web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Web3j</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HttpService</span><span class="p">());</span><span class="w">  </span><span class="c1">// defaults to http://localhost:8545/</span>
-<span class="n">Credentials</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WalletUtils</span><span class="p">.</span><span class="na">loadCredentials</span><span class="p">(</span><span class="s">&quot;password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/path/to/walletfile&quot;</span><span class="p">);</span>
+<span class="n">Credentials</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WalletUtils</span><span class="p">.</span><span class="na">loadCredentials</span><span class="p">(</span><span class="s">"password"</span><span class="p">,</span><span class="w"> </span><span class="s">"/path/to/walletfile"</span><span class="p">);</span>
 
 <span class="n">YourSmartContract</span><span class="w"> </span><span class="n">contract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YourSmartContract</span><span class="p">.</span><span class="na">deploy</span><span class="p">(</span>
 <span class="w">        </span><span class="o">&lt;</span><span class="n">web3j</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">credentials</span><span class="o">&gt;</span><span class="p">,</span>
@@ -2629,7 +2629,7 @@
 
 <p>Or use an existing contract:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">YourSmartContract</span><span class="w"> </span><span class="n">contract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YourSmartContract</span><span class="p">.</span><span class="na">load</span><span class="p">(</span>
-<span class="w">        </span><span class="s">&quot;0x&lt;address&gt;|&lt;ensName&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">web3j</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">credentials</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">contractGasProvider</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="w">        </span><span class="s">"0x&lt;address&gt;|&lt;ensName&gt;"</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">web3j</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">credentials</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">contractGasProvider</span><span class="o">&gt;</span><span class="p">);</span>
 </code></pre></div>
 
 <p>To transact with a smart contract:</p>

@@ -2622,12 +2622,12 @@
 </code></pre></div>
 
 <p>or Gradle:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;org.web3j.eth2:beacon-node-api:1.0.0&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">implementation</span><span class="w"> </span><span class="s1">'org.web3j.eth2:beacon-node-api:1.0.0'</span>
 </code></pre></div>
 
 <p>At the moment of writing this, the first released version 1.0.0 corresponds to the Eth2 specification v0.12.2. Check the project <a href="https://github.com/web3j/web3j-eth2/releases">releases</a> page for the last available version.</p>
 <p>Once you have added the library to your project, you can create a client instance pointing to a particular Beacon Chain node in a familiar Web3j-esque way:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BeaconNodeService</span><span class="p">(</span><span class="s">&quot;http://...&quot;</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BeaconNodeService</span><span class="p">(</span><span class="s">"http://..."</span><span class="p">);</span>
 <span class="kd">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BeaconNodeClientFactory</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
 </code></pre></div>
 
@@ -2662,7 +2662,7 @@ Starting<span class="w"> </span>test-network_grafana_1<span class="w">       </s
 <p>You’ll get a bunch of logs, but once your network has completely started you’ll be able to point to any of the four nodes at ports <code>19601</code>, <code>19602</code>, <code>19603</code> and <code>19604</code>.</p>
 <h2 id="listen-for-events">Listen for events<a class="headerlink" href="#listen-for-events" title="Permanent link">&para;</a></h2>
 <p>Let’s create a client and listen to some events happening in the test network:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BeaconNodeService</span><span class="p">(</span><span class="s">&quot;http://localhost:19601/&quot;</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BeaconNodeService</span><span class="p">(</span><span class="s">"http://localhost:19601/"</span><span class="p">);</span>
 <span class="kd">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BeaconNodeClientFactory</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
 
 <span class="c1">// We want to receive at least one event</span>
@@ -2673,7 +2673,7 @@ Starting<span class="w"> </span>test-network_grafana_1<span class="w">       </s
 
 <span class="c1">// Then subscribe to each event</span>
 <span class="n">client</span><span class="p">.</span><span class="na">getEvents</span><span class="p">().</span><span class="na">onEvent</span><span class="p">(</span><span class="n">topics</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Received event: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">event</span><span class="p">);</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Received event: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">event</span><span class="p">);</span>
 <span class="w">    </span><span class="n">latch</span><span class="p">.</span><span class="na">countDown</span><span class="p">();</span>
 <span class="p">});</span>
 
@@ -2694,7 +2694,7 @@ Starting<span class="w"> </span>test-network_grafana_1<span class="w">       </s
 2 &lt; Date: Thu, 10 Dec 2020 23:15:47 GMT
 2 &lt; Server: Javalin
 event: head
-data: {&quot;slot&quot;:&quot;33207&quot;,&quot;block&quot;:&quot;0x1829e81553bb76ed92a7ae2d671e018b219b7eeee0cea80fac12b2a7d6924826&quot;,&quot;state&quot;:&quot;0xe7339bff5fbb2a30f039a900532cb936e6afbd40ef1fd41cb645687659d8833a&quot;,&quot;epoch_transition&quot;:false,&quot;previous_duty_dependent_root&quot;:&quot;0xd34981d5ab59d4d091992099cedea95236dfcc2252f55f53e282ee847fb426e8&quot;,&quot;current_duty_dependent_root&quot;:&quot;0x626db3e484c19fa8f0c57ca6c390bfa8a61313564d61f4c68764239a4e0c966e&quot;}
+data: {"slot":"33207","block":"0x1829e81553bb76ed92a7ae2d671e018b219b7eeee0cea80fac12b2a7d6924826","state":"0xe7339bff5fbb2a30f039a900532cb936e6afbd40ef1fd41cb645687659d8833a","epoch_transition":false,"previous_duty_dependent_root":"0xd34981d5ab59d4d091992099cedea95236dfcc2252f55f53e282ee847fb426e8","current_duty_dependent_root":"0x626db3e484c19fa8f0c57ca6c390bfa8a61313564d61f4c68764239a4e0c966e"}
 </code></pre></div>
 
 <p>As you can see, when running this example the first event we received was a head event. This happens after a validator committee attests for a head block at every slot (typically every few seconds).</p>

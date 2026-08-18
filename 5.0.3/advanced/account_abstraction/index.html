@@ -2580,22 +2580,22 @@
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="n">UserOperationStruct</span><span class="w"> </span><span class="n">userOperation</span><span class="w"> </span><span class="o">=</span>
 <span class="w">        </span><span class="n">UserOperationStruct</span><span class="p">.</span><span class="na">createEthSendUserOperationTransaction</span><span class="p">(</span>
-<span class="w">                </span><span class="s">&quot;0xa70e8dd61c5d32be8058bb8eb970870f07233155&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"0xa70e8dd61c5d32be8058bb8eb970870f07233155"</span><span class="p">,</span>
 <span class="w">                </span><span class="n">BigInteger</span><span class="p">.</span><span class="na">ONE</span><span class="p">,</span>
-<span class="w">                </span><span class="s">&quot;0x0&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s">&quot;0x0&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s">&quot;0x0&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s">&quot;0x0&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s">&quot;0x0&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s">&quot;0x0&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s">&quot;0x0&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s">&quot;0x0&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s">&quot;0x0&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="s">"0x0"</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"0x0"</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"0x0"</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"0x0"</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"0x0"</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"0x0"</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"0x0"</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"0x0"</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"0x0"</span><span class="p">);</span>
 
 <span class="n">EthSendUserOperation</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span>
 <span class="w">        </span><span class="n">web3j</span><span class="p">.</span><span class="na">ethSendUserOperation</span><span class="p">(</span>
 <span class="w">                        </span><span class="n">userOperation</span><span class="p">,</span>
-<span class="w">                        </span><span class="s">&quot;0xa70e8dd61c5d32be8058bb8eb970870f07233156&quot;</span><span class="p">)</span>
+<span class="w">                        </span><span class="s">"0xa70e8dd61c5d32be8058bb8eb970870f07233156"</span><span class="p">)</span>
 <span class="w">                </span><span class="p">.</span><span class="na">send</span><span class="p">();</span>
 
 <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">getUserOperationHash</span><span class="p">());</span>

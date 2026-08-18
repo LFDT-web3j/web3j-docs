@@ -2638,7 +2638,7 @@
 <li>unsubscribe from a stream of events</li>
 </ul>
 <p>To create an instance of the <em>WebSocketService</em> class you need to first to create an instance of the <em>WebSocketClient</em> that connects to an Ethereum client via WebSocket protocol, and then pass it to the <em>WebSocketService</em> constructor:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">final</span><span class="w"> </span><span class="n">WebSocketClient</span><span class="w"> </span><span class="n">webSocketClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WebSocketClient</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">URI</span><span class="p">(</span><span class="s">&quot;ws://localhost/&quot;</span><span class="p">));</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">final</span><span class="w"> </span><span class="n">WebSocketClient</span><span class="w"> </span><span class="n">webSocketClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WebSocketClient</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">URI</span><span class="p">(</span><span class="s">"ws://localhost/"</span><span class="p">));</span>
 <span class="kd">final</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">includeRawResponses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">WebSocketService</span><span class="w"> </span><span class="n">webSocketService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WebSocketService</span><span class="p">(</span><span class="n">webSocketClient</span><span class="p">,</span><span class="w"> </span><span class="n">includeRawResponses</span><span class="p">)</span>
 </code></pre></div>
@@ -2647,8 +2647,8 @@
 <div class="codehilite"><pre><span></span><code><span class="c1">// Request to get a version of an Ethereum client</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">Request</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="n">Web3ClientVersion</span><span class="o">&gt;</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Request</span><span class="o">&lt;&gt;</span><span class="p">(</span>
 <span class="w">     </span><span class="c1">// Name of an RPC method to call</span>
-<span class="w">     </span><span class="s">&quot;web3_clientVersion&quot;</span><span class="p">,</span>
-<span class="w">     </span><span class="c1">// Parameters for the method. &quot;web3_clientVersion&quot; does not expect any</span>
+<span class="w">     </span><span class="s">"web3_clientVersion"</span><span class="p">,</span>
+<span class="w">     </span><span class="c1">// Parameters for the method. "web3_clientVersion" does not expect any</span>
 <span class="w">     </span><span class="n">Collections</span><span class="p">.</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="n">emptyList</span><span class="p">(),</span>
 <span class="w">     </span><span class="c1">// Service that is used to send a request</span>
 <span class="w">     </span><span class="n">webSocketService</span><span class="p">,</span>
@@ -2678,9 +2678,9 @@ instance of the <a href="http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Flo
 <div class="codehilite"><pre><span></span><code><span class="c1">// A request to subscribe to a stream of events</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">Request</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="n">EthSubscribe</span><span class="o">&gt;</span><span class="w"> </span><span class="n">subscribeRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Request</span><span class="o">&lt;&gt;</span><span class="p">(</span>
 <span class="w">    </span><span class="c1">// RPC method to subscribe to events</span>
-<span class="w">    </span><span class="s">&quot;eth_subscribe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">"eth_subscribe"</span><span class="p">,</span>
 <span class="w">    </span><span class="c1">// Parameters that specify what events to subscribe to</span>
-<span class="w">    </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;newHeads&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Collections</span><span class="p">.</span><span class="na">emptyMap</span><span class="p">()),</span>
+<span class="w">    </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">"newHeads"</span><span class="p">,</span><span class="w"> </span><span class="n">Collections</span><span class="p">.</span><span class="na">emptyMap</span><span class="p">()),</span>
 <span class="w">    </span><span class="c1">// Service that is used to send a request</span>
 <span class="w">    </span><span class="n">webSocketService</span><span class="p">,</span>
 <span class="w">    </span><span class="n">EthSubscribe</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
@@ -2688,7 +2688,7 @@ instance of the <a href="http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Flo
 <span class="kd">final</span><span class="w"> </span><span class="n">Flowable</span><span class="o">&lt;</span><span class="n">NewHeadsNotification</span><span class="o">&gt;</span><span class="w"> </span><span class="n">events</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">webSocketService</span><span class="p">.</span><span class="na">subscribe</span><span class="p">(</span>
 <span class="w">     </span><span class="n">subscribeRequest</span><span class="p">,</span>
 <span class="w">     </span><span class="c1">// RPC method that should be used to unsubscribe from events</span>
-<span class="w">     </span><span class="s">&quot;eth_unsubscribe&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="s">"eth_unsubscribe"</span><span class="p">,</span>
 <span class="w">     </span><span class="c1">// Type of events returned by a request</span>
 <span class="w">     </span><span class="n">NewHeadsNotification</span><span class="p">.</span><span class="na">class</span>
 <span class="p">);</span>

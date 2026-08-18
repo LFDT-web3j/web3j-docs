@@ -3258,7 +3258,7 @@ contract Mortal {
     modifier onlyOwner {
         require(
             msg.sender == owner,
-            &quot;Only owner can call this function.&quot;
+            "Only owner can call this function."
         );
         _;
     }
@@ -3294,55 +3294,55 @@ contract HelloWorld is Mortal {
 
 <p>generates the following <code>OpenAPI</code> specs : </p>
 <div class="codehilite"><pre><span></span><code>{
-   &quot;openapi&quot;:&quot;3.0.1&quot;,
-   &quot;info&quot;:{
-      &quot;title&quot;:&quot;Web3j OpenApi&quot;,
-      &quot;contact&quot;:{
-         &quot;name&quot;:&quot;Web3 Labs&quot;,
-         &quot;url&quot;:&quot;http://web3labs.com&quot;,
-         &quot;email&quot;:&quot;hi@web3labs.com&quot;
+   "openapi":"3.0.1",
+   "info":{
+      "title":"Web3j OpenApi",
+      "contact":{
+         "name":"Web3 Labs",
+         "url":"http://web3labs.com",
+         "email":"hi@web3labs.com"
       },
-      &quot;version&quot;:&quot;5.0.3&quot;
+      "version":"5.0.3"
    },
-   &quot;tags&quot;:[
+   "tags":[
       {
-         &quot;name&quot;:&quot;default&quot;,
-         &quot;description&quot;:&quot;Lists existing contracts and events&quot;
+         "name":"default",
+         "description":"Lists existing contracts and events"
       },
       {
-         &quot;name&quot;:&quot;HelloWorld Methods&quot;,
-         &quot;description&quot;:&quot;List HelloWorld method&amp;#39;s calls&quot;
+         "name":"HelloWorld Methods",
+         "description":"List HelloWorld method&amp;#39;s calls"
       },
       {
-         &quot;name&quot;:&quot;HelloWorld Events&quot;,
-         &quot;description&quot;:&quot;List HelloWorld event&amp;#39;s calls&quot;
+         "name":"HelloWorld Events",
+         "description":"List HelloWorld event&amp;#39;s calls"
       }
    ],
-   &quot;paths&quot;:{
-      &quot;/Web3App/contracts/helloworld/{contractAddress}/Kill&quot;:{
-         &quot;get&quot;:{
-            &quot;tags&quot;:[
-               &quot;HelloWorld Methods&quot;
+   "paths":{
+      "/Web3App/contracts/helloworld/{contractAddress}/Kill":{
+         "get":{
+            "tags":[
+               "HelloWorld Methods"
             ],
-            &quot;summary&quot;:&quot;Execute the Kill method&quot;,
-            &quot;operationId&quot;:&quot;kill&quot;,
-            &quot;parameters&quot;:[
+            "summary":"Execute the Kill method",
+            "operationId":"kill",
+            "parameters":[
                {
-                  &quot;name&quot;:&quot;contractAddress&quot;,
-                  &quot;in&quot;:&quot;path&quot;,
-                  &quot;required&quot;:true,
-                  &quot;schema&quot;:{
-                     &quot;type&quot;:&quot;string&quot;
+                  "name":"contractAddress",
+                  "in":"path",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
                   }
                }
             ],
-            &quot;responses&quot;:{
-               &quot;default&quot;:{
-                  &quot;description&quot;:&quot;default response&quot;,
-                  &quot;content&quot;:{
-                     &quot;application/json&quot;:{
-                        &quot;schema&quot;:{
-                           &quot;$ref&quot;:&quot;#/components/schemas/TransactionReceiptModel&quot;
+            "responses":{
+               "default":{
+                  "description":"default response",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref":"#/components/schemas/TransactionReceiptModel"
                         }
                      }
                   }
@@ -3413,7 +3413,7 @@ to do all possible interactions with the API. eg:</p>
 <p><img alt="image" src="../img/Web3j-OpenAPI/SwaggerUI_3.png" /></p>
 <h3 id="http-requests">HTTP requests<a class="headerlink" href="#http-requests" title="Permanent link">&para;</a></h3>
 <p>Sending HTTP requests via tools like <code>Curl</code>:</p>
-<div class="codehilite"><pre><span></span><code>$ curl -X POST &quot;http://{host}:{port}/HelloWorldProject/contracts/helloworld/{contract address}/NewGreeting&quot; -H &quot;accept: application/json&quot; -H &quot;Content-Type: application/json&quot; -d &quot;{\&quot;_greet\&quot;:\&quot;Hello Web3j-OpenAPI\&quot;}&quot;
+<div class="codehilite"><pre><span></span><code>$ curl -X POST "http://{host}:{port}/HelloWorldProject/contracts/helloworld/{contract address}/NewGreeting" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"_greet\":\"Hello Web3j-OpenAPI\"}"
 </code></pre></div>
 
 <h3 id="client-application">Client application<a class="headerlink" href="#client-application" title="Permanent link">&para;</a></h3>
@@ -3421,27 +3421,27 @@ to do all possible interactions with the API. eg:</p>
 This latter can be done using our client implementation.</p>
 <p>Make sure to add the client dependency to your project.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;org.web3j.openapi:web3j-openapi-client:5.0.3&quot;</span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">"org.web3j.openapi:web3j-openapi-client:5.0.3"</span>
 <span class="o">}</span>
 </code></pre></div>
 
 <p>Then, you will be able to interact with the API as follows:</p>
-<div class="codehilite"><pre><span></span><code>val service = ClientService(&quot;http://localhost:9090&quot;)
+<div class="codehilite"><pre><span></span><code>val service = ClientService("http://localhost:9090")
 val helloWorldProject = ClientFactory.create(HelloWorldProjectApi::class.java, service)
 
-println(&quot;Deploying the HelloWorld contract...&quot;)
+println("Deploying the HelloWorld contract...")
 
-val receipt = helloWorldProject.contracts.helloWorld.deploy(HelloWorldDeployParameters(&quot;Hello&quot;))
+val receipt = helloWorldProject.contracts.helloWorld.deploy(HelloWorldDeployParameters("Hello"))
 
-println(&quot;Deployed contract address: ${receipt.contractAddress}&quot;)
+println("Deployed contract address: ${receipt.contractAddress}")
 
 val newGreetingHash = helloWorldProject.contracts
     .helloWorld
     .load(receipt.contractAddress)
-    .newGreeting(NewGreetingParameters(&quot;Hello Web3j-OpenAPI&quot;))
+    .newGreeting(NewGreetingParameters("Hello Web3j-OpenAPI"))
     .transactionHash
 
-println(&quot;NewGreeting method execution transaction hash: $newGreetingHash&quot;)
+println("NewGreeting method execution transaction hash: $newGreetingHash")
 
 val greeting = helloWorldProject.contracts
     .helloWorld
@@ -3449,7 +3449,7 @@ val greeting = helloWorldProject.contracts
     .greeting()
     .result
 
-println(&quot;Greeting method result: $greeting&quot;)
+println("Greeting method result: $greeting")
 </code></pre></div>
 
 <h2 id="ways-to-generate-an-openapi-project">Ways to generate an OpenAPI project<a class="headerlink" href="#ways-to-generate-an-openapi-project" title="Permanent link">&para;</a></h2>
@@ -3626,16 +3626,16 @@ eg.</li>
 <li><code>yaml</code> for a <code>YAML</code> configuration. Example:</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="nt">contractAddresses</span><span class="p">:</span><span class="w"> </span>
-<span class="w">  </span><span class="nt">helloworld</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x1234&quot;</span>
-<span class="w">  </span><span class="nt">helloworld2</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x1234&quot;</span>
+<span class="w">  </span><span class="nt">helloworld</span><span class="p">:</span><span class="w"> </span><span class="s">"0x1234"</span>
+<span class="w">  </span><span class="nt">helloworld2</span><span class="p">:</span><span class="w"> </span><span class="s">"0x1234"</span>
 <span class="nt">credentials</span><span class="p">:</span><span class="w"> </span>
-<span class="w">  </span><span class="nt">privateKey</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x1234&quot;</span>
+<span class="w">  </span><span class="nt">privateKey</span><span class="p">:</span><span class="w"> </span><span class="s">"0x1234"</span>
 <span class="nt">network</span><span class="p">:</span><span class="w"> </span>
-<span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;your_node_endpoint_address&gt;&quot;</span>
+<span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">"&lt;your_node_endpoint_address&gt;"</span>
 <span class="nt">project</span><span class="p">:</span><span class="w"> </span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;OpenApiProject&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"OpenApiProject"</span>
 <span class="nt">server</span><span class="p">:</span><span class="w"> </span>
-<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="s">"localhost"</span>
 <span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9090</span>
 </code></pre></div>
 
@@ -3643,22 +3643,22 @@ eg.</li>
 <li><code>json</code> for a <code>Json</code> configuration. Example:</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;contractAddresses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;helloworld&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0x1234&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;helloworld2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0x1234&quot;</span>
+<span class="w">  </span><span class="nt">"contractAddresses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"helloworld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x1234"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"helloworld2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x1234"</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;credentials&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;privateKey&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0x1234&quot;</span>
+<span class="w">  </span><span class="nt">"credentials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"privateKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x1234"</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;network&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;endpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your node endpoint address&quot;</span>
+<span class="w">  </span><span class="nt">"network"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your node endpoint address"</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OpenApiProject&quot;</span>
+<span class="w">  </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OpenApiProject"</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9090</span>
+<span class="w">  </span><span class="nt">"server"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localhost"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"port"</span><span class="p">:</span><span class="w"> </span><span class="mi">9090</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -3739,18 +3739,18 @@ file as specified above.</p>
 <p>It is easy to use.</p>
 <p>Start by adding dependency to the client:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;org.web3j.openapi:web3j-openapi-client:5.0.3&quot;</span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">"org.web3j.openapi:web3j-openapi-client:5.0.3"</span>
 <span class="o">}</span>
 </code></pre></div>
 
 <p>Then, within a client application:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClientService</span><span class="p">(</span><span class="s">&quot;http://localhost:9090&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClientService</span><span class="p">(</span><span class="s">"http://localhost:9090"</span><span class="p">)</span>
 <span class="kd">val</span><span class="w"> </span><span class="nv">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClientFactory</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="o">&lt;</span><span class="n">AppNameApi</span><span class="o">&gt;::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">,</span><span class="w"> </span><span class="n">service</span><span class="p">)</span>
 
 <span class="c1">// Then you have access to all the API resources</span>
 <span class="kd">val</span><span class="w"> </span><span class="nv">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">app</span><span class="p">.</span><span class="na">contracts</span><span class="p">.</span><span class="na">contractName</span><span class="p">.</span><span class="na">deploy</span><span class="p">()</span>
 
-<span class="n">println</span><span class="p">(</span><span class="s">&quot;Deployment receipt: </span><span class="si">${</span><span class="n">receipt</span><span class="p">.</span><span class="na">contractAddress</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">"Deployment receipt: </span><span class="si">${</span><span class="n">receipt</span><span class="p">.</span><span class="na">contractAddress</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 <span class="c1">// ...</span>
 </code></pre></div>
@@ -3761,14 +3761,14 @@ file as specified above.</p>
 from the server to the client once the client-server connection is established by the client.</p>
 <p>To query events from <code>Kotlin/Java</code>. Add the <code>web3j-openapi-client</code> dependency as done above.
 Then, use the following code:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClientService</span><span class="p">(</span><span class="s">&quot;http://localhost:9090&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClientService</span><span class="p">(</span><span class="s">"http://localhost:9090"</span><span class="p">)</span>
 <span class="kd">val</span><span class="w"> </span><span class="nv">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClientFactory</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">AppNameApi</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">,</span><span class="w"> </span><span class="n">service</span><span class="p">)</span>
 
 <span class="c1">// Start listening for events</span>
 <span class="kd">val</span><span class="w"> </span><span class="nv">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">app</span><span class="p">.</span><span class="na">contracts</span><span class="p">.</span><span class="o">&lt;</span><span class="n">contract_name</span><span class="o">&gt;</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="o">&lt;</span><span class="n">contract_Address</span><span class="o">&gt;</span><span class="p">)</span>
 <span class="w">        </span><span class="p">.</span><span class="na">events</span>
 <span class="w">        </span><span class="p">.</span><span class="o">&lt;</span><span class="n">event_name</span><span class="o">&gt;</span>
-<span class="w">        </span><span class="p">.</span><span class="na">onEvent</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Received event: </span><span class="si">$</span><span class="n">it</span><span class="s">&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">.</span><span class="na">onEvent</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">"Received event: </span><span class="si">$</span><span class="n">it</span><span class="s">"</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 
 <span class="c1">// Trigger an event</span>
 <span class="n">app</span><span class="p">.</span><span class="na">contracts</span>

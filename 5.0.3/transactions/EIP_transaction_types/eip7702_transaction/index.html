@@ -2628,8 +2628,8 @@
 <p>In Web3j this transaction type is represented by <code>TransactionType.EIP7702</code>, and raw transaction creation accepts both an <code>accessList</code> and an <code>authorizationList</code>.</p>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">signedEip7702</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SignatureException</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Credentials</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;&lt;privateKey&gt;&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">Web3j</span><span class="w"> </span><span class="n">web3j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Web3j</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HttpService</span><span class="p">(</span><span class="s">&quot;&lt;nodeUrl&gt;&quot;</span><span class="p">));</span>
+<span class="w">        </span><span class="n">Credentials</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Credentials</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">"&lt;privateKey&gt;"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Web3j</span><span class="w"> </span><span class="n">web3j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Web3j</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HttpService</span><span class="p">(</span><span class="s">"&lt;nodeUrl&gt;"</span><span class="p">));</span>
 
 <span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">RawTransaction</span><span class="w"> </span><span class="n">rawTransaction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createEip7702RawTransaction</span><span class="p">();</span>
 
@@ -2640,7 +2640,7 @@
 <span class="w">        </span><span class="n">EthSendTransaction</span><span class="w"> </span><span class="n">ethSendTransaction</span><span class="w"> </span><span class="o">=</span>
 <span class="w">                </span><span class="n">web3j</span><span class="p">.</span><span class="na">ethSendRawTransaction</span><span class="p">(</span><span class="n">signedHexMessage</span><span class="p">).</span><span class="na">send</span><span class="p">();</span>
 
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Transaction hash: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ethSendTransaction</span><span class="p">.</span><span class="na">getTransactionHash</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Transaction hash: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ethSendTransaction</span><span class="p">.</span><span class="na">getTransactionHash</span><span class="p">());</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">RawTransaction</span><span class="w"> </span><span class="nf">createEip7702RawTransaction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -2649,11 +2649,11 @@
 <span class="w">                </span><span class="n">Collections</span><span class="p">.</span><span class="na">singletonList</span><span class="p">(</span>
 <span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">AuthorizationTuple</span><span class="p">(</span>
 <span class="w">                                </span><span class="n">BigInteger</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
-<span class="w">                                </span><span class="s">&quot;0x7b73644935b8e68019ac6356c40661e1bc315860&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">"0x7b73644935b8e68019ac6356c40661e1bc315860"</span><span class="p">,</span>
 <span class="w">                                </span><span class="n">BigInteger</span><span class="p">.</span><span class="na">ZERO</span><span class="p">,</span>
 <span class="w">                                </span><span class="n">BigInteger</span><span class="p">.</span><span class="na">ONE</span><span class="p">,</span>
-<span class="w">                                </span><span class="k">new</span><span class="w"> </span><span class="n">BigInteger</span><span class="p">(</span><span class="s">&quot;1234&quot;</span><span class="p">),</span>
-<span class="w">                                </span><span class="k">new</span><span class="w"> </span><span class="n">BigInteger</span><span class="p">(</span><span class="s">&quot;5678&quot;</span><span class="p">)));</span>
+<span class="w">                                </span><span class="k">new</span><span class="w"> </span><span class="n">BigInteger</span><span class="p">(</span><span class="s">"1234"</span><span class="p">),</span>
+<span class="w">                                </span><span class="k">new</span><span class="w"> </span><span class="n">BigInteger</span><span class="p">(</span><span class="s">"5678"</span><span class="p">)));</span>
 
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">RawTransaction</span><span class="p">.</span><span class="na">createTransaction</span><span class="p">(</span>
 <span class="w">                </span><span class="mi">1L</span><span class="p">,</span>
@@ -2661,9 +2661,9 @@
 <span class="w">                </span><span class="n">BigInteger</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="mi">2_000_000_000L</span><span class="p">),</span>
 <span class="w">                </span><span class="n">BigInteger</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="mi">20_000_000_000L</span><span class="p">),</span>
 <span class="w">                </span><span class="n">BigInteger</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="mi">100000</span><span class="p">),</span>
-<span class="w">                </span><span class="s">&quot;0x627306090abab3a6e1400e9345bc60c78a8bef57&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"0x627306090abab3a6e1400e9345bc60c78a8bef57"</span><span class="p">,</span>
 <span class="w">                </span><span class="n">BigInteger</span><span class="p">.</span><span class="na">ZERO</span><span class="p">,</span>
-<span class="w">                </span><span class="s">&quot;0x&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"0x"</span><span class="p">,</span>
 <span class="w">                </span><span class="n">accessList</span><span class="p">,</span>
 <span class="w">                </span><span class="n">authorizationList</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>

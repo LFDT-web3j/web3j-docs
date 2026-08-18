@@ -2770,18 +2770,18 @@ you have different options to start a local node.</p>
 <p><img alt="load command" src="https://raw.githubusercontent.com/epirus-io/epirus-local/master/resources/epirus-local-load-command-demo.gif" /></p>
 <h3 id="send-requests">Send requests<a class="headerlink" href="#send-requests" title="Permanent link">&para;</a></h3>
 <h6 id="example-of-a-request">Example of a request<a class="headerlink" href="#example-of-a-request" title="Permanent link">&para;</a></h6>
-<div class="codehilite"><pre><span></span><code>curl -X POST --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;eth_sendTransaction&quot;,&quot;params&quot;:[{
-  &quot;from&quot;: &quot;0x8f496c16955a7bb9b5e1ea0383d01f87372ab520&quot;,
-  &quot;to&quot;: &quot;0xd46e8dd67c5d32be8058bb8eb970870f07244567&quot;,
-  &quot;gas&quot;: &quot;0x76c0&quot;, 
-  &quot;gasPrice&quot;: &quot;0x9184e72a000&quot;, 
-  &quot;value&quot;: &quot;0x9184e72a&quot;,
-  &quot;nonce&quot;: &quot;0x1&quot;
-}],&quot;id&quot;:1}&#39; host:port
+<div class="codehilite"><pre><span></span><code>curl -X POST --data '{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{
+  "from": "0x8f496c16955a7bb9b5e1ea0383d01f87372ab520",
+  "to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",
+  "gas": "0x76c0", 
+  "gasPrice": "0x9184e72a000", 
+  "value": "0x9184e72a",
+  "nonce": "0x1"
+}],"id":1}' host:port
 </code></pre></div>
 
 <h6 id="example-of-a-response">Example of a response<a class="headerlink" href="#example-of-a-response" title="Permanent link">&para;</a></h6>
-<div class="codehilite"><pre><span></span><code>{&quot;id&quot; : 1, &quot;jsonrpc&quot; : &quot;2.0&quot;, &quot;result&quot; : &quot;0xc631caa67cab48ead77a58321bbb0c76f4060751a4bb3d5b45b99c4a68b1a7b7&quot;}
+<div class="codehilite"><pre><span></span><code>{"id" : 1, "jsonrpc" : "2.0", "result" : "0xc631caa67cab48ead77a58321bbb0c76f4060751a4bb3d5b45b99c4a68b1a7b7"}
 </code></pre></div>
 
 <p>For more information about the requests, check out the Ethereum <a href="https://github.com/ethereum/wiki/wiki/JSON-RPC">json-rpc</a> api.</p>

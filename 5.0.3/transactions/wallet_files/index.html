@@ -2590,14 +2590,14 @@
 <p>web3j is able to both generate a new secure Ethereum wallet file for you, or work with an existing wallet file.</p>
 <p>To create a new wallet file:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WalletUtils</span><span class="p">.</span><span class="na">generateNewWalletFile</span><span class="p">(</span>
-<span class="w">        </span><span class="s">&quot;your password&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">&quot;/path/to/destination&quot;</span><span class="p">));</span>
+<span class="w">        </span><span class="s">"your password"</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"/path/to/destination"</span><span class="p">));</span>
 </code></pre></div>
 
 <p>To load the credentials from a wallet file:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Credentials</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WalletUtils</span><span class="p">.</span><span class="na">loadCredentials</span><span class="p">(</span>
-<span class="w">        </span><span class="s">&quot;your password&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s">&quot;/path/to/walletfile&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="s">"your password"</span><span class="p">,</span>
+<span class="w">        </span><span class="s">"/path/to/walletfile"</span><span class="p">);</span>
 </code></pre></div>
 
 <p>These credentials are then used to sign transactions.</p>

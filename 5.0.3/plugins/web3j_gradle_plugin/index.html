@@ -2651,9 +2651,9 @@ The minimum Gradle version to run the plugin is <code>5.+</code>.</p>
 <h2 id="code-generation">Code generation<a class="headerlink" href="#code-generation" title="Permanent link">&para;</a></h2>
 <p>The <code>web3j</code> DSL allows to configure the generated code, e.g.:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">web3j</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="n">generatedPackageName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;com.mycompany.{0}&#39;</span>
-<span class="w">    </span><span class="n">generatedFilesBaseDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$buildDir/custom/destination&quot;</span>
-<span class="w">    </span><span class="n">excludedContracts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;Ownable&#39;</span><span class="o">]</span>
+<span class="w">    </span><span class="n">generatedPackageName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'com.mycompany.{0}'</span>
+<span class="w">    </span><span class="n">generatedFilesBaseDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"$buildDir/custom/destination"</span>
+<span class="w">    </span><span class="n">excludedContracts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">'Ownable'</span><span class="o">]</span>
 <span class="w">    </span><span class="n">useNativeJavaTypes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 <span class="o">}</span>
 </code></pre></div>
@@ -2725,7 +2725,7 @@ To specify and add different source sets, use the <code>sourceSets</code> DSL:</
 <span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">{</span>
 <span class="w">        </span><span class="n">solidity</span><span class="w"> </span><span class="o">{</span>
 <span class="w">            </span><span class="n">srcDir</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<span class="w">                </span><span class="s2">&quot;my/custom/path/to/solidity&quot;</span><span class="w"> </span>
+<span class="w">                </span><span class="s2">"my/custom/path/to/solidity"</span><span class="w"> </span>
 <span class="w">             </span><span class="o">}</span>
 <span class="w">        </span><span class="o">}</span>
 <span class="w">    </span><span class="o">}</span>
