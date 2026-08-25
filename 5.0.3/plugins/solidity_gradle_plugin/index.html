@@ -1617,6 +1617,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Code generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ir-based-compilation-via-ir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IR-based compilation (--via-ir)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1624,6 +1641,17 @@
     <span class="md-ellipsis">
       
         Source sets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applying-the-plugin-without-the-compiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applying the plugin without the compiler
       
     </span>
   </a>
@@ -2617,6 +2645,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Code generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ir-based-compilation-via-ir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IR-based compilation (--via-ir)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2624,6 +2669,17 @@
     <span class="md-ellipsis">
       
         Source sets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applying-the-plugin-without-the-compiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applying the plugin without the compiler
       
     </span>
   </a>
@@ -2747,6 +2803,12 @@ The minimum Gradle version to run the plugin is <code>7.+</code>.</p>
 <td>Resolve third-party contract packages.</td>
 </tr>
 <tr>
+<td><code>compilerEnabled</code></td>
+<td style="text-align: center;"><code>Boolean</code></td>
+<td style="text-align: center;"><code>true</code></td>
+<td>Compile Solidity sources; disables compiler &amp; Node when false.</td>
+</tr>
+<tr>
 <td><code>optimize</code></td>
 <td style="text-align: center;"><code>Boolean</code></td>
 <td style="text-align: center;"><code>true</code></td>
@@ -2757,6 +2819,12 @@ The minimum Gradle version to run the plugin is <code>7.+</code>.</p>
 <td style="text-align: center;"><code>Integer</code></td>
 <td style="text-align: center;"><code>200</code></td>
 <td>Set for how many contract runs to optimize.</td>
+</tr>
+<tr>
+<td><code>viaIr</code></td>
+<td style="text-align: center;"><code>Boolean</code></td>
+<td style="text-align: center;"><code>false</code></td>
+<td>Enable the IR-based (<code>--via-ir</code>) compilation pipeline.</td>
 </tr>
 <tr>
 <td><code>prettyJson</code></td>
@@ -2824,6 +2892,16 @@ The minimum Gradle version to run the plugin is <code>7.+</code>.</p>
     for all available versions.</li>
 <li><code>allowPaths</code> contains all project's Solidity source sets by default.</li>
 </ul>
+<h3 id="ir-based-compilation-via-ir">IR-based compilation (<code>--via-ir</code>)<a class="headerlink" href="#ir-based-compilation-via-ir" title="Permanent link">&para;</a></h3>
+<p>By default <code>solc</code> compiles through the legacy code generator. Set <code>viaIr = true</code> to compile through the
+Yul intermediate representation (the <code>--via-ir</code> pipeline) instead. This enables the full optimizer and can
+resolve <code>Stack too deep</code> errors that the legacy pipeline cannot handle:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">solidity</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">viaIr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="o">}</span>
+</code></pre></div>
+
+<p>The flag defaults to <code>false</code> and, like the other compiler options, can also be overridden per source set.</p>
 <h2 id="source-sets">Source sets<a class="headerlink" href="#source-sets" title="Permanent link">&para;</a></h2>
 <p>By default, all <code>.sol</code> files in <code>$projectDir/src/main/solidity</code> and <code>$projectDir/src/test/solidity</code> will be processed by
 the plugin. To specify and add different source sets, use the <code>sourceSets</code> DSL. You can also set your preferred output
@@ -2838,8 +2916,8 @@ directory for compiled code.</p>
 <span class="o">}</span>
 </code></pre></div>
 
-<p>Now with solidity gradle plugin version 0.4.2, you can set different solidity versions, evmVersions, optimize flag, optimizeRuns and ignoreMissing
-flag values for different sourceSets.</p>
+<p>Now with solidity gradle plugin version 0.6.2, you can set different solidity versions, evmVersions, optimize flag, optimizeRuns, ignoreMissing
+and viaIr flag values for different sourceSets.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">sourceSets</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">{</span>
 <span class="w">        </span><span class="n">solidity</span><span class="w"> </span><span class="o">{</span>
@@ -2848,6 +2926,7 @@ flag values for different sourceSets.</p>
 <span class="w">            </span><span class="n">evmVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'ISTANBUL'</span>
 <span class="w">            </span><span class="n">optimize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">            </span><span class="n">optimizeRuns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span>
+<span class="w">            </span><span class="n">viaIr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">            </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'0.8.12'</span>
 <span class="w">        </span><span class="o">}</span>
 <span class="w">    </span><span class="o">}</span>
@@ -2856,6 +2935,22 @@ flag values for different sourceSets.</p>
 
 <p>For Kotlin DSL, configure the source path with <code>srcDir("my/custom/path/to/solidity")</code>.
 The <code>allowPaths</code> property controls Solidity import resolution only; it does not replace source directories.</p>
+<h2 id="applying-the-plugin-without-the-compiler">Applying the plugin without the compiler<a class="headerlink" href="#applying-the-plugin-without-the-compiler" title="Permanent link">&para;</a></h2>
+<p>By default, applying the plugin registers the Solidity <code>compile</code> tasks and wires in the
+<a href="https://github.com/node-gradle/gradle-node-plugin">Node plugin</a> to resolve contract dependencies, which runs
+<code>npmInstall</code> automatically. If you only need the plugin's source sets — for example to generate contract wrappers
+from existing <code>.abi</code> files — set <code>compilerEnabled = false</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">solidity</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">compilerEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="o">}</span>
+</code></pre></div>
+
+<p>With this flag disabled:</p>
+<ul>
+<li>the <code>compileSolidity</code> tasks are skipped, so no <code>solc</code> compiler is resolved, downloaded or executed;</li>
+<li>the <code>resolveSolidity</code> / <code>npmInstall</code> chain is never added to the task graph, so <strong>NodeJS and npm are not required</strong>.</li>
+</ul>
+<p>To keep compilation but skip only the Node/npm integration, use <code>resolvePackages = false</code> instead.</p>
 <h2 id="gradle-node-plugin">Gradle Node Plugin<a class="headerlink" href="#gradle-node-plugin" title="Permanent link">&para;</a></h2>
 <p>The plugin makes use of the <a href="https://github.com/node-gradle/gradle-node-plugin">Node plugin</a> to resolve third-party contract dependencies. 
 It currently supports:</p>
