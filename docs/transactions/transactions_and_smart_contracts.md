@@ -94,7 +94,7 @@ String transactionHash = transactionResponse.getTransactionHash();
 ```
 
 It is not possible to return values from transactional functional calls, regardless of the return type of the message signature. However, it is possible to capture values returned by functions using filters. Please
-refer to the [Filters and Events](../advanced/filters_and_events.md) section for details.
+refer to the [Listening to Events](../advanced/filters_and_events.md) section for details.
 
 ## Querying the state of a smart contract 
 
