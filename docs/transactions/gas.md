@@ -20,7 +20,9 @@ _Gas limit_
 > transaction execution. There is an upper limit of how large a single
 > transaction can be in an Ethereum block which restricts this value
 > typically to less then 6,700,000. The current gas limit is visible at
-> <https://ethstats.net/>.
+> [Etherscan](https://etherscan.io/chart/gaslimit), and gas oracle accuracy
+> across providers is tracked live at
+> [OpenChainBench](https://openchainbench.com/benchmarks/gas-estimation).
 
 These parameters taken together dictate the maximum amount of Ether you are willing to spend on transaction costs. i.e. you can spend no more then gas price \* gas limit. The gas price can also affect how quickly a transaction takes place depending on what other transactions are available with a more profitable gas price for miners.
 
