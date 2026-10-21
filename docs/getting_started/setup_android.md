@@ -1,9 +1,10 @@
 Setting up Project for Android
 --------------------------------------------------------
 
-In this article, we’ll walk through the steps to set up Web3j for Android development using the latest version.
+In this article, we’ll walk through the steps to set up Web3j for Android development using the separately published Android release.
 
-> The latest version of Web3j Library (4.12.0) requires at least **JDK version 17**
+!!! note "Android is a separate release line"
+    The dependency below is the Android artifact, not the Java 21 core {{ web3j.version }} release. Select a JDK supported by your Android Gradle Plugin and validate the dependency on your target devices.
 
 ## Step 1: Add Web3j Dependency
 
@@ -11,11 +12,11 @@ In this article, we’ll walk through the steps to set up Web3j for Android deve
 
 Add the following dependency to your pom.xml file:
 
-```java
+```xml
 <dependency>
  <groupId>org.web3j</groupId>
  <artifactId>core</artifactId>
- <version>4.12.0</version>
+ <version>{{ android.version }}</version>
 </dependency>
 ```
 
@@ -25,7 +26,7 @@ Add the Web3j dependency to your build.gradle.kts file :
 
 ```kotlin
 dependencies {
-   implementation("org.web3j:core:4.12.0")
+   implementation("org.web3j:core:{{ android.version }}")
 }
 ```
 

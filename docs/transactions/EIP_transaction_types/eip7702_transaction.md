@@ -1,56 +1,20 @@
-## EIP-7702 Transaction
+# EIP-7702 transactions
 
-EIP-7702 introduces a new typed transaction for delegated smart account execution. In addition to the EIP-1559 style fee fields and access list support, it includes an `authorizationList` containing signed authorization tuples.
+[EIP-7702](https://eips.ethereum.org/EIPS/eip-7702) introduces transaction type `0x04` for account-code delegation. Its authorization list contains separately signed tuples; signing the outer transaction does not sign those tuples.
 
-### Spec
-
-The new EIP-2718 `TransactionType = 4(0x04)` and TransactionPayload for this transaction is `rlp([chainId, nonce, maxPriorityFeePerGas, maxFeePerGas, gasLimit, to, value, data, accessList, authorizationList, signatureYParity, signatureR, signatureS])`.
-
-In Web3j this transaction type is represented by `TransactionType.EIP7702`, and raw transaction creation accepts both an `accessList` and an `authorizationList`.
-
-### Example
+## Sign an authorization with Web3j 6
 
 ```java
-public void signedEip7702() throws SignatureException {
-        Credentials credentials = Credentials.create("<privateKey>");
-        Web3j web3j = Web3j.build(new HttpService("<nodeUrl>"));
-
-        final RawTransaction rawTransaction = createEip7702RawTransaction();
-
-        final byte[] signedMessage =
-                TransactionEncoder.signMessage(rawTransaction, credentials);
-        final String signedHexMessage = Numeric.toHexString(signedMessage);
-
-        EthSendTransaction ethSendTransaction =
-                web3j.ethSendRawTransaction(signedHexMessage).send();
-
-        System.out.println("Transaction hash: " + ethSendTransaction.getTransactionHash());
-    }
-
-private static RawTransaction createEip7702RawTransaction() {
-        List<AccessListObject> accessList = Collections.emptyList();
-        List<AuthorizationTuple> authorizationList =
-                Collections.singletonList(
-                        new AuthorizationTuple(
-                                BigInteger.valueOf(1),
-                                "0x7b73644935b8e68019ac6356c40661e1bc315860",
-                                BigInteger.ZERO,
-                                BigInteger.ONE,
-                                new BigInteger("1234"),
-                                new BigInteger("5678")));
-
-        return RawTransaction.createTransaction(
-                1L,
-                BigInteger.valueOf(1),
-                BigInteger.valueOf(2_000_000_000L),
-                BigInteger.valueOf(20_000_000_000L),
-                BigInteger.valueOf(100000),
-                "0x627306090abab3a6e1400e9345bc60c78a8bef57",
-                BigInteger.ZERO,
-                "0x",
-                accessList,
-                authorizationList);
-    }
+--8<-- "examples/src/main/java/org/web3j/docs/AuthorizationExample.java"
 ```
 
-Transactions returned from JSON-RPC methods can also include EIP-7702 authorization data. In Web3j this is exposed via `Transaction.getAuthorizationList()`.
+Pass the authority account’s credentials, the intended chain ID, the delegate contract address and the authority account’s nonce. `Sign.recoverAuthorizationSigner(tuple)` recovers the authority address. The documentation tests verify signing and recovery without broadcasting a transaction.
+
+!!! warning "Authorizations grant execution authority"
+    Verify the delegate code and nonce before signing. An authorization for chain ID zero is not restricted to one chain. Keep keys and signed authorizations out of logs and source control.
+
+## Build and send the transaction
+
+Supply the signed authorization tuples and access list to the EIP-7702 overload of `RawTransaction.createTransaction(...)`. The transaction sender has its own nonce, gas limit and EIP-1559 fee fields. When the authority is also the transaction sender, account for the sender nonce increment before authorization processing: for a single authorization, use the transaction nonce plus one as the authorization nonce. Sign the outer transaction with `TransactionEncoder.signMessage(...)`, then submit it using `web3j.ethSendRawTransaction(...)`. Check the RPC response and receipt for failure.
+
+See the [crypto API](https://javadoc.io/doc/org.web3j/crypto/{{ web3j.version }}/index.html) for exact overloads. The connected node and network must support EIP-7702. Transactions returned by JSON-RPC expose authorization data through `Transaction.getAuthorizationList()`.

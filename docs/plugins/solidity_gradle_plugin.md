@@ -147,8 +147,8 @@ To keep compilation but skip only the Node/npm integration, use `resolvePackages
 The plugin makes use of the [Node plugin](https://github.com/node-gradle/gradle-node-plugin) to resolve third-party contract dependencies. 
 It currently supports:
 
-  * [Open Zeppelin](https://www.npmjs.com/package/@openzeppelin/contracts) 
-  * [Uniswap](https://www.npmjs.com/package/@uniswap/lib) 
+  * [OpenZeppelin Contracts](https://github.com/OpenZeppelin/openzeppelin-contracts)
+  * [Uniswap Solidity libraries](https://github.com/Uniswap/solidity-lib) (archived package)
 
 When importing libraries from `@openzeppelin/contracts` in your Solidity contract, the plugin will use the
 task `resolveSolidity` to generate a `package.json` file required by

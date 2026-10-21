@@ -88,11 +88,11 @@ EthSendTransaction ethSendTransaction = web3j.ethSendRawTransaction(hexValue).se
 // ...
 ```
 
-Although it's far simpler using Web3j's [Transfer](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/tx/Transfer.java) for transacting with Ether.
+Although it's far simpler using Web3j's [Transfer](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/tx/Transfer.java) for transacting with Ether.
 
 
 
-Using an Ethereum client's admin commands (make sure you have your wallet in the client's keystore):
+The following is a **legacy** account-unlocking API. It requires a client that still implements the personal namespace; current Geth deprecates it and hosted providers commonly do not expose it. See [management APIs](../advanced/management_apis.md).
 
 ```Java
 Admin web3j = Admin.build(new HttpService());  // defaults to http://localhost:8545/
@@ -102,7 +102,4 @@ if (personalUnlockAccount.accountUnlocked()) {
 }
 ```
 
-If you want to make use of OpenEthereum's [Personal](https://openethereum.github.io/wiki/JSONRPC-personal-module) 
-or [Trace](https://openethereum.github.io/wiki/JSONRPC-trace-module), or 
-Geth's [Personal](https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal) 
-client APIs, you can use the `org.web3j:parity` and `org.web3j:geth` modules respectively.
+The `org.web3j:parity` and `org.web3j:geth` modules expose older client-specific methods. OpenEthereum is archived; do not assume that modern clients support those methods.

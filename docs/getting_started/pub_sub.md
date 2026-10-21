@@ -6,7 +6,9 @@ Web3j functional-reactive nature makes it really simple to setup observers that 
 To receive all new blocks as they are added to the blockchain:
 
 ```java
-Subscription subscription = web3j.blockFlowable(false).subscribe(block -> {
+import io.reactivex.disposables.Disposable;
+
+Disposable subscription = web3j.blockFlowable(false).subscribe(block -> {
     ...
 });
 ```
@@ -14,7 +16,7 @@ Subscription subscription = web3j.blockFlowable(false).subscribe(block -> {
 To receive all new transactions as they are added to the blockchain:
 
 ```java
-Subscription subscription = web3j.transactionFlowable().subscribe(tx -> {
+Disposable subscription = web3j.transactionFlowable().subscribe(tx -> {
     ...
 });
 ```
@@ -22,7 +24,7 @@ Subscription subscription = web3j.transactionFlowable().subscribe(tx -> {
 To receive all pending transactions as they are submitted to the network (i.e. before they have been grouped into a block together):
 
 ```java
-Subscription subscription = web3j.pendingTransactionFlowable().subscribe(tx -> {
+Disposable subscription = web3j.pendingTransactionFlowable().subscribe(tx -> {
     ...
 });
 ```
@@ -30,7 +32,7 @@ Subscription subscription = web3j.pendingTransactionFlowable().subscribe(tx -> {
 Or, if you'd rather replay all blocks to the most current, and be notified of new subsequent blocks being created:
 
 ```java
-Subscription subscription = replayPastAndFutureBlocksFlowable(
+Disposable subscription = replayPastAndFutureBlocksFlowable(
         <startBlockNumber>, <fullTxObjects>)
         .subscribe(block -> {
             ...
@@ -53,12 +55,12 @@ web3j.ethLogFlowable(filter).subscribe(log -> {
 Subscriptions should always be cancelled when no longer required:
 
 ```Java
-subscription.unsubscribe();
+subscription.dispose();
 ```
 
-**Note:** filters are not supported on Infura.
+**Note:** Filter and subscription support depends on your RPC provider and transport. Check the provider’s current API support; WebSocket subscriptions require a WebSocket endpoint.
 
-For further information refer to [Filters and Events](../advanced/filters_and_events.md) and the [Web3jRx](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/rx/Web3jRx.java) interface.
+For further information refer to [Filters and Events](../advanced/filters_and_events.md) and the [Web3jRx](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/protocol/rx/Web3jRx.java) interface.
 
 
 Publish/Subscribe
@@ -143,8 +145,7 @@ final Disposable disposable = events.subscribe(event -> {
 });
 ```
 
-Notice that we need to provide a name of a method to _WebSocketService_ that needs to be called to unsubscribe from a stream of events. This is because different Ethereum clients may have different methods to unsubscribe from particular events. For example, the OpenEthereum client requires use of the
-_parity_unsubscribe_ method to unsubscribe from [pub/sub events](https://openethereum.github.io/wiki/JSONRPC-eth_pubsub-module).
+Provide the unsubscribe method supported by the node, usually `eth_unsubscribe` for Ethereum subscriptions.
 
 To unsubscribe from a stream of events one needs to use a _Flowable_ instance for a particular events stream:
 

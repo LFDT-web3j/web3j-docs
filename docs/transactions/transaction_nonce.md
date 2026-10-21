@@ -2,7 +2,7 @@
 
 The nonce is an increasing numeric value which is used to uniquely identify transactions. A nonce can only be used once and until a transaction is mined, it is possible to send multiple versions of a transaction with the same nonce, however, once mined, any subsequent submissions will be rejected.
 
-You can obtain the next available nonce via the [eth_getTransactionCount](https://eth.wiki/json-rpc/API#eth_gettransactioncount) method:
+You can obtain the next available nonce via the [eth_getTransactionCount](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactioncount) method:
 
 ```java
 EthGetTransactionCount ethGetTransactionCount = web3j.ethGetTransactionCount(

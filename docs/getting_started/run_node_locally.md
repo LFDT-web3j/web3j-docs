@@ -1,103 +1,33 @@
-Web3j interacts with Ethereum client nodes.
-If you don't want to connect to one of the existing networks,
-you have different options to start a local node.
+# Run a node locally
 
-## Use Geth, Besu or OpenEthereum
+Web3j connects to an Ethereum JSON-RPC endpoint. Choose a development chain for local tests, or a public-network endpoint for integration with Sepolia or Ethereum mainnet.
 
-[Geth](https://geth.ethereum.org/docs/getting-started):
+## Local development chain
 
-``` bash
-$ geth --rpcapi personal,db,eth,net,web3 --rpc --testnet
+For a single-node development chain, install [Geth](https://geth.ethereum.org/docs/getting-started/installing-geth) and use its [developer mode](https://geth.ethereum.org/docs/developers/dapp-developer/dev-mode):
+
+```bash
+geth --dev --http --http.api eth,net,web3 --http.addr 127.0.0.1 --datadir ./geth-dev-data
 ```
 
-[Hyperledger Besu](https://besu.hyperledger.org/en/stable/HowTo/Get-Started/Starting-node/#run-a-node-for-testing):
+This creates an isolated development chain with no external peers and a simulated consensus client. Keep its RPC endpoint bound to localhost. The development account and funds must never be reused on a public network.
 
-``` bash
-$ besu ----network=dev
+Besu users can follow the [private-network startup guide](https://docs.besu-eth.org/private-networks/get-started/start-node) and [CLI reference](https://docs.besu-eth.org/public-networks/reference/cli/options). Use `--network`, with two leading hyphens, when selecting a network.
+
+Check that RPC is available before connecting Web3j:
+
+```bash
+curl --fail --silent --show-error http://127.0.0.1:8545 \
+  -H 'Content-Type: application/json' \
+  --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":1}'
 ```
 
-The `dev` network uses has [some handy default parameters](https://besu.hyperledger.org/en/stable/Reference/Accounts-for-Testing/#development-mode).
+For a multi-client private network, [ethereum-package](https://github.com/ethpandaops/ethereum-package) provides a configurable development environment. Follow its prerequisites and quickstart to obtain the execution RPC endpoint.
 
-[OpenEthereum](https://openethereum.github.io/wiki/Basic-Usage):
+## A local client on a public network
 
-``` bash    
-$ openethereum --chain testnet  
-```
+Running an Ethereum public-network node requires both an **execution client** and a **consensus client**. Configure a shared JWT secret for their authenticated connection; this is separate from the JSON-RPC endpoint used by Web3j.
 
-Instructions on obtaining Ether to transact on the network can be found in the
-[testnet section of the docs](` https://docs.web3j.io/transactions/#ethereum-testnets`).
+Follow a complete client-pair guide for [Geth](https://geth.ethereum.org/docs/getting-started), [Besu](https://docs.besu-eth.org/public-networks/get-started/start-node) or [Nethermind](https://docs.nethermind.io/get-started/running-node/). Select Sepolia for application testing and allow the node to synchronize. Starting only an execution-client process does not establish a working public-network node.
 
-## Use Epirus Local
-
-Epirus-local is a local ethereum client, similar to what [Ganache](https://github.com/trufflesuite/ganache) provides, written in Kotlin.
-
-This project relies on [web3-evm](https://github.com/web3j/web3j-evm) to execute user requests.
-
-### Features
-- Allows json-rpc interactions with a local ethereum blockchain.
-- Generates a default genesis file containing 10 ethereum accounts or lets you use your own genesis.
-- Provides a CLI to run the client.
-- Handles these operations:
-    - `eth_blockNumber`
-    - `eth_getTransactionCount`
-    - `eth_getBalance`
-    - `eth_sendTransaction`
-    - `eth_sendRawTransaction`
-    - `eth_estimateGas`
-    - `eth_getBlockTransactionCountByHash`
-    - `eth_getBlockTransactionCountByNumber`
-    - `eth_getTransactionReceipt`
-    - `eth_getCode`
-    - `eth_call`
-    
-### Getting started
-
-`git clone https://github.com/epirus-io/epirus-local && cd epirus-local`
-    
-`./gradlew installDist`
-    
-#### Run in Linux:
-`build/install/epirus-local/bin/epirus-local [command]`
-    
-#### Run in Windows
-`build\install\epirus-local\bin\epirus-local.bat [command]`
-
-### Start the client
-
-```
-epirus-local start -d=/path/to/directory -p=9090
-```
-This command generates a new genesis file with 10 accounts filled with 100 ether.
-
-![start command](https://raw.githubusercontent.com/epirus-io/epirus-local/master/resources/epirus-local-start-command-demo.gif)
-
-### Load from previous configuration
-
-```
-epirus-local load -g=/path/to/genesis
-```
-This command loads a pre-existing genesis-file from a certain path.
-
-![load command](https://raw.githubusercontent.com/epirus-io/epirus-local/master/resources/epirus-local-load-command-demo.gif)
-
-
-### Send requests
-
-###### Example of a request
-```
-curl -X POST --data '{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{
-  "from": "0x8f496c16955a7bb9b5e1ea0383d01f87372ab520",
-  "to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",
-  "gas": "0x76c0", 
-  "gasPrice": "0x9184e72a000", 
-  "value": "0x9184e72a",
-  "nonce": "0x1"
-}],"id":1}' host:port
-```
-
-###### Example of a response
-```
-{"id" : 1, "jsonrpc" : "2.0", "result" : "0xc631caa67cab48ead77a58321bbb0c76f4060751a4bb3d5b45b99c4a68b1a7b7"}
-```
-
-For more information about the requests, check out the Ethereum [json-rpc](https://github.com/ethereum/wiki/wiki/JSON-RPC) api.
+Alternatively, use a hosted Sepolia RPC endpoint with the [quickstart](../quickstart.md). See [Ethereum test networks](../transactions/ethereum_testnets.md) for test ETH and network selection, and the [Ethereum JSON-RPC reference](https://ethereum.org/en/developers/docs/apis/json-rpc/) for RPC methods.
