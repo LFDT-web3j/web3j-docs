@@ -30,7 +30,7 @@ I want to see details of the JSON-RPC requests and responses
 
 web3j uses the [SLF4J](https://github.com/qos-ch/slf4j) logging facade, which you can easily integrate with your preferred logging framework. One lightweight approach is to use [Logback](https://github.com/qos-ch/logback), which is already configured in the integration-tests module.
 
-Include the LOGBack dependencies listed in [integration-tests/build.gradle](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/integration-tests/build.gradle#L7) and associated log configuration as per [integration-tests/src/test/resources/logback-test.xml](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/integration-tests/src/test/resources/logback-test.xml).
+Include the LOGBack dependencies listed in [integration-tests/build.gradle](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/integration-tests/build.gradle#L7) and associated log configuration as per [integration-tests/src/test/resources/logback-test.xml](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/integration-tests/src/test/resources/logback-test.xml).
 
 **Note:** if you are configuring logging for an application (not tests), you will need to ensure that the Logback dependencies are configured as runtime dependencies, and that the configuration file is named and
 located in *src/main/resources/logback.xml*.

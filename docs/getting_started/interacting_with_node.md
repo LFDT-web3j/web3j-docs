@@ -88,7 +88,7 @@ EthSendTransaction ethSendTransaction = web3j.ethSendRawTransaction(hexValue).se
 // ...
 ```
 
-Although it's far simpler using Web3j's [Transfer](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/tx/Transfer.java) for transacting with Ether.
+Although it's far simpler using Web3j's [Transfer](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/tx/Transfer.java) for transacting with Ether.
 
 
 

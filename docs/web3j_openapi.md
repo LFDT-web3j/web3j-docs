@@ -578,7 +578,7 @@ println("Deployment receipt: ${receipt.contractAddress}")
 
 ### Handling events
 
-In web3j-OpenAPI, we handle events using Server-Sent Events [SSE](https://docs.huihoo.com/jersey/2.13/sse.html).
+In web3j-OpenAPI, we handle events using Server-Sent Events [SSE](https://html.spec.whatwg.org/multipage/server-sent-events.html).
 
 In a nutshell, SSE is a one way mechanism that allows a server to asynchronously push data
 from the server to the client once the client-server connection is established by the client.

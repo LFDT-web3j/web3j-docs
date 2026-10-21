@@ -13,6 +13,8 @@ allows for easy debugging of Solidity smart contracts.
 
 ## Getting started
 
+Use the same release as Web3j core: **{{ web3j.version }}**. This guide derives both dependency versions from the same setting.
+
 Often you'd use this together with the [web3j-unit](https://github.com/web3j/web3j-unit)
 project, allowing you to run unit and integration tests without the need
 to start an Ethereum node.
@@ -29,7 +31,7 @@ repositories {
 
 dependencies {
     implementation "org.web3j:core:{{ web3j.version }}"
-    implementation "org.web3j:web3j-evm:{{ evm.version }}"
+    implementation "org.web3j:web3j-evm:{{ web3j.version }}"
 }
 ```
 
@@ -116,8 +118,8 @@ repositories {
 }
 
 dependencies {
-    implementation "org.web3j:core:$web3jVersion"
-    implementation "org.web3j:web3j-evm:$web3jVersion"
+    implementation "org.web3j:core:{{ web3j.version }}"
+    implementation "org.web3j:web3j-evm:{{ web3j.version }}"
 }
 ```
 

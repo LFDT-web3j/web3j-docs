@@ -53,11 +53,17 @@ def check(root=Path(".")):
         html = page.read_text()
         if re.search(r"<title>[^<]*4\.8\.2-SNAPSHOT", html):
             raise ValueError(f"Stale generated Javadoc was published: {page}")
-        if re.search(r"\{\{\s*(?:web3j|android|gradle_plugin|maven_plugin|openapi|evm|unit)\.", html):
+        if re.search(r"\{\{\s*(?:web3j|android|gradle_plugin|maven_plugin|openapi|sokt)\.", html):
             raise ValueError(f"Unexpanded version template: {page}")
         parser = ArticleLinks()
         parser.feed(html)
         for url in parser.links:
+            source = re.match(
+                r"https://github\.com/(?:LFDT-web3j|web3j)/web3j/(?:blob|tree)/([^/]+)(?:/|$)",
+                url,
+            )
+            if source and source.group(1) != f"v{version}":
+                raise ValueError(f"Core source link differs from guide {version}: {url} in {page}")
             sources.setdefault(url, []).append(str(page.relative_to(root)))
     if not sources:
         raise ValueError("No rendered content links found")

@@ -26,7 +26,7 @@ Please refer to the [Web3 Secret Storage Definition](https://ethereum.org/en/dev
 
 ## Signing transactions
 
-Transactions to be used in an offline signing capacity, should use the [RawTransaction](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/crypto/src/main/java/org/web3j/crypto/RawTransaction.java) type for this purpose. The RawTransaction is similar to the previously mentioned Transaction type, however it does not require a _from_ address, as this can be inferred from the signature.
+Transactions to be used in an offline signing capacity, should use the [RawTransaction](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/crypto/src/main/java/org/web3j/crypto/RawTransaction.java) type for this purpose. The RawTransaction is similar to the previously mentioned Transaction type, however it does not require a _from_ address, as this can be inferred from the signature.
 
 In order to create and sign a raw transaction, the sequence of events is as follows:
 
@@ -62,4 +62,4 @@ String transactionHash = ethSendTransaction.getTransactionHash();
 // poll for transaction response via org.web3j.protocol.Web3j.ethGetTransactionReceipt(<txHash>)
 ```
 
-Please refer to the integration test [CreateRawTransactionIT](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/integration-tests/src/test/java/org/web3j/protocol/scenarios/CreateRawTransactionIT.java) for a full example of creating and sending a raw transaction.
+Please refer to the integration test [CreateRawTransactionIT](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/integration-tests/src/test/java/org/web3j/protocol/scenarios/CreateRawTransactionIT.java) for a full example of creating and sending a raw transaction.

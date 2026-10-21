@@ -15,5 +15,3 @@ Companies using Web3j
 -   [BinarApps](https://binarapps.com/)
 -   [PegaSys](https://pegasys.tech/)
 -   [Arkane](https://arkane.network/)
--   FreightTrust
--   Othera

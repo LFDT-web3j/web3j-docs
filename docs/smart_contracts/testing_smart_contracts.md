@@ -12,7 +12,7 @@ repositories {
 }
 dependencies {
   implementation "org.web3j:core:{{ web3j.version }}"
-  testImplementation "org.web3j:web3j-unit:{{ unit.version }}"
+  testImplementation "org.web3j:web3j-unit:{{ web3j.version }}"
 }
 ```
 

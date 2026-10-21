@@ -17,6 +17,8 @@ Web3j **{{ web3j.version }}** requires **Java 21 or newer**. Use Maven Central t
 </dependencies>
 ```
 
+`maven.compiler.release` tells the compiler to target Java 21 language features, APIs and bytecode, matching Web3j 6’s Java baseline. It does not install a JDK: run Maven with Java 21 or newer. If your project already configures release 21 (or newer) through a parent POM or toolchain, keep that configuration instead of duplicating it.
+
 Use a current Maven Compiler Plugin with Java 21 support. The [quickstart](../quickstart.md) provides a pinned build configuration.
 
 ## Gradle

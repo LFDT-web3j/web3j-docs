@@ -1,6 +1,6 @@
 # Upgrading to Web3j 6
 
-This guide targets **{{ web3j.version }}**. The [release notes](https://github.com/LFDT-web3j/web3j/releases/tag/v6.0.0) describe the changes from 5.0.3.
+This guide targets **{{ web3j.version }}**. The [release notes](https://github.com/LFDT-web3j/web3j/releases/tag/v{{ web3j.version }}) describe the changes from 5.0.3.
 
 ## Upgrade checklist
 
@@ -18,7 +18,7 @@ This guide targets **{{ web3j.version }}**. The [release notes](https://github.c
 
 ### EIP-7594 blob transaction wrappers
 
-`RawTransaction.createEip7594Transaction(...)` supports the EIP-7594 wrapper and cell-proof generation. Consult the [crypto API](https://javadoc.io/doc/org.web3j/crypto/{{ web3j.version }}/index.html) and the release’s [transaction encoder tests](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/crypto/src/test/java/org/web3j/crypto/TransactionEncoderTest.java) for the payload and proof requirements. Check that the receiving node supports the relevant network upgrade and transaction format.
+`RawTransaction.createEip7594Transaction(...)` supports the EIP-7594 wrapper and cell-proof generation. Consult the [crypto API](https://javadoc.io/doc/org.web3j/crypto/{{ web3j.version }}/index.html) and the release’s [transaction encoder tests](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/crypto/src/test/java/org/web3j/crypto/TransactionEncoderTest.java) for the payload and proof requirements. Check that the receiving node supports the relevant network upgrade and transaction format.
 
 ### Blob base fee
 

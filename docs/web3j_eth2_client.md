@@ -1,8 +1,8 @@
-# Web3j Beacon Node API Client
+# Web3j consensus client API
 
-The [Beacon Node API client](https://github.com/web3j/web3j-eth2) is a thin library that will allow you to interact fluently with the new Eth2 nodes using the methods available in the [Eth2.0-API specification](https://ethereum.github.io/beacon-APIs/), including event subscriptions. As a Web3j library we've kept everything as simple as possible for users to get them on their way quickly.
+The [Beacon Node API client](https://github.com/web3j/web3j-eth2) is a library for interacting with Ethereum consensus clients through the [Beacon Node API](https://ethereum.github.io/beacon-APIs/), including event subscriptions. The repository name `web3j-eth2` and the `org.web3j.eth2` Maven group retain their original names.
 
-In this chapter we'll guide you through the few steps required to get your application interacting with any Eth2 Beacon Chain Node.
+This page describes the historical 1.0.0 client library. It targets version 0.12.2 of the Beacon Node API specification; compatibility with current consensus clients and newer endpoints must be checked before use.
 
 ## Getting started
 
@@ -22,9 +22,9 @@ or Gradle:
 implementation 'org.web3j.eth2:beacon-node-api:1.0.0'
 ```
 
-At the moment of writing this, the first released version 1.0.0 corresponds to the Eth2 specification v0.12.2. Check the project [releases](https://github.com/web3j/web3j-eth2/releases) page for the last available version.
+Check the project [releases](https://github.com/web3j/web3j-eth2/releases) for available library versions. This library has its own release numbering, separate from Web3j core.
 
-Once you have added the library to your project, you can create a client instance pointing to a particular Beacon Chain node in a familiar Web3j-esque way:
+Once you have added the library to your project, you can create a client instance pointing to a particular consensus client in a familiar Web3j-esque way:
 
 ```java
 var service = new BeaconNodeService("http://...");
@@ -45,11 +45,13 @@ client.getBeacon().getPool()
     .findAll();
 ```
 
-If you don’t know a Beacon Chain node where you can point your client code, in the next section we'll guide you through a few simple steps to get a test network up and running.
+If you don’t know a consensus client where you can point your client code, in the next section we'll guide you through a few simple steps to get a test network up and running.
 
 ## Start a test network
 
-In this section we’ll be using the Teku Beacon Chain implementation to start a local test network where to point your client code (before this, make sure you are running a [Docker](https://www.docker.com/products/docker-desktop) environment).
+This legacy setup accompanies the 1.0.0 examples. Check current Teku instructions and API compatibility before adapting it to a modern development network.
+
+In this section we’ll be using the Teku consensus client to start a local test network where to point your client code (before this, make sure you are running a [Docker](https://www.docker.com/products/docker-desktop) environment).
 
 First, clone the Teku project in a local folder:
 
@@ -57,7 +59,7 @@ First, clone the Teku project in a local folder:
 $ git clone https://github.com/ConsenSys/teku.git
 ```
 
-Then start the Beacon Chain local network (check the [Teku docs](https://github.com/ConsenSys/teku/tree/master/test-network) for more information on the Docker Testnet):
+Then start the local consensus-client network (check the [Teku docs](https://github.com/ConsenSys/teku/tree/master/test-network) for more information on the Docker Testnet):
 
 ```shell
 $ teku/test-network/launch.sh

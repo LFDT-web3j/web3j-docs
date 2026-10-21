@@ -3,7 +3,7 @@ Application Binary Interface
 
 The Application Binary Interface (ABI) is a data encoding scheme used in Ethereum for working with smart contracts. The types defined in the ABI are the same as those you encounter when writing [Smart Contracts](smart_contracts_overview.md) with Solidity - i.e. *uint8, ..., uint256, int8, ..., int256, bool, string,* etc.
 
-The [ABI module](https://github.com/LFDT-web3j/web3j/tree/v6.0.0/abi) in web3j provides full support for the ABI specification, and includes:
+The [ABI module](https://github.com/LFDT-web3j/web3j/tree/v{{ web3j.version }}/abi) in web3j provides full support for the ABI specification, and includes:
 
 -   Java implementations of all ABI types, including conversion from and to native Java types
 -   Function and event support
@@ -33,7 +33,7 @@ For more information on using ABI types in Java, refer to [Solidity smart contra
 Further details
 ---------------
 
-Please refer to the various [ABI unit tests](https://github.com/LFDT-web3j/web3j/tree/v6.0.0/abi/src/test/java/org/web3j/abi) for encoding/decoding examples.
+Please refer to the various [ABI unit tests](https://github.com/LFDT-web3j/web3j/tree/v{{ web3j.version }}/abi/src/test/java/org/web3j/abi) for encoding/decoding examples.
 
 A full ABI specification is maintained with the [Solidity documentation](http://solidity.readthedocs.io/en/develop/abi-spec.html).
 

@@ -17,12 +17,12 @@ The RLP encoder defined two supported types:
 The list type can be nested an arbitrary number of times allowing
 complex data structures to be encoded.
 
-The [RLP module](https://github.com/LFDT-web3j/web3j/tree/v6.0.0/rlp) in web3j provides RLP encoding capabilities, with the [RlpEncoderTest](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/rlp/src/test/java/org/web3j/rlp/RlpEncoderTest.java) demonstrating encoding of a number of different values.
+The [RLP module](https://github.com/LFDT-web3j/web3j/tree/v{{ web3j.version }}/rlp) in web3j provides RLP encoding capabilities, with the [RlpEncoderTest](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/rlp/src/test/java/org/web3j/rlp/RlpEncoderTest.java) demonstrating encoding of a number of different values.
 
 Transaction encoding
 --------------------
 
-Within web3j, RLP encoding is used to encode Ethereum transaction objects into a byte array which is signed before submission to the network. The transaction types and signing logic are located within the Crypto module, with the [TransactionEncoderTest](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/crypto/src/test/java/org/web3j/crypto/TransactionEncoderTest.java) providing examples of transaction signing and encoding.
+Within web3j, RLP encoding is used to encode Ethereum transaction objects into a byte array which is signed before submission to the network. The transaction types and signing logic are located within the Crypto module, with the [TransactionEncoderTest](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/crypto/src/test/java/org/web3j/crypto/TransactionEncoderTest.java) providing examples of transaction signing and encoding.
 
 Dependencies
 ------------

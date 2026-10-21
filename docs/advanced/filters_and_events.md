@@ -13,7 +13,7 @@ Topic filters are more flexible. These allow you to create a filter based on spe
 
 Unfortunately, unless you are using a WebSocket connection to Geth, working with filters via the JSON-RPC API is a tedious process, where you need to poll the Ethereum client in order to find out if there are any updates to your filters due to the synchronous nature of HTTP and IPC requests. Additionally the block and transaction filters only provide the transaction or block hash, so a further request is required to obtain the actual transaction or block referred to by the hash.
 
-web3j's managed [Filter](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/protocol/core/filters/Filter.java) implementation address these issues, so you have a fully asynchronous event based API for working with filters. It uses [RxJava](https://github.com/ReactiveX/RxJava)'s [Flowables](http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Flowable.html) which provides a consistent API for working with events, which facilitates the chaining together of JSON-RPC calls via functional
+web3j's managed [Filter](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/protocol/core/filters/Filter.java) implementation address these issues, so you have a fully asynchronous event based API for working with filters. It uses [RxJava](https://github.com/ReactiveX/RxJava)'s [Flowables](http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Flowable.html) which provides a consistent API for working with events, which facilitates the chaining together of JSON-RPC calls via functional
 composition.
 
 **Note:** Filter and subscription support depends on your RPC provider and transport. Check the provider’s current API support. Import `io.reactivex.disposables.Disposable` for the subscription handles below.
@@ -55,7 +55,7 @@ Subscriptions should always be cancelled when no longer required via
 subscription.dispose();
 ```
 
-Other callbacks are also provided which provide simply the block or transaction hashes, for details of these refer to the [Web3jRx](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/protocol/rx/Web3jRx.java) interface.
+Other callbacks are also provided which provide simply the block or transaction hashes, for details of these refer to the [Web3jRx](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/protocol/rx/Web3jRx.java) interface.
 
 Replay filters
 --------------
@@ -112,7 +112,7 @@ Disposable subscription = web3j.replayPastAndFutureTransactionsFlowable(
 });
 ```
 
-All of the above filters are exported via the [Web3jRx](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/protocol/rx/Web3jRx.java) interface.
+All of the above filters are exported via the [Web3jRx](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/protocol/rx/Web3jRx.java) interface.
 
 Topic filters and EVM events
 ----------------------------
@@ -121,7 +121,7 @@ Topic filters capture details of Ethereum Virtual Machine (EVM) events taking pl
 
 The [Solidity documentation](http://solidity.readthedocs.io/en/develop/contracts.html#events) provides a good overview of EVM events.
 
-You use the [EthFilter](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/protocol/core/methods/request/EthFilter.java) type to specify the topics that you wish to apply to the filter. This can include the address of the smart contract you wish to apply the filter to. You can also provide specific topics to filter on. Where the individual topics represent indexed parameters on the smart contract:
+You use the [EthFilter](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/protocol/core/methods/request/EthFilter.java) type to specify the topics that you wish to apply to the filter. This can include the address of the smart contract you wish to apply the filter to. You can also provide specific topics to filter on. Where the individual topics represent indexed parameters on the smart contract:
 
 ```java
 EthFilter filter = new EthFilter(DefaultBlockParameterName.EARLIEST,
@@ -146,7 +146,7 @@ A note on functional composition
 
 In addition to *send()* and *sendAsync*, all JSON-RPC method implementations in web3j support the *flowable()* method to create a Flowable to execute the request asynchronously. This makes it very straight forwards to compose JSON-RPC calls together into new functions.
 
-For instance, the [blockFlowable](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/protocol/rx/JsonRpc2_0Rx.java) is itself composed of a number of separate JSON-RPC calls:
+For instance, the [blockFlowable](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/protocol/rx/JsonRpc2_0Rx.java) is itself composed of a number of separate JSON-RPC calls:
 
 ```java
 public Flowable<EthBlock> blockFlowable(
@@ -162,7 +162,7 @@ Here we first create a flowable that provides notifications of the block hash of
 Further examples
 ----------------
 
-Please refer to the integration test [FlowableIT](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/integration-tests/src/test/java/org/web3j/protocol/core/FlowableIT.java) for further examples.
+Please refer to the integration test [FlowableIT](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/integration-tests/src/test/java/org/web3j/protocol/core/FlowableIT.java) for further examples.
 
 For a demonstration of using the manual filter API, you can take a look
-at the test [EventFilterIT](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/integration-tests/src/test/java/org/web3j/protocol/scenarios/EventFilterIT.java).
+at the test [EventFilterIT](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/integration-tests/src/test/java/org/web3j/protocol/scenarios/EventFilterIT.java).

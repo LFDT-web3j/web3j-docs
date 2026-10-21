@@ -60,7 +60,7 @@ subscription.dispose();
 
 **Note:** Filter and subscription support depends on your RPC provider and transport. Check the provider’s current API support; WebSocket subscriptions require a WebSocket endpoint.
 
-For further information refer to [Filters and Events](../advanced/filters_and_events.md) and the [Web3jRx](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/protocol/rx/Web3jRx.java) interface.
+For further information refer to [Filters and Events](../advanced/filters_and_events.md) and the [Web3jRx](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/protocol/rx/Web3jRx.java) interface.
 
 
 Publish/Subscribe

@@ -52,7 +52,7 @@ nav:
           - EIP-7702 Transaction: transactions/EIP_transaction_types/eip7702_transaction.md
       - Transactions and Smart Contracts: transactions/transactions_and_smart_contracts.md
       - Wallet Files: transactions/wallet_files.md
-  - Web3j Eth2 Client: web3j_eth2_client.md
+  - Web3j Consensus Client API: web3j_eth2_client.md
   - Web3j OpenAPI: web3j_openapi.md
   - Web3j Unit: web3j_unit.md
   - Web3j EVM: web3j_evm.md
@@ -109,10 +109,6 @@ extra:
     version: 5.0.2
   maven_plugin:
     version: 5.0.2
-  evm:
-    version: 6.0.0
-  unit:
-    version: 6.0.0
   openapi:
     version: 4.8.4
   sokt:

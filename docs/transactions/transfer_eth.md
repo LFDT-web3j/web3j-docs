@@ -17,7 +17,7 @@ RawTransaction rawTransaction  = RawTransaction.createEtherTransaction(
 // send...
 ```
 
-However, it is recommended that you use the [Transfer class](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/tx/Transfer.java) for sending Ether, which takes care of the nonce management and polling for a response for you:
+However, it is recommended that you use the [Transfer class](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/tx/Transfer.java) for sending Ether, which takes care of the nonce management and polling for a response for you:
 
 ```java
 Web3j web3 = Web3j.build(new HttpService());  // defaults to http://localhost:8545/
