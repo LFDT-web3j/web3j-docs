@@ -6,4 +6,13 @@ retry_wait_time = 2
 scheme = ["https", "http"]
 exclude_all_private = true
 # Specific exceptions must include a reason and review date. Never accept all 403s/404s.
-exclude = []
+exclude = [
+  # HTTP 200 in the local scan on 2026-10-21, but HTTP 403 from GitHub-hosted CI.
+  # Keep the useful explorer links; exception covers these two homepages only.
+  # Review by 2027-01-21.
+  '^https://etherscan\.io/$',
+  '^https://sepolia\.etherscan\.io/$',
+  # Retain the existing diagram attribution. Medium returns HTTP 403 in CI;
+  # the exact article passed the local scan on 2026-10-21. Review by 2027-01-21.
+  '^https://medium\.com/coinmonks/gas-free-transactions-meta-transactions-explained-f829509a462d$',
+]
