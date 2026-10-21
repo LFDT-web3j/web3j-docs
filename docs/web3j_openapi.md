@@ -1,17 +1,20 @@
+!!! note "Independent release line"
+    Web3j OpenAPI has its own releases. The client examples below use {{ openapi.version }}; this is not a claim of Web3j 6 compatibility. Validate generated applications and their dependency tree before upgrading core.
+
 # Web3j-OpenAPI
 
 [Web3j-OpenAPI](https://github.com/web3j/web3j-openapi) is an [OpenAPI](https://swagger.io/specification/)
 client and server generator from [Solidity](https://solidity.readthedocs.io/) smart contracts.
 It provides a way to interact with the [Ethereum](https://ethereum.org/) smart contracts using a simple RESTful API.
-These interactions can be done using plain HTTP requests 
-or via the [Swagger-UI](https://swagger.io/tools/swagger-ui/), 
+These interactions can be done using plain HTTP requests
+or via the [Swagger-UI](https://swagger.io/tools/swagger-ui/),
 which is generated with every project.
 
 This workflow can be summed in the following steps:
 
 - Writing a Solidity smart contract
 
-- Generating the corresponding [Web3j-OpenAPI](https://github.com/web3j/web3j-openapi) project using [Web3j-CLI](http://docs.web3j.io/latest/command_line_tools/)
+- Generating the corresponding [Web3j-OpenAPI](https://github.com/web3j/web3j-openapi) project using [Web3j-CLI](command_line_tools.md)
 
 - Running the generated project as a standalone server
 
@@ -70,7 +73,7 @@ contract HelloWorld is Mortal {
 }
 ```
 
-generates the following `OpenAPI` specs : 
+generates the following `OpenAPI` specs :
 
 ```
 {
@@ -82,7 +85,7 @@ generates the following `OpenAPI` specs :
          "url":"http://web3labs.com",
          "email":"hi@web3labs.com"
       },
-      "version":"{{ web3j.version }}"
+      "version":"{{ openapi.version }}"
    },
    "tags":[
       {
@@ -133,7 +136,7 @@ generates the following `OpenAPI` specs :
 ...
 ```
 
-With a corresponding `Swagger-UI` : 
+With a corresponding `Swagger-UI` :
 ![image](img/Web3j-OpenAPI/SwaggerUI_1.png)
 
 The available methods are:
@@ -147,9 +150,9 @@ The available events are:
 ## Getting started with Web3j-OpenAPI
 
 ### Generate a project
-To generate an OpenAPI project using the [Web3j-OpenAPI](https://github.com/web3j/web3j-openapi) generator, you need to have the [Web3j-CLI](http://docs.web3j.io/latest/command_line_tools/) installed on your machine. 
-It’s easy to do (for Windows instructions head [here](http://docs.web3j.io/latest/command_line_tools/)):
-	
+To generate an OpenAPI project using the [Web3j-OpenAPI](https://github.com/web3j/web3j-openapi) generator, you need to have the [Web3j-CLI](command_line_tools.md) installed on your machine.
+It’s easy to do (for Windows instructions head [here](command_line_tools.md)):
+
 ```
 $ curl -L get.web3j.io | sh
 ```
@@ -158,7 +161,7 @@ Then, you can run the
 ```
 $ web3j openapi import --help
 ```
-To check the generator available options. 
+To check the generator available options.
 
 ![image](img/Web3j-OpenAPI/Generator_help.png)
 
@@ -166,20 +169,20 @@ In this case, we will be using the above Hello World contract.
 
 Put that contract in a file named `HelloWorld.sol` for starters.
 
-Then, execute the following command: 
-```	
+Then, execute the following command:
+```
 $ web3j openapi import \
     -s=HelloWorld.sol \
     --package=com.tutorial \
     --project-name=HelloWorldProject \
-    --output-dir=. 
+    --output-dir=.
 ```
 You should be seeing logs similar to the following:
 ![image](img/Web3j-OpenAPI/Generator_logs.png)
 
 ### Configure the project
 
-You can run the project easily, without specifying any configuration, using the [Web3j-cli](http://docs.web3j.io/latest/command_line_tools/).
+You can run the project easily, without specifying any configuration, using the [Web3j-cli](command_line_tools.md).
 
 If not, you need to specify runtime parameters. for example, the `private key` or `wallet file` for the signing,
 the `node endpoint` to connect to, etc.
@@ -200,7 +203,7 @@ $ export WEB3J_OPENAPI_PORT=9090
 For more ways to pass these parameters, check the configuration section below.
 
 ### Run the project
-We can run the project directly : 
+We can run the project directly :
 ```
 $ ./gradlew run
 ```
@@ -210,7 +213,7 @@ You should be able to run the server and see the following:
 ![image](img/Web3j-OpenAPI/Server_logs.png)
 
 ### Interact with the generated project
-Interactions can be done in multiple ways : 
+Interactions can be done in multiple ways :
 
 ### SwaggerUI
 The generated `SwaggerUI` is located on `{host}:{port}/swagger-ui` and can be used
@@ -226,14 +229,14 @@ $ curl -X POST "http://{host}:{port}/HelloWorldProject/contracts/helloworld/{con
 ```
 
 ### Client application
-It is also possible to interact using a Java/Kotlin client application. 
+It is also possible to interact using a Java/Kotlin client application.
 This latter can be done using our client implementation.
 
 Make sure to add the client dependency to your project.
 
 ```groovy
 dependencies {
-    implementation "org.web3j.openapi:web3j-openapi-client:{{ web3j.version }}"
+    implementation "org.web3j.openapi:web3j-openapi-client:{{ openapi.version }}"
 }
 ```
 
@@ -268,11 +271,11 @@ println("Greeting method result: $greeting")
 
 ## Ways to generate an OpenAPI project
 
-First, you need to install the [Web3j-CLI](http://docs.web3j.io/latest/command_line_tools/) on your 
-machine. 
+First, you need to install the [Web3j-CLI](command_line_tools.md) on your
+machine.
 
-It’s easy to do (for Windows instructions head [here](http://docs.web3j.io/latest/command_line_tools/)):
-                               	
+It’s easy to do (for Windows instructions head [here](command_line_tools.md)):
+
 ```
 $ curl -L get.web3j.io | sh
 ```
@@ -300,7 +303,7 @@ $ web3j openapi import \
 ```
 
 ### Generate an executable JAR
-The following command will generate an executable JAR ready to be run: 
+The following command will generate an executable JAR ready to be run:
 ```
 $ web3j openapi jar \
     --solidity-path <path_to_Solidity_contracts>
@@ -320,10 +323,10 @@ $ web3j openapi generate \
 This command will not generate a whole project structure. Thus, you will not have a
 runnable application. To have one, check the above sections.
 
-The `with-implementations` flag is set to `true` by default. This means that 
-the RESTful endpoints will be generated along their implementations. 
+The `with-implementations` flag is set to `true` by default. This means that
+the RESTful endpoints will be generated along their implementations.
 
-If you prefer to generate only the interfaces. Set that flag to `false`: 
+If you prefer to generate only the interfaces. Set that flag to `false`:
 
 ```
 --with-implementations=false
@@ -331,7 +334,7 @@ If you prefer to generate only the interfaces. Set that flag to `false`:
 
 ### Generate using the [web3j-openapi-gradle-plugin](https://github.com/web3j/web3j-openapi-gradle-plugin)
 
-It is possible to generate a Web3j-OpenAPI project directly from your `gradle` project using the `web3j-openapi-gradle-plugin`. 
+It is possible to generate a Web3j-OpenAPI project directly from your `gradle` project using the `web3j-openapi-gradle-plugin`.
 Check the [documentation](https://github.com/web3j/web3j-openapi-gradle-plugin) for more information.
 
 ## Run the project
@@ -346,14 +349,14 @@ be set. There are multiple ways of doing so:
 - Passing the parameters directly to the JAR or the executable.
 
 Also, you can run the project without worrying about any of this
-using the [Web3j-cli](http://docs.web3j.io/latest/command_line_tools/)
+using the [Web3j-cli](command_line_tools.md)
 
 ### Supported parameters
 
 |  Name                   | Default value                       | Description |
 |-------------------------|:-----------------------------------:|-------------|
-| `name`                  | `Generation project name`           | The project name |         
-| `config file`           | `~/.web3j/web3j.openapi.<extension>`| A custom configuration file to import extra parameters |     
+| `name`                  | `Generation project name`           | The project name |
+| `config file`           | `~/.web3j/web3j.openapi.<extension>`| A custom configuration file to import extra parameters |
 | `endpoint`              | `none`                              | Ethereum node endpoint to target when interacting with the blockchain |
 | `private key`           | `none`                              | User private key in hex format prefixed by `0x` |
 | `wallet path`           | `none`                              | The path to the wallet file (can be absolute or relative) |
@@ -364,7 +367,7 @@ using the [Web3j-cli](http://docs.web3j.io/latest/command_line_tools/)
 
 The necessary parameters are:
 
-- The Ethereum node endpoint to target when 
+- The Ethereum node endpoint to target when
 interacting with the Ethereum network `endpoint`
 
 - Credentials : which can be either `private key`, or `wallet path` and `wallet password`
@@ -382,7 +385,7 @@ However, for duplicated values, we enforce the following order :
 1. CLI arguments
 2. Custom configuration file specified in the CLI
 3. Custom configuration file specified in Environment variables
-4. Default configuration file 
+4. Default configuration file
 5. Environment variables
 
 Check the following sections for more information.
@@ -407,7 +410,7 @@ $ <command> \
 
 ### Configuration file
 
-You can put the parameters in a `configuration file`. This latter, can be 
+You can put the parameters in a `configuration file`. This latter, can be
 `YAML`, `Json` or `Java properties` type of files.
 
 The configuration file can be :
@@ -425,16 +428,16 @@ The supported extensions are :
 
 - `yaml` for a `YAML` configuration. Example:
 ```yaml
-contractAddresses: 
+contractAddresses:
   helloworld: "0x1234"
   helloworld2: "0x1234"
-credentials: 
+credentials:
   privateKey: "0x1234"
-network: 
+network:
   endpoint: "<your_node_endpoint_address>"
-project: 
+project:
   name: "OpenApiProject"
-server: 
+server:
   host: "localhost"
   port: 9090
 ```
@@ -540,7 +543,7 @@ Which can be found in `build/install/<app name>-shadow/bin/`
 To run the project using gradle. Make sure to have set some environment variables or configuration
 file as specified above.
 
-Then, run the following : 
+Then, run the following :
 ```
 $ ./gradlew run
 ```
@@ -554,7 +557,7 @@ Start by adding dependency to the client:
 
 ```groovy
 dependencies {
-    implementation "org.web3j.openapi:web3j-openapi-client:{{ web3j.version }}"
+    implementation "org.web3j.openapi:web3j-openapi-client:{{ openapi.version }}"
 }
 ```
 

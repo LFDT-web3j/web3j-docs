@@ -1,6 +1,9 @@
+!!! warning "Historical private-network guide"
+    This page describes the older Besu/Orion privacy integration. It is not a setup guide for current public-network clients. Verify the exact client versions and supported privacy features before using these recipes. For current Ethereum setup, see [Run a node locally](../getting_started/run_node_locally.md).
+
 ## Privacy with Hyperledger Besu
 
-The Besu module in Web3j provides support for creating private transactions and privacy groups on Hyperledger Besu. For information as to how privacy is implemented in Besu, please see the [Besu privacy documentation](https://besu.hyperledger.org/en/stable/HowTo/Use-Privacy/EEA-Compliant/).
+The Besu module in Web3j provides support for creating private transactions and privacy groups on Hyperledger Besu. For historical documentation, consult the release history in the [Besu documentation repository](https://github.com/besu-eth/besu-docs) and match it to the client version in use.
 
 Privacy in Besu refers to the ability to keep transactions private between the involved participants. Other participants cannot access the transaction content or list of participants. Besu uses Orion, a separate software component, to manage private transactions. Orion is able to maintain public/private keypair, store privacy group details, and discover other Orion nodes on a network. A privacy group is a group of nodes identified by a unique privacy group ID in Orion. Each private transaction is stored in Orion and is associated with the privacy group ID.
 

@@ -41,12 +41,12 @@ Further details
 In the Java  build:
 
 -   Web3j provides type safe access to all responses. Optional or null responses are wrapped in Java's [Optional](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html) type.
--   Asynchronous requests are wrapped in a Java [CompletableFutures](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html). Web3j provides a wrapper around all async requests to ensure that any exceptions during execution will be captured rather then silently discarded. This is due to the lack of support in *CompletableFutures* for checked exceptions, which are often rethrown as unchecked exception causing problems with detection. See the [Async.run()](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/utils/Async.java) and its associated [test](https://github.com/web3j/web3j/blob/master/core/src/test/java/org/web3j/utils/AsyncTest.java) for details.
+-   Asynchronous requests are wrapped in a Java [CompletableFutures](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html). Web3j provides a wrapper around all async requests to ensure that any exceptions during execution will be captured rather then silently discarded. This is due to the lack of support in *CompletableFutures* for checked exceptions, which are often rethrown as unchecked exception causing problems with detection. See the [Async.run()](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/utils/Async.java) and its associated [test](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/test/java/org/web3j/utils/AsyncTest.java) for details.
 
 In both the Java and Android builds:
 
--   Quantity payload types are returned as [BigIntegers](https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html). For simple results, you can obtain the quantity as a String via [Response](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/core/Response.java).getResult().
--   It's also possible to include the raw JSON payload in responses via the *includeRawResponse* parameter, present in the [HttpService](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/http/HttpService.java) and [IpcService](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/ipc/IpcService.java) classes.
+-   Quantity payload types are returned as [BigIntegers](https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html). For simple results, you can obtain the quantity as a String via [Response](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/protocol/core/Response.java).getResult().
+-   It's also possible to include the raw JSON payload in responses via the *includeRawResponse* parameter, present in the [HttpService](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/protocol/http/HttpService.java) and [IpcService](https://github.com/LFDT-web3j/web3j/blob/v6.0.0/core/src/main/java/org/web3j/protocol/ipc/IpcService.java) classes.
 
 Compatibility notes
 -------------------

@@ -1,51 +1,52 @@
-Manual Configuration
-===============
+# Manual configuration
 
-The simplest way to get started with Web3j is via the powerful [Web3j CLI](http://docs.web3j.io/latest/command_line_tools/). 
-
-However, if you wish to configure your project manually, you can follow the steps outlined here.
-
-Add the latest Web3j version to your project build configuration.
+Web3j **{{ web3j.version }}** requires **Java 21 or newer**. Use Maven Central to resolve the library. Android has a [separate release line](setup_android.md).
 
 ## Maven
 
-Java:
-
-``` xml
-<dependency>
-  <groupId>org.web3j</groupId>
-  <artifactId>core</artifactId>
-  <version>{{ web3j.version }}</version>
-</dependency>
+```xml
+<properties>
+  <maven.compiler.release>21</maven.compiler.release>
+</properties>
+<dependencies>
+  <dependency>
+    <groupId>org.web3j</groupId>
+    <artifactId>core</artifactId>
+    <version>{{ web3j.version }}</version>
+  </dependency>
+</dependencies>
 ```
 
-Android:
-
-``` xml
-<dependency>
-  <groupId>org.web3j</groupId>
-  <artifactId>core</artifactId>
-  <version>{{ android.version }}</version>
-</dependency>
-```
+Use a current Maven Compiler Plugin with Java 21 support. The [quickstart](../quickstart.md) provides a pinned build configuration.
 
 ## Gradle
 
-Java:
+Use a Gradle version that supports your JDK. For example, Gradle 8.5 or newer can run on Java 21.
 
-``` groovy
-compile ('org.web3j:core:{{ web3j.version }}')
+```groovy
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+dependencies {
+    implementation 'org.web3j:core:{{ web3j.version }}'
+}
 ```
 
-Android:
+Use `implementation`, rather than the removed `compile` configuration.
 
-``` groovy
-compile ('org.web3j:core:{{ android.version }}')
-```
+## Contract generation
 
-## Plugins 
+The [Gradle plugin](../plugins/web3j_gradle_plugin.md) and [Maven plugin](../plugins/web3j_maven_plugin.md) generate Java contract wrappers. Their versions are independent of the core library: the published plugin versions used by this guide are {{ gradle_plugin.version }} and {{ maven_plugin.version }}, respectively. Check the generated project’s resolved core dependency when upgrading to Web3j 6.
 
-There are also gradle and maven plugins to help you generate Web3j Java wrappers for your Solidity smart contracts, thus allowing you to integrate such activities into your project lifecycle.
-Take a look at the project homepage for the [web3j-gradle-plugin](https://github.com/web3j/web3j-gradle-plugin)
- and [web3j-maven-plugin](https://github.com/web3j/web3j-maven-plugin) for details on how to use these plugins.
-
+Continue with the [quickstart](../quickstart.md) to make a read-only RPC request.

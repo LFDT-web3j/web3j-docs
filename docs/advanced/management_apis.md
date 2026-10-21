@@ -1,26 +1,9 @@
-Management APIs
-===============
+# Client-specific management APIs
 
-In addition to implementing the standard [JSON-RPC](https://eth.wiki/json-rpc/API) API, Ethereum clients, such as [Geth](https://geth.ethereum.org/docs/rpc/server) and [OpenEthereum](https://openethereum.github.io/wiki/JSONRPC) provide additional management via JSON-RPC.
+Web3j implements the standard [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/). Clients may expose additional management methods, but availability depends on their version and configuration.
 
-One of the key common pieces of functionality that they provide is the ability to create and unlock Ethereum accounts for transacting on the network. In Geth and OpenEthereum, this is implemented in their Personal modules, details of which are available below:
+The `Admin`, `Geth` and `Parity` modules include legacy management methods. Geth’s [personal namespace is deprecated](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-personal), and [OpenEthereum is archived](https://github.com/openethereum/openethereum). Do not assume that a modern node or hosted RPC provider supports account unlocking or these client-specific methods.
 
--   [OpenEthereum](https://openethereum.github.io/wiki/JSONRPC-personal-module)
--   [Geth](https://geth.ethereum.org/docs/rpc/ns-personal)
+For new applications, use [local credentials and signing](../transactions/credentials.md), and submit signed transactions through the node’s standard RPC interface. Keep administrative endpoints off public networks.
 
-Support for the personal modules is available in web3j. Those methods that are common to both Geth and OpenEthereum reside in the [Admin](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/admin/Admin.java) module of web3j.
-
-You can initialise a new web3j connector that supports this module using the factory method:
-
-```java
-Admin web3j = Admin.build(new HttpService());  // defaults to http://localhost:8545/
-PersonalUnlockAccount personalUnlockAccount = admin.personalUnlockAccount("0x000...", "a password").send();
-if (personalUnlockAccount.accountUnlocked()) {
-    // send a transaction
-}
-```
-
-For Geth specific methods, you can use the [Geth](https://github.com/web3j/web3j/blob/master/geth/src/main/java/org/web3j/protocol/geth/Geth.java) connector, and for OpenEthereum you can use the associated
-[OpenEthereum](https://github.com/web3j/web3j/blob/master/parity/src/main/java/org/web3j/protocol/parity/Parity.java) connector. The `Parity` connector also provides support for OpenEthereum's [Trace](https://openethereum.github.io/wiki/JSONRPC-trace-module) module. These connectors are available in the web3j *geth* and *parity* modules respectively.
-
-You can refer to the integration test [ParityIT](https://github.com/web3j/web3j/blob/master/integration-tests/src/test/java/org/web3j/protocol/parity/ParityIT.java) for further examples of working with these APIs.
+When maintaining a legacy integration, refer to the API for the exact client and Web3j version in use. The [Admin API](https://javadoc.io/static/org.web3j/core/{{ web3j.version }}/org/web3j/protocol/admin/Admin.html) documents Web3j’s request types; it does not guarantee that the connected node implements them.

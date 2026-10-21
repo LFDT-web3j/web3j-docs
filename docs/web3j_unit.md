@@ -11,10 +11,11 @@ First, let's add the gradle dependency.
 ```groovy
 repositories {
   mavenCentral()
-  jcenter()
 }
-implementation "org.web3j:core:4.5.11"
-testCompile "org.web3j:web3j-unit:4.5.11"
+dependencies {
+  implementation "org.web3j:core:{{ web3j.version }}"
+  testImplementation "org.web3j:web3j-unit:{{ unit.version }}"
+}
 ```
 
 

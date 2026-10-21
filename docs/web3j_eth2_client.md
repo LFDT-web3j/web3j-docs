@@ -1,6 +1,6 @@
 # Web3j Beacon Node API Client
 
-The [Beacon Node API client](https://github.com/web3j/web3j-eth2) is a thin library that will allow you to interact fluently with the new Eth2 nodes using the methods available in the [Eth2.0-API specification](https://ethereum.github.io/eth2.0-APIs/), including event subscriptions. As a Web3j library we've kept everything as simple as possible for users to get them on their way quickly.
+The [Beacon Node API client](https://github.com/web3j/web3j-eth2) is a thin library that will allow you to interact fluently with the new Eth2 nodes using the methods available in the [Eth2.0-API specification](https://ethereum.github.io/beacon-APIs/), including event subscriptions. As a Web3j library we've kept everything as simple as possible for users to get them on their way quickly.
 
 In this chapter we'll guide you through the few steps required to get your application interacting with any Eth2 Beacon Chain Node.
 

@@ -1,96 +1,61 @@
-## Install Web3j
+# Quickstart
 
-To start using Web3j you have two options:
+Start with **Java 21 or newer**, **Web3j {{ web3j.version }}**, and an Ethereum JSON-RPC endpoint. The example below reads an account balance; it needs no private key and sends no transaction.
 
-### Use Web3j CLI
+## Add Web3j
 
-This is the recommended option for full project creation.
-    
-#### Install Web3j CLI
+For Maven:
 
-To install the command line tools you can follow these [instructions](http://docs.web3j.io/latest/command_line_tools/).
+```xml
+<dependency>
+    <groupId>org.web3j</groupId>
+    <artifactId>core</artifactId>
+    <version>{{ web3j.version }}</version>
+</dependency>
+```
 
-#### Create a new project     
+For Gradle:
 
-`$ web3j new `
-
-This will create a sample project to get you started. 
-
-It includes a `HelloWorld` smart contract and boilerplate code that is easy to follow.
-
-#### Run your project
-
-Then run the project with the command `web3j run <network_url> <wallet_path> <wallet_password>`.
-You can also provide [custom parameters](http://docs.web3j.io/latest/command_line_tools/) to run your project locally.
-
-### Use Web3j plugins
-
-To generate Java Wrappers for Solidity Contracts in your project, you need to add one of the Web3j's plugins available for Maven and Gradle.
-
-#### Gradle plugin
-    
-To add the [Gradle](plugins/web3j_gradle_plugin.md) plugin to your project:
-
-``` 
-plugins {
-    id "org.web3j" version "{{ web3j.version }}"
+```groovy
+repositories {
+    mavenCentral()
 }
-``` 
-
-Once the plugin is downloaded you should see a new set of tasks under the Web3j label:
-
-![](./general_media/web3j_plugin.png)
-
-The simplest way is to create a new folder `src/main/solidity` and place your smart contracts there.
-To generate the Java wrappers simply run generateContractWrappers or `./gradlew/generateContractWrappers`.
-The wrappers will generate under `build/generated/source/web3j/main/java`. 
-
-#### Maven plugin        
-
-To add the [Maven](plugins/web3j_maven_plugin.md) plugin to your project:
-    
+dependencies {
+    implementation 'org.web3j:core:{{ web3j.version }}'
+}
 ```
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.web3j</groupId>
-            <artifactId>web3j-maven-plugin</artifactId>
-            <version>4.8.1</version>
-            <configuration>
-                <soliditySourceFiles/>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
-```
-  
-## Use Web3j
 
-### Deploying a Smart Contract
+See [manual configuration](getting_started/manual_configuration.md) for Java toolchain settings. Android users should follow the [Android guide](getting_started/setup_android.md).
 
-To deploy the HelloWorld contract from the previous example:
+## Read a balance
+
+Choose a [local node](getting_started/run_node_locally.md) or a hosted [Sepolia endpoint](transactions/ethereum_testnets.md). Set `WEB3J_RPC_URL` to its HTTP URL. An address’s balance belongs to the network behind that endpoint.
 
 ```java
-  Web3j web3j = Web3j.build(new HttpService("<your_node_url>"));
-  HelloWorld helloWorld = HelloWorld.deploy(web3j, Credentials.create("your_private_key"), new DefaultGasProvider(), "Hello Blockchain World").send();
-  String greeting = helloWorld.greeting().send();
-  web3j.shutdown();
+--8<-- "examples/src/main/java/org/web3j/docs/ReadOnlyExample.java"
 ```
 
-There are many ways to create `Credentials` in Web3j, for more information go to the [credentials](./transactions/credentials.md) section.
+This is the same source file compiled and tested by the documentation checks. To run it from a checkout of the [documentation repository](https://github.com/LFDT-web3j/web3j-docs):
 
-### Loading a Smart Contract 
-
-If you have already deployed a contract and would like to interact with it through web3j then the Java Wrappers or your smart contract have a load method.
-
-```java
- Web3j web3j = Web3j.build(new HttpService("<your_node_url>"));
- String greeting;
- HelloWorld helloWorld = HelloWorld.load("your_contract_address", web3j, Credentials.create("your_private_key"), new DefaultGasProvider());
- if (helloWorld.isValid()) {
-    greeting = helloWorld.greeting().send();
- }
- web3j.shutdown();
+```bash
+export WEB3J_RPC_URL=http://127.0.0.1:8545
+mvn -f examples/pom.xml compile exec:java \
+  -Dexec.mainClass=org.web3j.docs.ReadOnlyExample \
+  -Dexec.args=0x0000000000000000000000000000000000000001
 ```
-It is important that the loaded contract is checked using the `isValid()` method. This method will return false if the contract's bytecode does not match with the deployed one.
-    
+
+The result is in wei. `Convert.fromWei(balance.toString(), Convert.Unit.ETHER)` converts it to ETH. Public endpoints may require credentials and rate-limit requests; do not commit provider secrets.
+
+## Work with contracts
+
+Follow [contract generation and deployment](getting_started/deploy_interact_smart_contracts.md) when you need typed Java wrappers. The plugin versions are independent of core:
+
+```groovy
+plugins {
+    id 'org.web3j' version '{{ gradle_plugin.version }}'
+}
+```
+
+For Maven, use `org.web3j:web3j-maven-plugin:{{ maven_plugin.version }}`. See the [Gradle](plugins/web3j_gradle_plugin.md) and [Maven](plugins/web3j_maven_plugin.md) guides for configuration. Put Solidity files in the configured source directory and run `./gradlew generateContractWrappers` or `mvn web3j:generate-sources`, respectively. Inspect the resolved Web3j dependencies when combining plugins with core 6.
+
+For command-line project generation, see the [CLI guide](command_line_tools.md). For existing applications, see [upgrading to Web3j 6](getting_started/web3j_6.md).

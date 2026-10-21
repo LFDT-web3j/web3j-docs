@@ -2,35 +2,55 @@ name: Deploy Docs
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-publish-main
+  cancel-in-progress: false
 
 jobs:
+  validate:
+    uses: ./.github/workflows/check-docs.yaml
+
   deploy:
+    needs: validate
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - name: Get version number
-        id: get_version
-        run: |
-          echo "version=$(grep -A 2 "extra:" mkdocs.yml | grep -A 1 "web3j:" | awk '/version:/ {print $2}')" >> $GITHUB_ENV
-      - name: Set up Python 3.x
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
-      - name: Install Mike
-        run: pip install mike
-      - name: Install mkdocs-material
-        run: pip install mkdocs-material
-      - name: Install mkdocs-markdownextradata-plugin
-        run: pip install mkdocs-markdownextradata-plugin
-      - name: Setup git config
+          python-version: '3.13'
+          cache: pip
+      - name: Install the validated documentation tools
+        run: python -m pip install -r requirements.txt
+      - name: Read documentation version
         run: |
-          git config --global user.name Web3Labs
-          git config --global user.email web3labs@web3labs.com
+          python - <<'PY' >> "$GITHUB_ENV"
+          import yaml
+          config = yaml.safe_load(open('mkdocs.yml'))
+          print('DOCS_VERSION=' + str(config['extra']['web3j']['version']))
+          PY
+      - name: Set publishing identity
+        run: |
+          git config user.name Web3Labs
+          git config user.email web3labs@web3labs.com
           git fetch origin gh-pages --depth=1
-      - name: Deploy with Mike
-        run: mike deploy --update-alias ${{ env.version }} latest -p
-      - name: Set default version with Mike
-        run: mike set-default latest -p
+      - name: Publish only the current main revision
+        env:
+          VALIDATED_SHA: ${{ github.sha }}
+        run: |
+          CURRENT_MAIN=$(git ls-remote origin refs/heads/main | cut -f1)
+          if [[ "$CURRENT_MAIN" != "$VALIDATED_SHA" ]]; then
+            echo 'A newer main revision exists; leaving publication to its run.'
+            exit 0
+          fi
+          mike deploy --update-aliases "$DOCS_VERSION" latest --push
+          mike set-default latest --push

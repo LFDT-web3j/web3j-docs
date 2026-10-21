@@ -25,12 +25,11 @@ to do this.
 ```groovy
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
     implementation "org.web3j:core:{{ web3j.version }}"
-    implementation "org.web3j:web3j-evm:{{ web3j.version }}"
+    implementation "org.web3j:web3j-evm:{{ evm.version }}"
 }
 ```
 
@@ -114,7 +113,6 @@ As shown in the [EVM example project](https://github.com/web3j/web3j-evmexample)
 ```groovy
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
