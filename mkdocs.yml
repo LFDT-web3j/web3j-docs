@@ -101,6 +101,9 @@ theme:
 
 # Customization
 extra:
+  analytics:
+    provider: google
+    property: G-TYWD3GSLYW
   web3j:
     version: 6.0.0
   android:

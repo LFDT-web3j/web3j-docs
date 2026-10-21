@@ -37,7 +37,7 @@ Pull requests produce a downloadable `documentation-preview` artifact and a link
 
 ## Analytics
 
-The previous configuration used the legacy Universal Analytics ID `UA-85710619-1`. Confirm the site’s GA4 measurement ID and any existing tag forwarding before changing analytics in production. Once confirmed, configure [Material’s `extra.analytics`](https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-analytics/) with `provider: google` and `property: G-…`; do not invent a replacement ID. Analytics migration remains pending until that ID is available.
+The site uses GA4 measurement ID `G-TYWD3GSLYW`, configured through [Material’s `extra.analytics`](https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-analytics/) with `provider: google`. This replaces the legacy Universal Analytics configuration. Keep the measurement ID in `mkdocs.yml`; the theme generates the tracking tag during the documentation build. After deployment, verify page views in the GA4 property.
 
 ## Version updates and publication
 
