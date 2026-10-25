@@ -9,7 +9,7 @@ dependencies {
     compile group: 'org.web3j', name: 'web3j-sokt', version: '{{ sokt.version }}'
 }
 ```
-For other build systems, see [here](https://mvnrepository.com/artifact/org.web3j/web3j-sokt/0.2.1).
+For other build systems, see [here](https://repo.maven.apache.org/maven2/org/web3j/web3j-sokt/{{ sokt.version }}/).
 
 Example usage:
 ```java

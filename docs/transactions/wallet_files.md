@@ -22,17 +22,17 @@ Credentials credentials = WalletUtils.loadCredentials(
 
 These credentials are then used to sign transactions.
 
-Please refer to the [Web3 Secret Storage Definition](https://github.com/ethereum/wiki/wiki/Web3-Secret-Storage-Definition) for the full wallet file specification.
+Please refer to the [Web3 Secret Storage Definition](https://ethereum.org/en/developers/docs/data-structures-and-encoding/web3-secret-storage/) for the full wallet file specification.
 
 ## Signing transactions
 
-Transactions to be used in an offline signing capacity, should use the [RawTransaction](https://github.com/web3j/web3j/blob/master/crypto/src/main/java/org/web3j/crypto/RawTransaction.java) type for this purpose. The RawTransaction is similar to the previously mentioned Transaction type, however it does not require a _from_ address, as this can be inferred from the signature.
+Transactions to be used in an offline signing capacity, should use the [RawTransaction](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/crypto/src/main/java/org/web3j/crypto/RawTransaction.java) type for this purpose. The RawTransaction is similar to the previously mentioned Transaction type, however it does not require a _from_ address, as this can be inferred from the signature.
 
 In order to create and sign a raw transaction, the sequence of events is as follows:
 
 1.  Identify the next available [nonce](transaction_nonce.md) for the sender account
 2.  Create the RawTransaction object
-3.  Encode the RawTransaction object using [Recursive Length Prefix](https://docs.web3j.io/recursive_length_prefix/#recursive-length-prefix) encoding
+3.  Encode the RawTransaction object using [Recursive Length Prefix](../advanced/recursive_length_prefix.md) encoding
 4.  Sign the RawTransaction object
 5.  Send the RawTransaction object to a node for processing
 
@@ -54,7 +54,7 @@ String hexValue = Numeric.toHexString(signedMessage);
 
 Where the credentials are those loaded as per [Creating and working with wallet files](#creating-and-working-with-wallet-files)
 
-The transaction is then sent using [eth_sendRawTransaction](https://eth.wiki/json-rpc/API):
+The transaction is then sent using [eth_sendRawTransaction](https://ethereum.org/en/developers/docs/apis/json-rpc/):
 
 ```java
 EthSendTransaction ethSendTransaction = web3j.ethSendRawTransaction(hexValue).sendAsync().get();
@@ -62,4 +62,4 @@ String transactionHash = ethSendTransaction.getTransactionHash();
 // poll for transaction response via org.web3j.protocol.Web3j.ethGetTransactionReceipt(<txHash>)
 ```
 
-Please refer to the integration test [CreateRawTransactionIT](https://github.com/web3j/web3j/blob/master/integration-tests/src/test/java/org/web3j/protocol/scenarios/CreateRawTransactionIT.java) for a full example of creating and sending a raw transaction.
+Please refer to the integration test [CreateRawTransactionIT](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/integration-tests/src/test/java/org/web3j/protocol/scenarios/CreateRawTransactionIT.java) for a full example of creating and sending a raw transaction.

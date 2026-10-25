@@ -1,79 +1,29 @@
-Developer Guide
-===============
+# Developer guide
 
-Dependency management
----------------------
+## Dependencies
 
-We recommend you use formal releases of web3j, these can be found on most public maven
-[repositories](https://mvnrepository.com/search?q=web3j).
+Use published releases from [Maven Central](https://central.sonatype.com/artifact/org.web3j/core/{{ web3j.version }}). Follow [manual configuration](../getting_started/manual_configuration.md) for Web3j {{ web3j.version }} and Java 21.
 
-> Release versions follow the `<major>.<minor>.<build>` convention, for example: 4.2.0
+Snapshot builds are development artifacts and may change. For current snapshot repository settings, follow the [core project’s publishing configuration](https://github.com/LFDT-web3j/web3j); do not use the retired OSSRH URLs from older guides.
 
-> Snapshot versions of web3j follow the <major>.<minor>.<build>-SNAPSHOT` convention, for example:    	4.2.0-SNAPSHOT.
+## Build Web3j
 
-> If you would like to use snapshots instead please add a new maven repository pointing to:
+Clone [the core repository](https://github.com/LFDT-web3j/web3j) and follow its contributor instructions. With the required JDK installed, use the wrapper:
 
 ```bash
-https://oss.sonatype.org/content/repositories/snapshots
+./gradlew check
 ```
 
-Please refer to the [Maven](https://maven.apache.org/guides/mini/guide-multiple-repositories.html) or [Gradle](https://docs.gradle.org/current/userguide/userguide.html) documentation for further detail.
+The integration suite is enabled separately:
 
-Sample gradle configuration:
-
-``` groovy
-repositories {
-   maven {
-      url "https://oss.sonatype.org/content/repositories/snapshots"
-   }
-}
+```bash
+./gradlew -Pintegration-tests=true :integration-tests:test
 ```
 
-Sample maven configuration:
+See the repository’s current CI setup for Docker and client requirements.
 
-``` xml
-<repositories>
-  <repository>
-    <id>sonatype-snasphots</id>
-    <name>Sonatype snapshots repo</name>
-    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-  </repository>
-</repositories>
-```
+## Build this documentation
 
-Building web3j
---------------
+The guides use MkDocs and live in the [web3j-docs repository](https://github.com/LFDT-web3j/web3j-docs). Its README lists the pinned Python dependencies, strict build, Java example tests and link checks. Documentation PRs run those checks before publication.
 
-web3j includes integration tests for running against a live Ethereum client. If you do not have a client running, you can exclude their execution as per the below instructions.
-
-To run a full build (excluding integration tests):
-
-``` bash
-$ ./gradlew check
-```
-
-To run the integration tests:
-
-``` bash
-$ ./gradlew  -Pintegration-tests=true :integration-tests:test
-```
-
-Generating documentation
-------------------------
-
-web3j uses the [Sphinx](http://www.sphinx-doc.org/en/stable/) documentation generator.
-
-All documentation (apart from the project README.md) resides under the [/docs](https://github.com/web3j/web3j/tree/master/docs) directory.
-
-To build a copy of the documentation, from the project root:
-
-``` bash
-$ cd docs
-$ make clean html
-```
-
-Then browse the build documentation via:
-
-``` bash
-$ open build/html/index.html
-```
+The API reference comes from the [published Web3j artifact](../javadoc-api/index.md); it is separate from the MkDocs guide source.

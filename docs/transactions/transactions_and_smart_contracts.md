@@ -98,7 +98,7 @@ refer to the [Filters and Events](../advanced/filters_and_events.md) section for
 
 ## Querying the state of a smart contract 
 
-This functionality is facilitated by the [eth_call](https://eth.wiki/json-rpc/API#eth_call) JSON-RPC call.
+This functionality is facilitated by the [eth_call](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call) JSON-RPC call.
 
 eth_call allows you to call a method on a smart contract to query a value. There is no transaction cost associated with this function, this is because it does not change the state of any smart contract method's
 called, it simply returns the value from them:

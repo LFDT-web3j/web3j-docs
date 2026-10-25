@@ -1,38 +1,19 @@
-## Gas
+# Gas and transaction fees
 
-When a transaction takes place in Ethereum, a transaction cost must be paid to the client that executes the transaction on your behalf, committing the output of this transaction to the Ethereum blockchain.
+Gas measures the computational work performed by the EVM. The **gas limit** caps the amount of gas a transaction may use; it is not a fee quoted in ETH. Unused gas is not charged, while a failed execution can still consume gas. See [Ethereum’s gas guide](https://ethereum.org/en/developers/docs/gas/).
 
-This cost is measure in gas, where gas is the number of instructions used to execute a transaction in the Ethereum Virtual Machine. Please refer to the [Homestead
-documentation](http://ethdocs.org/en/latest/contracts-and-transactions/account-types-gas-and-transactions.html?highlight=gas#what-is-gas) for further information.
+## Estimate execution gas
 
-What this means for you when working with Ethereum clients is that there are two parameters which are used to dictate how much Ether you wish to spend in order for a transaction to complete:
+Use `web3j.ethEstimateGas(transaction).send()` with the intended sender, recipient, value and call data. Check the response for an RPC error before reading `getAmountUsed()`. An estimate depends on current chain state and is not a guarantee that execution will succeed later. Choose an appropriate margin and respect the target network’s current limits.
 
-_Gas price_
+## Select transaction fees
 
-> This is the amount you are prepared in Ether per unit of gas. web3j
-> uses a default price of 22,000,000,000 Wei (22 x 10^-8^ Ether). This
-> is defined in
-> [ManagedTransaction](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/tx/ManagedTransaction.java).
+For legacy transactions, `gasPrice` is the price per gas unit in wei. For [EIP-1559 transactions](EIP_transaction_types/eip1559_transaction.md), set `maxFeePerGas` and `maxPriorityFeePerGas`; the base fee changes with network demand. Do not confuse gas-unit estimates with gas-price or priority-fee estimates.
 
-_Gas limit_
+For example, the maximum execution-fee budget for an EIP-1559 transaction is `gasLimit * maxFeePerGas`. Blob transactions have an additional blob-gas fee budget; Web3j 6 exposes `ethBlobBaseFee()` for the current blob base fee when the node supports that RPC.
 
-> This is the total amount of gas you are happy to spend on the
-> transaction execution. There is an upper limit of how large a single
-> transaction can be in an Ethereum block which restricts this value
-> typically to less then 6,700,000. The current gas limit is visible at
-> <https://ethstats.net/>.
+## Contract gas providers
 
-These parameters taken together dictate the maximum amount of Ether you are willing to spend on transaction costs. i.e. you can spend no more then gas price \* gas limit. The gas price can also affect how quickly a transaction takes place depending on what other transactions are available with a more profitable gas price for miners.
+Pass a `ContractGasProvider` when deploying or loading generated contract wrappers. `DefaultGasProvider` uses fixed values; it does not fetch live fee estimates. `StaticGasProvider` accepts a caller-supplied gas price and gas limit. For EIP-1559 contract transactions, use the appropriate EIP-1559 gas-provider API and fee fields for your transaction manager.
 
-You may need to adjust these parameters to ensure that transactions take place in a timely manner.
-
-### Picking Gas Providers
-
-The public Interface `ContractGasProvider` has two implementations that can be used in order to pass in a gas provider to the deploy method of the contract.
-
-The `DefaultGasProvider` is pre-defined implementation of the `ContractGasProvider` that has set values for gas price and gas limit.
-
-- `GAS_LIMIT = BigInteger.valueOf(9_000_000);`
-- `GAS_PRICE = BigInteger.valueOf(4_100_000_000L));`
-
-If a more flexible approach is required then the `StaticGasProvider` can take custom gas price and gas limit values as BigIntegers.
+See the [Web3j gas-provider API](https://javadoc.io/static/org.web3j/core/{{ web3j.version }}/org/web3j/tx/gas/package-summary.html). Select values for the target network and operation instead of copying historical gas-price or block-limit constants.

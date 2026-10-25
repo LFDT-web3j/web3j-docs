@@ -3,7 +3,7 @@
 Web3j maven plugin is used to create java classes based on the solidity contract files.
 
 ## Usage
-The base configuration for the plugin will take the solidity files from `src/main/resources` and generates 
+The base configuration for the plugin will take the solidity files from `src/main/resources` and generates
 the java classes into the folder `src/main/java`.
 
 ```xml
@@ -12,7 +12,7 @@ the java classes into the folder `src/main/java`.
         <plugin>
             <groupId>org.web3j</groupId>
             <artifactId>web3j-maven-plugin</artifactId>
-            <version>4.8.1</version>
+            <version>{{ maven_plugin.version }}</version>
             <configuration>
                 <soliditySourceFiles/>
             </configuration>
@@ -54,7 +54,7 @@ Create a standard java maven project. Add following `<plugin>` - configuration i
 <plugin>
     <groupId>org.web3j</groupId>
     <artifactId>web3j-maven-plugin</artifactId>
-    <version>4.5.11</version>
+    <version>{{ maven_plugin.version }}</version>
     <configuration>
         <packageName>com.zuehlke.blockchain.model</packageName>
         <sourceDestination>src/main/java/generated</sourceDestination>
@@ -86,7 +86,7 @@ Create a standard java maven project. Add following `<plugin>` - configuration i
 </plugin>
 ```
 
-Add your solidity contract files into the folder `src/main/resources`. Make sure that the solidity files 
+Add your solidity contract files into the folder `src/main/resources`. Make sure that the solidity files
 ends with `.sol`.
 
 
@@ -114,11 +114,8 @@ Process finished with exit code 0
 
 You find the generated java classes inside the directory `src/main/java/generated/`.
 
-Next step is to interact with the smart contract. See for that 
-[deploying and interacting with smart contracts](https://web3j.readthedocs.io/en/latest/smart_contracts.html#deploying-and-interacting-with-smart-contracts) 
+Next step is to interact with the smart contract. See for that
+[deploying and interacting with smart contracts](../getting_started/deploy_interact_smart_contracts.md)
 in the official web3j documentation.
 
-For a multi module project configuration see following [post](https://github.com/web3j/web3j-maven-plugin/issues/14) 
-from [@fcorneli](https://github.com/fcorneli). In short:  For pick up the generated java source 
-files, you need the build-helper-maven-plugin configuration. Also, `${basedir}` prefix is required 
-within a multi-module project.
+For multi-module builds, configure source paths relative to each module's `${project.basedir}`. If your generated output is outside the source roots registered by the build, add it with Maven's [build-helper:add-source goal](https://www.mojohaus.org/build-helper-maven-plugin/add-source-mojo.html).

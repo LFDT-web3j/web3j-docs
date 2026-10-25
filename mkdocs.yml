@@ -1,17 +1,22 @@
+strict: true
+
 site_name: "Web3j"
 site_description: "Documentation portal for the web3j Blockchain Library"
 site_author: "Web3 Labs"
-site_url: "https://web3j.io/"
+site_url: "https://docs.web3j.io/"
 
-repo_name: "web3j/web3j"
-repo_url: "https://github.com/web3j/web3j"
+repo_name: "LFDT-web3j/web3j-docs"
+repo_url: "https://github.com/LFDT-web3j/web3j-docs"
+edit_uri: edit/main/docs/
 
 # Copyright
-copyright: "Copyright &copy; 2017-2025 Web3 Labs Ltd"
+copyright: "Copyright &copy; 2017-2026 Web3 Labs Ltd"
 
 
 nav:
+  - Overview: index.md
   - Quickstart: quickstart.md
+  - Upgrading to Web3j 6: getting_started/web3j_6.md
   - Getting Started:
       - Run a Node locally: getting_started/run_node_locally.md
       - Setting up project for Android: getting_started/setup_android.md
@@ -47,7 +52,7 @@ nav:
           - EIP-7702 Transaction: transactions/EIP_transaction_types/eip7702_transaction.md
       - Transactions and Smart Contracts: transactions/transactions_and_smart_contracts.md
       - Wallet Files: transactions/wallet_files.md
-  - Web3j Eth2 Client: web3j_eth2_client.md
+  - Web3j Consensus Client API: web3j_eth2_client.md
   - Web3j OpenAPI: web3j_openapi.md
   - Web3j Unit: web3j_unit.md
   - Web3j EVM: web3j_evm.md
@@ -81,7 +86,7 @@ nav:
       - Developer Guide: references/developer_guide.md
       - Links and Useful Resources: references/links_and_useful_resources.md
       - Thanks and Credits: references/thanks_and_credits.md
-  - Javadoc: https://docs.web3j.io/latest/javadoc-api/
+  - Javadoc: javadoc-api/index.md
 
 # Configuration
 theme:
@@ -96,18 +101,26 @@ theme:
 
 # Customization
 extra:
+  analytics:
+    provider: google
+    property: G-TYWD3GSLYW
   web3j:
-    version: 5.0.3
+    version: 6.0.0
   android:
-    version: 4.6.0
+    version: 4.12.3-android
+  gradle_plugin:
+    version: 5.0.2
+  maven_plugin:
+    version: 5.0.2
+  openapi:
+    version: 4.8.4
   sokt:
     version: 0.2.1
   version:
-    method: mike
-  manifest: "manifest.webmanifest"
+    provider: mike
   social:
     - icon: "fontawesome/brands/github-alt"
-      link: "https://github.com/web3j"
+      link: "https://github.com/LFDT-web3j"
     - icon: "fontawesome/brands/twitter"
       link: "https://twitter.com/web3labs"
     - icon: "fontawesome/brands/linkedin"
@@ -117,18 +130,17 @@ extra:
 
 extra_css:
   - "stylesheets/extra.css"
-  - "css/version-select.css"
 
 
-  # Google Analytics
-  - css/version-select.css
-google_analytics:
-  - 'UA-85710619-1'
-  - 'auto'
+
+
 
 
 # Extensions
 markdown_extensions:
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
   - admonition
   - codehilite:
       guess_lang: false
@@ -136,9 +148,22 @@ markdown_extensions:
   - toc:
       permalink: true
       toc_depth: 3
-extra_javascript:
-  - js/version-select.js
 
 plugins:
   - search
   - markdownextradata: {}
+
+# Keep archived generated API files out of new guide versions.
+# The index retains the existing /javadoc-api/ entry URL.
+exclude_docs: |
+  /javadoc-api/**
+  !/javadoc-api/index.md
+
+validation:
+  nav:
+    not_found: warn
+    omitted_files: warn
+  links:
+    not_found: warn
+    anchors: warn
+    unrecognized_links: warn

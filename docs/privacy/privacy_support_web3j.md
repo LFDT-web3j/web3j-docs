@@ -1,3 +1,6 @@
+!!! warning "Historical private-network guide"
+    This page describes the older Besu/Orion privacy integration. It is not a setup guide for current public-network clients. Verify the exact client versions and supported privacy features before using these recipes. For current Ethereum setup, see [Run a node locally](../getting_started/run_node_locally.md).
+
 ## Privacy Support in Web3j
 As mentioned earlier, the Besu module in Web3j can be used to create privacy groups and send private transactions in Besu. The Besu privacy quickstart starts up three nodes with their associated Orion instances, which will henceforth be called Alice, Bob and Charlie for ease of use. The keys associated with each are predetermined, and can be represented in Java as follows:
 ```java

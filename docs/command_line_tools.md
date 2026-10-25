@@ -22,7 +22,7 @@ Behind the scenes there are some more granular commands that you can also use, i
 The simplest way to install the Web3j CLI is via the following script:
 
 ``` shell
-curl -L get.web3j.io | sh && source ~/.web3j/source.sh
+curl -L https://get.web3j.io | sh && source ~/.web3j/source.sh
 ```
 
 You can verify the installation was successful by running `web3j -V`, which should output as follows:
@@ -97,7 +97,7 @@ If no arguments are specified, the default project creation used is:
 web3j new helloworld
 ```
 
-Details of the created project structure are [below](#generated-project-structure).
+Details of the created project structure are [below](#generated-javakotlin-project-structure).
 
 ### Import an existing project
 
@@ -442,5 +442,5 @@ This functionality is provided by [SmartCheck](https://github.com/smartdec/smart
 
 ## Solidity smart contract wrapper generator
 
-Please refer to [solidity smart contract wrappers](http://docs.web3j.io/latest/smart_contracts/construction_and_deployment/#solidity-smart-contract-wrappers).
+Please refer to [solidity smart contract wrappers](smart_contracts/construction_and_deployment.md#solidity-smart-contract-wrappers).
 

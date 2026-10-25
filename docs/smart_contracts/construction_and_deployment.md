@@ -27,7 +27,7 @@ Deploying and interacting with smart contracts
 
 If you want to avoid the underlying implementation detail for working with smart contracts, Web3j provides [Solidity smart contract wrappers](#solidity-smart-contract-wrappers) which enable you to interact directly with all of a smart contract's methods via a generated wrapper object.
 
-Alternatively, if you wish to send regular transactions or have more control over your interactions with your smart contracts, please refer to the sections [Solidity smart contract wrappers](#solidity-smart-contract-wrappers), [Transacting with a smart contract](../transactions/transactions_and_smart_contracts.md#Transacting with a smart contract) and [Querying the state of a smart contract](../transactions/transactions_and_smart_contracts.md#Querying the state of a smart contract ) for details.
+Alternatively, if you wish to send regular transactions or have more control over your interactions with your smart contracts, please refer to the sections [Solidity smart contract wrappers](#solidity-smart-contract-wrappers), [Transacting with a smart contract](../transactions/transactions_and_smart_contracts.md#transacting-with-a-smart-contract) and [Querying the state of a smart contract](../transactions/transactions_and_smart_contracts.md#querying-the-state-of-a-smart-contract ) for details.
 
 
 Solidity smart contract wrappers
@@ -35,7 +35,7 @@ Solidity smart contract wrappers
 
 Web3j supports the auto-generation of smart contract function wrappers in Java from Solidity ABI files.
 
-The Web3j [Command Line Tools](http://docs.web3j.io/latest/command_line_tools/) tools ship with a command line utility for generating the smart contract function wrappers:
+The Web3j [Command Line Tools](../command_line_tools.md) tools ship with a command line utility for generating the smart contract function wrappers:
 
 ``` bash
 $ web3j generate solidity [-hV] [-jt] [-st] -a=<abiFile> [-b=<binFile>] -o=<destinationFileDir> -p=<packageName>
@@ -76,7 +76,7 @@ The smart contract wrappers support all common operations for working with smart
 Any method calls that requires an underlying JSON-RPC call to take place will return a Future to avoid blocking.
 
 Web3j also supports the generation of Java smart contract function wrappers directly from [Truffle's](http://truffleframework.com/) [Contract
-Schema](https://github.com/trufflesuite/truffle-contract-schema) via the [Command Line Tools](http://docs.web3j.io/latest/command_line_tools/#solidity-smart-contract-wrapper-generator) utility.
+Schema](https://github.com/trufflesuite/truffle-contract-schema) via the [Command Line Tools](../command_line_tools.md#solidity-smart-contract-wrapper-generator) utility.
 
 ``` bash
 $ web3j generate truffle [--javaTypes|--solidityTypes] /path/to/<truffle-smart-contract-output>.json -o /path/to/src/main/java -p com.your.organisation.name

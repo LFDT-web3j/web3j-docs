@@ -114,7 +114,7 @@ Web3j implementation
 --------------------
 
 Behind the scenes, whenever you using web3j's transaction managers (which are derived from the
-[ManagedTransaction](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/tx/ManagedTransaction.java) class), the [EnsResolver](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/ens/EnsResolver.java) is invoked to perform an ENS lookup if applicable.
+[ManagedTransaction](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/tx/ManagedTransaction.java) class), the [EnsResolver](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/ens/EnsResolver.java) is invoked to perform an ENS lookup if applicable.
 
 The resolution process is as follows:
 
@@ -125,12 +125,12 @@ The resolution process is as follows:
     - If it's more than 3 minutes old, fail.
     - Otherwise perform the lookup through the Universal Resolver path for forward resolution
 
-If you need to change the threshold parameter of what constitutes being synced to something other then 3 minutes, this can be done via the `setSyncThreshold` method in the [ManagedTransaction](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/tx/ManagedTransaction.java) class.
+If you need to change the threshold parameter of what constitutes being synced to something other then 3 minutes, this can be done via the `setSyncThreshold` method in the [ManagedTransaction](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/tx/ManagedTransaction.java) class.
 
 Unicode Technical Standard (UTS) \#46
 -------------------------------------
 
-UTS #46 is the standard used to sanitise input on domain names. The web3j ENS implementation performs this sanitation on all inputs before attempting resolution. For details of the implementation, refer to the [NameHash](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/ens/NameHash.java) class.
+UTS #46 is the standard used to sanitise input on domain names. The web3j ENS implementation performs this sanitation on all inputs before attempting resolution. For details of the implementation, refer to the [NameHash](https://github.com/LFDT-web3j/web3j/blob/v{{ web3j.version }}/core/src/main/java/org/web3j/ens/NameHash.java) class.
 
 Registering domain names
 ------------------------
