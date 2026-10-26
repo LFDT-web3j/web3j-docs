@@ -27,6 +27,8 @@ web3.web3ClientVersion().flowable().subscribe(x -> {
 });
 ```
 
+`HttpService` takes one URL. To spread requests over several providers with retries and failover, pass the URL of a self-hosted RPC proxy such as [eRPC](https://github.com/erpc/erpc), e.g. `new HttpService("http://localhost:4000/main/evm/1")`.
+
 IPC
 ---
 
