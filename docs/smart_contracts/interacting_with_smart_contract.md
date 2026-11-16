@@ -94,6 +94,21 @@ instance of the [EventValues](https://github.com/web3j/web3j/blob/master/abi/src
 EventValues eventValues = contract.processSomeEvent(transactionReceipt);
 ```
 
+A transaction receipt can contain `Transfer` events from several tokens. The
+ERC-20 wrapper matches events by signature, which all ERC-20 tokens share.
+To read transfers for one token, filter the logs by the emitting contract
+address before decoding them. Here, `token` is the loaded ERC-20 wrapper:
+
+```java
+String tokenAddress = token.getContractAddress();
+TransactionReceipt tokenLogs = new TransactionReceipt();
+tokenLogs.setLogs(transactionReceipt.getLogs().stream()
+        .filter(log -> tokenAddress.equalsIgnoreCase(log.getAddress()))
+        .collect(java.util.stream.Collectors.toList()));
+
+List<ERC20.TransferEventResponse> transfers = token.getTransferEvents(tokenLogs);
+```
+
 Alternatively you can use an Flowable filter instead which will listen for events associated with the smart contract:
 
 ```java
