@@ -71,6 +71,7 @@ nav:
       - Message Signing: advanced/message_signing.md
       - Web3j Core Modules: advanced/web3j_core_modules.md
       - Json Web Key (JWK) support: advanced/jwk_support.md
+      - Connecting to a Hosted RPC Endpoint: advanced/hosted_rpc_endpoint.md
   - Command Line Tools: command_line_tools.md
   - Use Cases:
       - Meta Transactions: use_cases/meta_transaction.md
